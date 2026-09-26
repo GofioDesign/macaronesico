@@ -111,6 +111,16 @@ Cuando una encuesta oficial se resume en un único porcentaje favorable, esa fra
 
 <TablaDatos datos="ecosoc-2026t2-turismo-por-edad" resaltar="Brecha (puntos)" orden="Brecha (puntos):desc" pie="Porcentaje de acuerdo («de acuerdo» + «muy de acuerdo») con cada afirmación. Población de 18 y más años residente en Canarias, segundo trimestre de 2026. Brecha: diferencia en puntos entre 18-34 años y 55 y más." />
 
+<PasoAPaso datos="ecosoc-2026t2-turismo-por-edad">
+
+1. **Fuente.** Descargamos del catálogo de datos abiertos del ISTAC las tablas oficiales del módulo de turismo de ECOSOC (segundo trimestre de 2026) que cruzan cada pregunta con la edad: las consultas C00086A_000028 (percepción general), C00086A_000030 (impacto económico), C00086A_000032 (impacto social) y C00086A_000036 (impacto medioambiental), y los conjuntos C00086A_000502 (tasa turística) y C00086A_000516 (vivienda vacacional). Los enlaces están en las fuentes.
+2. **Qué contamos como «de acuerdo».** En las afirmaciones con escala de acuerdo sumamos los porcentajes de «muy de acuerdo» y «de acuerdo». En la tasa turística y en la vivienda vacacional tomamos la respuesta que figura en la fila («deben pagar una tasa», «más estricta»). No recalculamos nada: el ISTAC ya publica los porcentajes con el peso de cada entrevista.
+3. **Grupos de edad.** Usamos los tres que publica el ISTAC: 18-34 años, 35-54 años y 55 y más.
+4. **Brecha.** Restamos el porcentaje de 55 y más al de 18-34. Si es positiva, los jóvenes están más de acuerdo; si es negativa, menos.
+5. **Comprobación.** Los totales coinciden con los de la nota de prensa del ISTAC del 22 de septiembre (por ejemplo, el 67,9% que considera el turismo muy beneficioso para su isla).
+
+</PasoAPaso>
+
 <NotaMetodologica titulo="Nota metodológica">
 
 ECOSOC es una encuesta trimestral del ISTAC a la población de 18 y más años que reside en viviendas familiares de Canarias. El módulo de turismo se realizó en el segundo trimestre de 2026 y ya se hizo en 2024. Los porcentajes por edad proceden de las tablas oficiales publicadas en el catálogo de datos abiertos del ISTAC; los totales coinciden con los de la nota de prensa.

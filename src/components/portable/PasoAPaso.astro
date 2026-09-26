@@ -1,0 +1,10 @@
+---
+import { SITIO } from '../../lib/sitio';
+const { titulo = 'Paso a paso: cómo llegamos a estas cifras', datos } = Astro.props;
+---
+
+<blockquote>
+  <p><strong>{titulo}</strong></p>
+  <slot />
+  {datos && <p><a href={`${SITIO.url}/datos/${datos}.csv`}>Descargar los datos (CSV)</a></p>}
+</blockquote>

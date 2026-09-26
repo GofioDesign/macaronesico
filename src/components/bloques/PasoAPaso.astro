@@ -1,0 +1,87 @@
+---
+/**
+ * Paso a paso: cómo se llegó a las cifras de una tabla o un gráfico.
+ * Dentro se escribe una lista numerada; cada punto es un paso.
+ * Si se indica un conjunto de datos, añade el enlace de descarga.
+ */
+interface Props {
+  titulo?: string;
+  datos?: string;
+}
+const { titulo = 'Paso a paso: cómo llegamos a estas cifras', datos } = Astro.props;
+---
+
+<details class="paso-a-paso">
+  <summary>{titulo}</summary>
+  <div class="contenido">
+    <slot />
+    {
+      datos && (
+        <p class="descarga">
+          <a href={`/datos/${datos}.csv`} download>Descargar los datos (CSV)</a>
+          <a href={`/datos/${datos}/`}>Ficha del conjunto de datos</a>
+        </p>
+      )
+    }
+  </div>
+</details>
+
+<style>
+  .paso-a-paso {
+    margin-block: 1.5rem 2.5rem !important;
+    border: 1px solid var(--linea);
+    border-left: 3px solid var(--acento);
+    border-radius: var(--radio);
+    font-size: 0.95em;
+  }
+  summary {
+    cursor: pointer;
+    padding: 0.9rem 1.1rem;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--tinta);
+  }
+  .contenido {
+    padding: 0 1.1rem 1rem;
+    color: var(--tinta-2);
+  }
+  .contenido :global(ol) {
+    list-style: none;
+    counter-reset: paso;
+    padding: 0;
+    margin: 0;
+  }
+  .contenido :global(ol > li) {
+    counter-increment: paso;
+    position: relative;
+    padding-left: 2.4rem;
+    margin-top: 0.9rem;
+  }
+  .contenido :global(ol > li)::before {
+    content: counter(paso);
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--acento);
+    color: var(--papel);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .contenido :global(p) {
+    margin: 0.8em 0 0;
+  }
+  .descarga {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+  }
+</style>

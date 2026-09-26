@@ -107,6 +107,15 @@ const bloques = {
     },
   }),
 
+  PasoAPaso: wrapper({
+    label: 'Paso a paso',
+    description: 'Recuadro plegable que explica, en una lista numerada, cómo se llegó a las cifras de una tabla o un gráfico.',
+    schema: {
+      titulo: fields.text({ label: 'Título', defaultValue: 'Paso a paso: cómo llegamos a estas cifras' }),
+      datos: fields.relationship({ label: 'Conjunto de datos (para el enlace de descarga)', collection: 'datos' }),
+    },
+  }),
+
   Fuentes: wrapper({
     label: 'Fuentes',
     description: 'Lista de fuentes del artículo. Escribe dentro una lista con enlaces.',

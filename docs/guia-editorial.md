@@ -32,6 +32,7 @@ Cloudflare. Cuando esté revisado, se abre una *pull request* y se fusiona en
 | **Tabla de datos** | Tabla ordenable a partir de un conjunto de datos. Se puede resaltar una columna y fijar el orden inicial |
 | **Gráfico** | *Puntos enfrentados* para comparar dos grupos por fila (con la diferencia a la derecha) o *barras horizontales* |
 | **Nota metodológica** | Recuadro plegable con el método, la muestra y los márgenes de error |
+| **Paso a paso** | Recuadro plegable con una lista numerada: cómo se llegó a las cifras de una tabla o un gráfico. Si se elige el conjunto de datos, añade el enlace de descarga |
 | **Fuentes** | Lista final de fuentes con enlaces |
 | **Cita destacada** | Una frase grande en mitad del texto |
 | **Cita bibliográfica** | (Autoría, año) enlazado a la ficha de la Biblioteca |
