@@ -1,8 +1,7 @@
 export const SITIO = {
   nombre: 'macaronesico',
   lema: 'Entender el territorio a través de quienes lo habitan',
-  descripcion:
-    'Laboratorio abierto sobre Canarias y la Macaronesia: el territorio explicado a través de quienes lo habitan. Con datos, memoria e imaginación.',
+  descripcion: 'Laboratorio abierto sobre Canarias y la Macaronesia: análisis de datos, memoria e imaginación.',
   url: 'https://macaronesico.com',
   idioma: 'es',
   repositorio: 'https://github.com/GofioDesign/macaronesico',
