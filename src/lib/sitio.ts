@@ -2,10 +2,11 @@ export const SITIO = {
   nombre: 'macaronesico',
   lema: 'Entender el territorio a través de quienes lo habitan',
   descripcion:
-    'Revista sobre Canarias y la Macaronesia que explica el territorio a través de la vida de quienes lo habitan: derechos, sostenibilidad y humanidad.',
+    'Laboratorio abierto sobre Canarias y la Macaronesia: el territorio explicado a través de quienes lo habitan. Derechos, sostenibilidad y humanidad.',
   url: 'https://macaronesico.com',
   idioma: 'es',
   repositorio: 'https://github.com/GofioDesign/macaronesico',
+  administra: { nombre: 'Gofio Design', url: 'https://github.com/GofioDesign' },
 };
 
 export const CATEGORIAS = {

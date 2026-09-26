@@ -17,8 +17,9 @@ const anio = new Date().getFullYear();
     </div>
     <nav aria-label="Información">
       <ul>
+        <li><a href="/participa/">Propón una pieza</a></li>
         <li><a href="/macaronesia/macaronesico/">Artículo fundacional</a></li>
-        {paginas.map((p) => <li><a href={`/${p.id}/`}>{p.data.titulo}</a></li>)}
+        {paginas.filter((p) => p.id !== 'participa').map((p) => <li><a href={`/${p.id}/`}>{p.data.titulo}</a></li>)}
       </ul>
     </nav>
     <nav aria-label="Seguir y reutilizar">
@@ -30,7 +31,11 @@ const anio = new Date().getFullYear();
       </ul>
     </nav>
   </div>
-  <p class="contenedor legal">© {anio} {SITIO.nombre}. Salvo indicación, los textos se publican con licencia Creative Commons y pueden republicarse citando la fuente.</p>
+  <p class="contenedor legal">
+    © {anio} {SITIO.nombre}, laboratorio administrado por <a href={SITIO.administra.url}>{SITIO.administra.nombre}</a>. Cada
+    artículo pertenece a su autoría. Salvo indicación, los textos se publican con licencia Creative Commons y pueden
+    republicarse citando la fuente.
+  </p>
 </footer>
 
 <style>

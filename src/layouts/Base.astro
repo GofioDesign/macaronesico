@@ -48,12 +48,13 @@ if (imagen) {
 }
 
 const organizacion = {
-  '@type': 'NewsMediaOrganization',
+  '@type': 'Organization',
   '@id': `${SITIO.url}/#organizacion`,
   name: SITIO.nombre,
   url: `${SITIO.url}/`,
   description: SITIO.descripcion,
   logo: { '@type': 'ImageObject', url: `${SITIO.url}/icono-512.png`, width: 512, height: 512 },
+  parentOrganization: { '@type': 'Organization', name: SITIO.administra.nombre, url: SITIO.administra.url },
 };
 const bloquesJsonld = [
   organizacion,
