@@ -1,0 +1,15 @@
+---
+import TablaSimple from './TablaSimple.astro';
+import { SITIO } from '../../lib/sitio';
+const { datos, etiqueta, series, orden, pie, titulo } = Astro.props;
+const columnas = [etiqueta, series].filter(Boolean).join(',');
+---
+
+<TablaSimple
+  datos={datos}
+  columnas={columnas}
+  orden={orden}
+  titulo={titulo}
+  pie={pie}
+  aviso={`El gráfico interactivo está en el artículo original de ${SITIO.nombre}.`}
+/>

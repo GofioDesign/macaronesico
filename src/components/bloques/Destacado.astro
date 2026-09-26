@@ -1,0 +1,30 @@
+---
+---
+
+<blockquote class="destacado">
+  <slot />
+</blockquote>
+
+<style>
+  .destacado {
+    margin: 2.5rem 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 1.45em;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--tinta) !important;
+    text-wrap: balance;
+  }
+  .destacado::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: var(--acento);
+    margin-bottom: 0.8rem;
+  }
+  .destacado :global(p) {
+    margin: 0;
+  }
+</style>

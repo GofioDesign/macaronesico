@@ -1,0 +1,5 @@
+---
+const { valor, texto, fuente } = Astro.props;
+---
+
+<p><strong>{valor}</strong>{texto && <> · {texto}</>}{fuente && <> (Fuente: {fuente})</>}</p>

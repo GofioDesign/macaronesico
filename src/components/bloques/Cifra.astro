@@ -1,0 +1,45 @@
+---
+interface Props {
+  valor: string;
+  texto?: string;
+  fuente?: string;
+}
+const { valor, texto, fuente } = Astro.props;
+---
+
+<aside class="cifra">
+  <p class="valor">{valor}</p>
+  {texto && <p class="texto">{texto}</p>}
+  {fuente && <p class="fuente">Fuente: {fuente}</p>}
+</aside>
+
+<style>
+  .cifra {
+    margin-block: 2rem !important;
+    padding: 1.25rem 0 1.25rem 1.25rem;
+    border-left: 4px solid var(--acento);
+  }
+  .valor {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(3rem, 2rem + 4vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--tinta);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .texto {
+    margin: 0.6rem 0 0;
+    font-size: 1.15em;
+    line-height: 1.4;
+    color: var(--tinta-2);
+    max-width: 32rem;
+  }
+  .fuente {
+    margin: 0.6rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+</style>

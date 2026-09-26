@@ -1,0 +1,7 @@
+---
+import { SITIO } from '../../lib/sitio';
+const { src, titulo } = Astro.props;
+const url = new URL(src, SITIO.url).href;
+---
+
+<p><a href={url}>{titulo} (pieza interactiva en {SITIO.nombre})</a></p>

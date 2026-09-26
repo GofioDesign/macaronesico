@@ -1,0 +1,366 @@
+---
+import { getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Tarjeta from './Tarjeta.astro';
+import { bloques } from './bloques';
+import {
+  formatoFecha,
+  idiomaDe,
+  isoFecha,
+  minutosLectura,
+  obtenerArticulos,
+  traduccionesDe,
+  urlArticulo,
+  type Articulo,
+} from '../lib/contenido';
+import { referenciaAPA } from '../lib/biblioteca';
+import { CATEGORIAS, IDIOMAS, LICENCIAS, SITIO } from '../lib/sitio';
+import { t } from '../i18n/textos';
+
+interface Props {
+  articulo: Articulo;
+}
+
+const { articulo } = Astro.props;
+const d = articulo.data;
+const idioma = idiomaDe(articulo);
+const textos = t(idioma);
+const { Content } = await render(articulo);
+
+const autores = (await Promise.all(d.autoria.map((id) => getEntry('autoria', id)))).filter((x) => x !== undefined);
+const temas = (await Promise.all(d.temas.map((id) => getEntry('temas', id)))).filter((x) => x !== undefined);
+const referencias = (
+  await Promise.all(d.referencias.map((id) => getEntry('biblioteca', id)))
+).filter((r) => r !== undefined);
+const traducciones = await traduccionesDe(articulo);
+const alternos = traducciones.map((x) => ({ idioma: idiomaDe(x), url: urlArticulo(x) }));
+const relacionados = (await obtenerArticulos(idioma))
+  .filter((x) => x.id !== articulo.id && x.data.categoria === d.categoria)
+  .slice(0, 3);
+
+const url = new URL(urlArticulo(articulo), SITIO.url).href;
+const licencia = LICENCIAS[d.licencia];
+const categoria = CATEGORIAS[d.categoria];
+const descripcion = d.descripcion || d.entradilla || SITIO.descripcion;
+
+const jsonld = {
+  '@type': 'Article',
+  '@id': `${url}#articulo`,
+  headline: d.titulo,
+  description: descripcion,
+  url,
+  mainEntityOfPage: url,
+  inLanguage: idioma,
+  datePublished: d.fecha.toISOString(),
+  dateModified: (d.actualizado ?? d.fecha).toISOString(),
+  articleSection: categoria.nombre,
+  keywords: temas.map((x) => x.data.nombre).join(', '),
+  isAccessibleForFree: true,
+  author: autores.length
+    ? autores.map((a) => ({ '@type': 'Person', name: a.data.nombre, url: `${SITIO.url}/autoria/${a.id}/` }))
+    : [{ '@id': `${SITIO.url}/#organizacion` }],
+  publisher: { '@id': `${SITIO.url}/#organizacion` },
+  ...(licencia.url ? { license: licencia.url } : {}),
+  ...(referencias.length
+    ? {
+        citation: referencias.map((r) => ({
+          '@type': 'CreativeWork',
+          name: r.data.titulo,
+          ...(r.data.doi ? { sameAs: `https://doi.org/${r.data.doi}` } : {}),
+        })),
+      }
+    : {}),
+};
+---
+
+<Base
+  titulo={d.titulo}
+  descripcion={descripcion}
+  imagen={d.portada}
+  imagenAlt={d.portadaAlt}
+  tipo="article"
+  idioma={idioma}
+  alternos={alternos}
+  jsonld={jsonld}
+  publicado={d.fecha}
+  modificado={d.actualizado}
+>
+  <article class="articulo">
+    <header class="contenedor encabezado">
+      {d.estado === 'borrador' && <p class="aviso-borrador">{textos.borrador}</p>}
+      <p>
+        <a class="etiqueta" href={`${IDIOMAS[idioma].prefijo}/${d.categoria}/`}>{categoria.nombre}</a>
+        {d.serie && <span class="serie"> · {textos.serie}: {d.serie}</span>}
+      </p>
+      <h1>{d.titulo}</h1>
+      {d.entradilla && <p class="entradilla">{d.entradilla}</p>}
+      <p class="meta">
+        {
+          autores.length > 0 && (
+            <>
+              {textos.por}{' '}
+              {autores.map((a, i) => (
+                <>
+                  {i > 0 && ', '}
+                  <a href={`/autoria/${a.id}/`}>{a.data.nombre}</a>
+                </>
+              ))}
+              {' · '}
+            </>
+          )
+        }
+        <time datetime={isoFecha(d.fecha)}>{formatoFecha(d.fecha, idioma)}</time>
+        {' · '}
+        {minutosLectura(articulo.body)} {textos.minutos}
+        {
+          d.actualizado && (
+            <>
+              {' · '}
+              {textos.actualizado} <time datetime={isoFecha(d.actualizado)}>{formatoFecha(d.actualizado, idioma)}</time>
+            </>
+          )
+        }
+      </p>
+      {
+        traducciones.length > 1 && (
+          <p class="meta idiomas">
+            {textos.otrosIdiomas}:{' '}
+            {traducciones
+              .filter((x) => x.id !== articulo.id)
+              .map((x, i) => (
+                <>
+                  {i > 0 && ' · '}
+                  <a href={urlArticulo(x)} hreflang={idiomaDe(x)} lang={idiomaDe(x)}>
+                    {IDIOMAS[idiomaDe(x)].nombre}
+                  </a>
+                </>
+              ))}
+          </p>
+        )
+      }
+    </header>
+
+    {
+      d.portada && (
+        <figure class="portada contenedor">
+          <Image
+            src={d.portada}
+            alt={d.portadaAlt}
+            widths={[640, 960, 1280, 1600]}
+            sizes="(min-width: 76rem) 76rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </figure>
+      )
+    }
+
+    <div class="contenedor">
+      <div class="prosa">
+        <Content components={bloques} />
+
+        {
+          referencias.length > 0 && (
+            <section class="bibliografia" aria-labelledby="titulo-bibliografia">
+              <h2 id="titulo-bibliografia">{textos.bibliografia}</h2>
+              <ol>
+                {referencias.map((r) => {
+                  const x = referenciaAPA(r);
+                  return (
+                    <li id={`ref-${r.id}`}>
+                      {x.antes}
+                      <em>{x.cursiva}</em>
+                      {x.despues} {x.enlace && <a href={x.enlace}>{x.enlace}</a>}{' '}
+                      <a class="ficha" href={`/biblioteca/${r.id}/`}>
+                        Ficha
+                      </a>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          )
+        }
+
+        <footer class="cierre">
+          {
+            temas.length > 0 && (
+              <p class="temas">
+                <span class="sr-only">{textos.temas}: </span>
+                {temas.map((x) => (
+                  <a href={`/tema/${x.id}/`}>{x.data.nombre}</a>
+                ))}
+              </p>
+            )
+          }
+          {
+            licencia.republicable ? (
+              <p class="licencia">
+                {textos.licenciaTexto} <a href={licencia.url} rel="license">{licencia.nombre}</a>.{' '}
+                <a class="boton" href={`${urlArticulo(articulo)}republicar/`}>
+                  {textos.republicar}
+                </a>
+              </p>
+            ) : (
+              <p class="licencia">© {SITIO.nombre}. {licencia.nombre}.</p>
+            )
+          }
+        </footer>
+      </div>
+    </div>
+  </article>
+
+  {
+    relacionados.length > 0 && (
+      <aside class="contenedor relacionados" aria-labelledby="titulo-relacionados">
+        <h2 id="titulo-relacionados">
+          {textos.masEn} {categoria.nombre}
+        </h2>
+        <div class="rejilla">
+          {relacionados.map((x) => (
+            <Tarjeta articulo={x} />
+          ))}
+        </div>
+      </aside>
+    )
+  }
+</Base>
+
+<style>
+  .encabezado {
+    max-width: calc(var(--ancho-amplio) + 2 * var(--margen));
+    padding-top: clamp(2rem, 5vw, 4rem);
+    padding-bottom: 2rem;
+  }
+  .encabezado > p:first-child {
+    margin: 0;
+  }
+  .aviso-borrador {
+    display: inline-block;
+    margin: 0 0 1rem !important;
+    padding: 0.3rem 0.6rem;
+    background: var(--acento-suave);
+    color: var(--acento);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: var(--radio);
+  }
+  .serie {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+  h1 {
+    font-size: clamp(2.1rem, 1.3rem + 3.2vw, 3.6rem);
+    margin: 0.6rem 0 0;
+    max-width: 22ch;
+  }
+  .entradilla {
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+    line-height: 1.45;
+    color: var(--tinta-2);
+    margin: 1.2rem 0 0;
+    max-width: 44rem;
+  }
+  .meta {
+    margin: 1.2rem 0 0;
+  }
+  .meta a {
+    color: inherit;
+  }
+  .idiomas {
+    margin-top: 0.4rem;
+  }
+  .portada {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+  }
+  .portada :global(img) {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    border-radius: var(--radio);
+  }
+  .bibliografia {
+    margin-top: 3rem !important;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--linea);
+    font-size: 0.9em;
+  }
+  .bibliografia h2 {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tinta-3);
+    margin: 0 0 0.75rem;
+  }
+  .bibliografia ol {
+    list-style: none;
+    padding: 0;
+  }
+  .bibliografia li {
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+    overflow-wrap: anywhere;
+  }
+  .ficha {
+    font-family: var(--sans);
+    font-size: 0.8em;
+  }
+  .cierre {
+    margin-top: 3rem !important;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--linea);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: var(--tinta-2);
+  }
+  .temas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0 0 1rem;
+  }
+  .temas a {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    color: var(--tinta-2);
+    text-decoration: none;
+  }
+  .temas a:hover {
+    border-color: var(--acento);
+    color: var(--acento);
+  }
+  .licencia {
+    margin: 0;
+  }
+  .boton {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--acento);
+    border-radius: var(--radio);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .boton:hover {
+    background: var(--acento-suave);
+  }
+  .relacionados {
+    margin-top: 5rem;
+  }
+  .relacionados h2 {
+    font-size: 1.4rem;
+    border-top: 2px solid var(--tinta);
+    padding-top: 1rem;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+</style>

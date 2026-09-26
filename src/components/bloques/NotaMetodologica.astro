@@ -1,0 +1,41 @@
+---
+interface Props {
+  titulo?: string;
+}
+const { titulo = 'Nota metodológica' } = Astro.props;
+---
+
+<details class="nota">
+  <summary>{titulo}</summary>
+  <div class="contenido">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .nota {
+    margin-block: 2.5rem !important;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--papel-2);
+    font-size: 0.95em;
+  }
+  summary {
+    cursor: pointer;
+    padding: 0.9rem 1.1rem;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--tinta);
+  }
+  .contenido {
+    padding: 0 1.1rem 1rem;
+    color: var(--tinta-2);
+  }
+  .contenido > :global(* + *) {
+    margin-top: 0.8em;
+  }
+  .contenido :global(p:first-child) {
+    margin-top: 0;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { leerCSV } from '../../lib/datos';
+import { formatoFecha } from '../../lib/contenido';
+import { SITIO } from '../../lib/sitio';
+
+const conjuntos = (await getCollection('datos')).sort(
+  (a, b) => (b.data.fecha?.getTime() ?? 0) - (a.data.fecha?.getTime() ?? 0),
+);
+---
+
+<Base
+  titulo="Datos abiertos"
+  descripcion="Los datos que usamos en nuestros artículos, con su fuente, su método y descarga en CSV."
+  jsonld={{
+    '@type': 'DataCatalog',
+    name: `Datos abiertos de ${SITIO.nombre}`,
+    url: `${SITIO.url}/datos/`,
+    dataset: conjuntos.map((c) => ({ '@type': 'Dataset', name: c.data.titulo, url: `${SITIO.url}/datos/${c.id}/` })),
+  }}
+>
+  <div class="contenedor">
+    <header class="cabeza">
+      <p class="etiqueta">Datos</p>
+      <h1>Datos abiertos</h1>
+      <p class="descripcion">
+        Todas las cifras que publicamos, con su procedencia y método, para que cualquiera pueda comprobarlas y reutilizarlas.
+      </p>
+    </header>
+    <ul class="lista">
+      {
+        conjuntos.map((c) => {
+          const t = leerCSV(c.data.csv);
+          return (
+            <li>
+              <h2><a href={`/datos/${c.id}/`}>{c.data.titulo}</a></h2>
+              {c.data.descripcion && <p>{c.data.descripcion}</p>}
+              <p class="meta">
+                {c.data.fuente}
+                {c.data.fecha && <> · {formatoFecha(c.data.fecha)}</>} · {t.filas.length} filas × {t.columnas.length} columnas ·{' '}
+                <a href={`/datos/${c.id}.csv`} download>CSV</a>
+              </p>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .cabeza {
+    max-width: var(--ancho-amplio);
+    padding-block: clamp(2rem, 5vw, 4rem) 2rem;
+  }
+  .cabeza .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    margin: 0.4rem 0 0;
+  }
+  .descripcion {
+    font-size: 1.15rem;
+    color: var(--tinta-2);
+    max-width: 42rem;
+    margin: 1rem 0 0;
+  }
+  .lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: var(--ancho-amplio);
+  }
+  .lista li {
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .lista h2 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  .lista h2 a {
+    color: var(--tinta);
+    text-decoration: none;
+  }
+  .lista p {
+    margin: 0.4rem 0 0;
+    color: var(--tinta-2);
+  }
+</style>

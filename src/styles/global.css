@@ -1,0 +1,241 @@
+/* ==========================================================
+   macaronesico · sistema visual
+   Papel cálido, tinta oscura, almagre como acento.
+   Tipografías del sistema: cero peticiones externas.
+   ========================================================== */
+
+:root {
+  --papel: #faf8f4;
+  --papel-2: #f2eee6;
+  --tinta: #1d1b18;
+  --tinta-2: #4f4a43;
+  --tinta-3: #6b665d;
+  --linea: #e2ddd2;
+  --acento: #a13d18;
+  --acento-suave: #f4e7de;
+  --serie-1: #0b72a8;
+  --serie-2: #c2562c;
+  --foco: #0b72a8;
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Charter, 'Bitstream Charter', Georgia, serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --ancho-texto: 40rem;
+  --ancho-amplio: 64rem;
+  --ancho-sitio: 76rem;
+  --margen: clamp(1rem, 4vw, 2.5rem);
+  --radio: 4px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #161514;
+    --papel-2: #1f1e1c;
+    --tinta: #ece8e1;
+    --tinta-2: #c4bdb1;
+    --tinta-3: #a09a8f;
+    --linea: #34312d;
+    --acento: #e48a60;
+    --acento-suave: #33231b;
+    --serie-1: #2f96cf;
+    --serie-2: #d9683a;
+    --foco: #6cc0ec;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+  line-height: 1.6;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--acento);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.saltar {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  font-family: var(--sans);
+}
+
+.saltar:focus {
+  left: 0.5rem;
+}
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho-sitio);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+.etiqueta {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acento);
+  text-decoration: none;
+}
+
+.meta {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  color: var(--tinta-3);
+}
+
+/* ---------- Cuerpo de artículo ---------- */
+
+.prosa {
+  max-width: var(--ancho-texto);
+  margin-inline: auto;
+}
+
+.prosa > * + * {
+  margin-top: 1.1em;
+}
+
+.prosa p,
+.prosa li {
+  hyphens: auto;
+}
+
+.prosa h2 {
+  font-size: 1.6em;
+  margin-top: 2.2em;
+}
+
+.prosa h3 {
+  font-size: 1.25em;
+  margin-top: 1.8em;
+}
+
+.prosa h4 {
+  font-size: 1.05em;
+  margin-top: 1.6em;
+  font-family: var(--sans);
+}
+
+.prosa h2 + *,
+.prosa h3 + *,
+.prosa h4 + * {
+  margin-top: 0.6em;
+}
+
+.prosa ul,
+.prosa ol {
+  padding-left: 1.3em;
+}
+
+.prosa li + li {
+  margin-top: 0.35em;
+}
+
+.prosa blockquote {
+  margin-inline: 0;
+  padding-left: 1.2em;
+  border-left: 3px solid var(--acento);
+  color: var(--tinta-2);
+}
+
+.prosa strong {
+  font-weight: 700;
+}
+
+.prosa hr {
+  border: 0;
+  border-top: 1px solid var(--linea);
+  margin-block: 2.5em;
+}
+
+.prosa code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--papel-2);
+  padding: 0.1em 0.3em;
+  border-radius: var(--radio);
+}
+
+.prosa img {
+  border-radius: var(--radio);
+}
+
+/* Bloques que pueden salirse del ancho de lectura */
+.prosa .amplio {
+  max-width: var(--ancho-amplio);
+  width: min(var(--ancho-amplio), calc(100vw - 2 * var(--margen)));
+  margin-left: 50%;
+  transform: translateX(-50%);
+}

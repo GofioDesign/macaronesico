@@ -1,0 +1,41 @@
+name: Migrar desde WordPress
+
+# Descarga las portadas y las páginas legales del WordPress original y las
+# guarda en el repositorio. Se ejecuta sola al subir cambios en el script de
+# migración, y también a mano desde la pestaña Actions.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/migracion/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: migracion
+  cancel-in-progress: false
+
+jobs:
+  migrar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Importar desde macaronesico.com
+        run: node scripts/migracion/wordpress.mjs
+      - name: Guardar cambios
+        run: |
+          git config user.name "macaronesico-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets src/content public
+          if git diff --cached --quiet; then
+            echo "Nada nuevo que guardar."
+          else
+            git commit -m "Migración: portadas y páginas desde WordPress"
+            git pull --rebase
+            git push
+          fi

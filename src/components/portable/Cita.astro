@@ -1,0 +1,8 @@
+---
+import { getEntry } from 'astro:content';
+import { citaCorta } from '../../lib/biblioteca';
+const { clave, paginas } = Astro.props;
+const ref = await getEntry('biblioteca', clave);
+---
+
+{ref ? <>({citaCorta(ref, paginas)})</> : <>({clave})</>}

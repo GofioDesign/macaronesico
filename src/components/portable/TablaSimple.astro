@@ -1,0 +1,36 @@
+---
+/** Tabla HTML sin clases ni estilos, apta para pegar en WordPress o para RSS. */
+import { cargarDatos, formatoNumero, listaColumnas, ordenarFilas, esNumero } from '../../lib/datos';
+import { SITIO } from '../../lib/sitio';
+
+interface Props {
+  datos: string;
+  columnas?: string;
+  orden?: string;
+  pie?: string;
+  titulo?: string;
+  aviso?: string;
+}
+const { datos, columnas, orden, pie, titulo, aviso } = Astro.props;
+const { meta, tabla } = await cargarDatos(datos);
+const elegidas = listaColumnas(columnas).filter((c) => tabla.columnas.includes(c));
+const cols = elegidas.length ? elegidas : tabla.columnas;
+const filas = ordenarFilas(tabla, orden);
+const signo = (c: string) => /brecha|diferencia|variaci/i.test(c);
+---
+
+<figure>
+  {titulo && <p><strong>{titulo}</strong></p>}
+  <table>
+    <thead>
+      <tr>{cols.map((c) => <th>{c}</th>)}</tr>
+    </thead>
+    <tbody>
+      {filas.map((f) => <tr>{cols.map((c) => <td>{esNumero(f[c]) ? formatoNumero(f[c], 'es-ES', signo(c)) : f[c]}</td>)}</tr>)}
+    </tbody>
+  </table>
+  <figcaption>
+    {pie}
+    {aviso && <> {aviso}</>} Datos: <a href={`${SITIO.url}/datos/${meta.id}/`}>{meta.data.titulo}</a>.
+  </figcaption>
+</figure>

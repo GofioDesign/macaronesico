@@ -1,0 +1,29 @@
+---
+import { getEntry } from 'astro:content';
+import { citaCorta } from '../../lib/biblioteca';
+
+interface Props {
+  clave: string;
+  paginas?: string;
+}
+const { clave, paginas } = Astro.props;
+const ref = await getEntry('biblioteca', clave);
+if (!ref) console.warn(`[macaronesico] Cita a una referencia que no existe en la Biblioteca: "${clave}"`);
+---
+
+{
+  ref ? (
+    <a class="cita" href={`/biblioteca/${ref.id}/`} title={ref.data.titulo}>
+      ({citaCorta(ref, paginas)})
+    </a>
+  ) : (
+    <span class="cita">({clave})</span>
+  )
+}
+
+<style>
+  .cita {
+    color: inherit;
+    text-decoration-style: dotted;
+  }
+</style>

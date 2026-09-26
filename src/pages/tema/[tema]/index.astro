@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Tarjeta from '../../../components/Tarjeta.astro';
+import { obtenerArticulos } from '../../../lib/contenido';
+
+export async function getStaticPaths() {
+  const temas = await getCollection('temas');
+  const articulos = await obtenerArticulos('es');
+  const referencias = await getCollection('biblioteca');
+  return temas.map((tema) => ({
+    params: { tema: tema.id },
+    props: {
+      tema,
+      articulos: articulos.filter((a) => a.data.temas.includes(tema.id)),
+      referencias: referencias.filter((r) => r.data.temas.includes(tema.id)),
+    },
+  }));
+}
+
+const { tema, articulos, referencias } = Astro.props;
+const vacio = articulos.length === 0 && referencias.length === 0;
+---
+
+<Base titulo={tema.data.nombre} descripcion={tema.data.descripcion || `Textos de macaronesico sobre ${tema.data.nombre}.`} noindex={vacio}>
+  <div class="contenedor">
+    <header class="cabeza">
+      <p class="etiqueta">Tema</p>
+      <h1>{tema.data.nombre}</h1>
+      {tema.data.descripcion && <p class="descripcion">{tema.data.descripcion}</p>}
+    </header>
+    {
+      articulos.length > 0 && (
+        <div class="rejilla">{articulos.map((a) => <Tarjeta articulo={a} />)}</div>
+      )
+    }
+    {
+      referencias.length > 0 && (
+        <section class="refs">
+          <h2>En la Biblioteca</h2>
+          <ul>
+            {referencias.map((r) => (
+              <li>
+                <a href={`/biblioteca/${r.id}/`}>{r.data.titulo}</a> ({r.data.anio})
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+    {vacio && <p class="meta">Todavía no hay textos con este tema.</p>}
+  </div>
+</Base>
+
+<style>
+  .cabeza {
+    max-width: var(--ancho-amplio);
+    padding-block: clamp(2rem, 5vw, 4rem) 2.5rem;
+  }
+  .cabeza .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    margin: 0.4rem 0 0;
+  }
+  .descripcion {
+    font-size: 1.15rem;
+    color: var(--tinta-2);
+    max-width: 42rem;
+    margin: 1rem 0 0;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+  .refs {
+    margin-top: 3rem;
+  }
+  .refs h2 {
+    border-top: 2px solid var(--tinta);
+    padding-top: 1rem;
+    font-size: 1.3rem;
+  }
+</style>

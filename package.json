@@ -1,0 +1,33 @@
+{
+  "name": "macaronesico",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "macaronesico: revista de análisis crítico y pensamiento decolonial desde Canarias y la Macaronesia",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "biblioteca:doi": "node scripts/biblioteca/alta-doi.mjs",
+    "biblioteca:importar": "node scripts/biblioteca/importar.mjs",
+    "migracion:wordpress": "node scripts/migracion/wordpress.mjs",
+    "istac:descargar": "node scripts/istac/descargar.mjs"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/rss": "^4.0.12",
+    "@astrojs/sitemap": "^3.4.0",
+    "@keystatic/astro": "^5.0.6",
+    "@keystatic/core": "^0.5.47",
+    "astro": "^5.13.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.34.0"
+  }
+}

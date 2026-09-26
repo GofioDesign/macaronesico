@@ -1,0 +1,256 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { citaCorta, NOMBRES_TERRITORIO, NOMBRES_TIPO } from '../../lib/biblioteca';
+import { SITIO } from '../../lib/sitio';
+
+const referencias = (await getCollection('biblioteca')).sort(
+  (a, b) => b.data.anio - a.data.anio || a.data.titulo.localeCompare(b.data.titulo, 'es'),
+);
+const temas = await getCollection('temas');
+const nombreTema = Object.fromEntries(temas.map((t) => [t.id, t.data.nombre]));
+
+function usados(f: (r: (typeof referencias)[number]) => string[]): string[] {
+  return [...new Set(referencias.flatMap(f))].filter(Boolean);
+}
+const territorios = usados((r) => r.data.territorios);
+const temasUsados = usados((r) => r.data.temas);
+const tipos = usados((r) => [r.data.tipo]);
+
+const jsonld = {
+  '@type': 'CollectionPage',
+  name: 'Biblioteca macaronésica',
+  url: `${SITIO.url}/biblioteca/`,
+  description: 'Investigación científica sobre Canarias y la Macaronesia, leída y comentada por macaronesico.',
+  inLanguage: 'es',
+  isPartOf: { '@id': `${SITIO.url}/#web` },
+};
+---
+
+<Base
+  titulo="Biblioteca macaronésica"
+  descripcion="Investigación científica sobre Canarias y la Macaronesia, leída y comentada: artículos, libros, tesis e informes con su resumen propio."
+  jsonld={jsonld}
+>
+  <div class="contenedor">
+    <header class="cabeza">
+      <p class="etiqueta">Biblioteca</p>
+      <h1>Biblioteca macaronésica</h1>
+      <p class="descripcion">
+        Investigación sobre Canarias y la Macaronesia que usamos para pensar y escribir. Cada ficha incluye nuestra lectura:
+        qué dice y por qué importa. Empezamos por Canarias; el objetivo es todo el espacio macaronésico.
+      </p>
+      <p class="meta exportar">
+        Descargar la biblioteca completa:
+        <a href="/biblioteca/biblioteca.bib">BibTeX</a>
+        <a href="/biblioteca/biblioteca.json">CSL-JSON (Zotero)</a>
+      </p>
+    </header>
+
+    {
+      referencias.length === 0 ? (
+        <p class="vacio">La Biblioteca se está cargando. Vuelve pronto.</p>
+      ) : (
+        <>
+          <form class="filtros" role="search" aria-label="Filtrar la biblioteca" data-filtros>
+            <label>
+              <span>Buscar</span>
+              <input type="search" name="q" placeholder="Título, autoría, revista…" />
+            </label>
+            <label>
+              <span>Territorio</span>
+              <select name="territorio">
+                <option value="">Todos</option>
+                {territorios.map((t) => (
+                  <option value={t}>{NOMBRES_TERRITORIO[t] ?? t}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Tema</span>
+              <select name="tema">
+                <option value="">Todos</option>
+                {temasUsados.map((t) => (
+                  <option value={t}>{nombreTema[t] ?? t}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span>Tipo</span>
+              <select name="tipo">
+                <option value="">Todos</option>
+                {tipos.map((t) => (
+                  <option value={t}>{NOMBRES_TIPO[t] ?? t}</option>
+                ))}
+              </select>
+            </label>
+            <label class="casilla">
+              <input type="checkbox" name="abierto" />
+              <span>Solo acceso abierto</span>
+            </label>
+          </form>
+          <p class="meta" aria-live="polite" data-contador>
+            {referencias.length} referencias
+          </p>
+
+          <ol class="lista">
+            {referencias.map((r) => (
+              <li
+                data-texto={[r.data.titulo, r.data.autores.join(' '), r.data.revista, r.data.editorial, r.data.anio]
+                  .join(' ')
+                  .toLowerCase()}
+                data-territorios={r.data.territorios.join(' ')}
+                data-temas={r.data.temas.join(' ')}
+                data-tipo={r.data.tipo}
+                data-abierto={r.data.acceso === 'abierto' ? '1' : '0'}
+              >
+                <p class="etiqueta">
+                  {NOMBRES_TIPO[r.data.tipo]} · {r.data.anio}
+                  {r.data.acceso === 'abierto' && <span class="abierto"> · acceso abierto</span>}
+                </p>
+                <h2>
+                  <a href={`/biblioteca/${r.id}/`}>{r.data.titulo}</a>
+                </h2>
+                <p class="autoria">
+                  {citaCorta(r).replace(/, \d+$/, '')}
+                  {r.data.revista && <> · <em>{r.data.revista}</em></>}
+                </p>
+                {r.data.resumen && <p class="resumen">{r.data.resumen}</p>}
+              </li>
+            ))}
+          </ol>
+        </>
+      )
+    }
+  </div>
+</Base>
+
+<script>
+  const formulario = document.querySelector<HTMLFormElement>('[data-filtros]');
+  const contador = document.querySelector('[data-contador]');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.lista > li'));
+
+  function aplicar() {
+    if (!formulario) return;
+    const f = new FormData(formulario);
+    const q = String(f.get('q') ?? '').trim().toLowerCase();
+    const territorio = String(f.get('territorio') ?? '');
+    const tema = String(f.get('tema') ?? '');
+    const tipo = String(f.get('tipo') ?? '');
+    const abierto = f.get('abierto') === 'on';
+    let visibles = 0;
+    for (const li of items) {
+      const d = li.dataset;
+      const ok =
+        (!q || (d.texto ?? '').includes(q)) &&
+        (!territorio || (d.territorios ?? '').split(' ').includes(territorio)) &&
+        (!tema || (d.temas ?? '').split(' ').includes(tema)) &&
+        (!tipo || d.tipo === tipo) &&
+        (!abierto || d.abierto === '1');
+      li.hidden = !ok;
+      if (ok) visibles++;
+    }
+    if (contador) contador.textContent = `${visibles} ${visibles === 1 ? 'referencia' : 'referencias'}`;
+  }
+
+  formulario?.addEventListener('input', aplicar);
+  formulario?.addEventListener('submit', (e) => e.preventDefault());
+</script>
+
+<style>
+  .cabeza {
+    max-width: var(--ancho-amplio);
+    padding-block: clamp(2rem, 5vw, 4rem) 2rem;
+  }
+  .cabeza .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    margin: 0.4rem 0 0;
+  }
+  .descripcion {
+    font-size: 1.15rem;
+    color: var(--tinta-2);
+    max-width: 42rem;
+    margin: 1rem 0 0;
+  }
+  .exportar a {
+    margin-left: 0.75rem;
+  }
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: end;
+    padding: 1rem;
+    background: var(--papel-2);
+    border-radius: var(--radio);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+  }
+  .filtros label {
+    display: grid;
+    gap: 0.3rem;
+    color: var(--tinta-2);
+  }
+  .filtros input[type='search'] {
+    min-width: min(18rem, 100%);
+  }
+  .filtros input,
+  .filtros select {
+    font: inherit;
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--papel);
+    color: var(--tinta);
+  }
+  .filtros .casilla {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-bottom: 0.5rem;
+  }
+  .lista {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+  }
+  .lista li {
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .lista .etiqueta {
+    margin: 0;
+    color: var(--tinta-3);
+  }
+  .abierto {
+    color: var(--acento);
+  }
+  .lista h2 {
+    font-size: 1.25rem;
+    margin: 0.35rem 0 0;
+  }
+  .lista h2 a {
+    color: var(--tinta);
+    text-decoration: none;
+  }
+  .lista h2 a:hover {
+    color: var(--acento);
+  }
+  .autoria {
+    margin: 0.35rem 0 0;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: var(--tinta-2);
+  }
+  .resumen {
+    margin: 0.5rem 0 0;
+    color: var(--tinta-2);
+    max-width: 46rem;
+  }
+  .vacio {
+    color: var(--tinta-3);
+  }
+</style>

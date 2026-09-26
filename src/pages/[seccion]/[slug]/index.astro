@@ -1,0 +1,16 @@
+---
+import ArticuloVista from '../../../components/ArticuloVista.astro';
+import { obtenerArticulos, slugDe } from '../../../lib/contenido';
+
+export async function getStaticPaths() {
+  const articulos = await obtenerArticulos('es');
+  return articulos.map((articulo) => ({
+    params: { seccion: articulo.data.categoria, slug: slugDe(articulo) },
+    props: { articulo },
+  }));
+}
+
+const { articulo } = Astro.props;
+---
+
+<ArticuloVista articulo={articulo} />

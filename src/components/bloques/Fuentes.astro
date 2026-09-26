@@ -1,0 +1,36 @@
+---
+interface Props {
+  titulo?: string;
+}
+const { titulo = 'Fuentes' } = Astro.props;
+---
+
+<section class="fuentes" aria-labelledby="titulo-fuentes">
+  <h2 id="titulo-fuentes">{titulo}</h2>
+  <slot />
+</section>
+
+<style>
+  .fuentes {
+    margin-top: 3rem !important;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--linea);
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: var(--tinta-2);
+  }
+  h2 {
+    font-family: var(--sans);
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem !important;
+    color: var(--tinta-3);
+  }
+  .fuentes :global(ul) {
+    padding-left: 1.1em;
+  }
+  .fuentes :global(li + li) {
+    margin-top: 0.4em;
+  }
+</style>

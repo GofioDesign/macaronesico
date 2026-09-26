@@ -1,0 +1,137 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Tarjeta from '../components/Tarjeta.astro';
+import { obtenerArticulos } from '../lib/contenido';
+import { CATEGORIAS, SITIO } from '../lib/sitio';
+
+const articulos = await obtenerArticulos('es');
+const principal = articulos.find((a) => a.data.destacado) ?? articulos[0];
+const resto = articulos.filter((a) => a !== principal);
+const referencias = await getCollection('biblioteca');
+const datos = await getCollection('datos');
+---
+
+<Base descripcion={SITIO.descripcion}>
+  <div class="contenedor portada">
+    <h1 class="sr-only">{SITIO.nombre}: {SITIO.lema}</h1>
+
+    {principal && <section class="principal"><Tarjeta articulo={principal} grande /></section>}
+
+    {
+      resto.length > 0 && (
+        <section aria-labelledby="titulo-recientes">
+          <h2 id="titulo-recientes" class="titulo-bloque">Últimos textos</h2>
+          <div class="rejilla">
+            {resto.map((a) => (
+              <Tarjeta articulo={a} />
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="secciones" aria-labelledby="titulo-secciones">
+      <h2 id="titulo-secciones" class="titulo-bloque">Desde dónde escribimos</h2>
+      <ul>
+        {
+          Object.entries(CATEGORIAS).map(([clave, c]) => (
+            <li>
+              <a href={`/${clave}/`}>{c.nombre}</a>
+              <p>{c.descripcion}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="biblioteca" aria-labelledby="titulo-biblioteca">
+      <div>
+        <h2 id="titulo-biblioteca">Biblioteca macaronésica</h2>
+        <p>
+          Investigación científica sobre Canarias y la Macaronesia, leída y comentada: {referencias.length}
+          {referencias.length === 1 ? ' referencia' : ' referencias'} y {datos.length}
+          {datos.length === 1 ? ' conjunto' : ' conjuntos'} de datos abiertos, con su fuente y su método.
+        </p>
+      </div>
+      <p class="accesos">
+        <a href="/biblioteca/">Explorar la Biblioteca</a>
+        <a href="/datos/">Ver los datos</a>
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .portada {
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .principal {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .titulo-bloque {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tinta-3);
+    margin: 3rem 0 1.5rem;
+    padding-top: 0.8rem;
+    border-top: 2px solid var(--tinta);
+  }
+  .rejilla {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+  .secciones ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+  .secciones a {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--tinta);
+    text-decoration: none;
+  }
+  .secciones a:hover {
+    color: var(--acento);
+  }
+  .secciones p {
+    margin: 0.4rem 0 0;
+    color: var(--tinta-2);
+    font-size: 0.95em;
+  }
+  .biblioteca {
+    margin-top: 4rem;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    background: var(--papel-2);
+    border-radius: var(--radio);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: end;
+    gap: 1.5rem;
+  }
+  .biblioteca h2 {
+    margin: 0;
+    font-size: 1.6rem;
+  }
+  .biblioteca p {
+    margin: 0.6rem 0 0;
+    max-width: 38rem;
+    color: var(--tinta-2);
+  }
+  .accesos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--sans);
+    font-weight: 600;
+  }
+</style>

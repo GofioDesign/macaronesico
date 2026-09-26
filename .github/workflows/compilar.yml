@@ -1,0 +1,19 @@
+name: Compilar
+
+# Comprueba que el sitio compila en cada cambio. Si falla, Cloudflare Pages
+# tampoco publicará, así que aquí se ve el error antes.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run build

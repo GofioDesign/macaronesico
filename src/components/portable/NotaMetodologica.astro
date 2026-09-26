@@ -1,0 +1,8 @@
+---
+const { titulo = 'Nota metodológica' } = Astro.props;
+---
+
+<blockquote>
+  <p><strong>{titulo}</strong></p>
+  <slot />
+</blockquote>

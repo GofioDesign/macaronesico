@@ -1,0 +1,103 @@
+---
+/**
+ * Una sola ruta para las rutas de un segmento: secciones (/canarias/) y
+ * páginas fijas (/aviso-legal/). Así no compiten dos rutas dinámicas iguales.
+ */
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Tarjeta from '../../components/Tarjeta.astro';
+import { obtenerArticulos, type Articulo } from '../../lib/contenido';
+import { CATEGORIAS, type Categoria } from '../../lib/sitio';
+
+type Props =
+  | { tipo: 'seccion'; clave: Categoria; articulos: Articulo[] }
+  | { tipo: 'pagina'; pagina: CollectionEntry<'paginas'> };
+
+export async function getStaticPaths() {
+  const articulos = await obtenerArticulos('es');
+  const paginas = await getCollection('paginas');
+  return [
+    ...(Object.keys(CATEGORIAS) as Categoria[]).map((clave) => ({
+      params: { seccion: clave },
+      props: { tipo: 'seccion' as const, clave, articulos: articulos.filter((a) => a.data.categoria === clave) },
+    })),
+    ...paginas.map((pagina) => ({
+      params: { seccion: pagina.id },
+      props: { tipo: 'pagina' as const, pagina },
+    })),
+  ];
+}
+
+const props = Astro.props as Props;
+const Contenido = props.tipo === 'pagina' ? (await render(props.pagina)).Content : null;
+const categoria = props.tipo === 'seccion' ? CATEGORIAS[props.clave] : null;
+---
+
+{
+  props.tipo === 'seccion' && categoria ? (
+    <Base
+      titulo={categoria.nombre}
+      descripcion={categoria.descripcion}
+      rss={{ titulo: `macaronesico: ${categoria.nombre}`, url: `/${props.clave}/feed.xml` }}
+    >
+      <div class="contenedor">
+        <header class="cabeza">
+          <p class="etiqueta">Sección</p>
+          <h1>{categoria.nombre}</h1>
+          <p class="descripcion">{categoria.descripcion}</p>
+          <p class="meta">
+            <a href={`/${props.clave}/feed.xml`}>RSS de esta sección</a>
+          </p>
+        </header>
+        {props.articulos.length ? (
+          <div class="rejilla">
+            {props.articulos.map((a) => (
+              <Tarjeta articulo={a} mostrarSeccion={false} />
+            ))}
+          </div>
+        ) : (
+          <p class="vacio">Todavía no hay textos en esta sección. Pronto.</p>
+        )}
+      </div>
+    </Base>
+  ) : props.tipo === 'pagina' && Contenido ? (
+    <Base titulo={props.pagina.data.titulo} descripcion={props.pagina.data.descripcion || undefined}>
+      <div class="contenedor">
+        <header class="cabeza">
+          <h1>{props.pagina.data.titulo}</h1>
+        </header>
+        <div class="prosa">
+          <Contenido />
+        </div>
+      </div>
+    </Base>
+  ) : null
+}
+
+<style>
+  .cabeza {
+    max-width: var(--ancho-amplio);
+    padding-block: clamp(2rem, 5vw, 4rem) 2.5rem;
+  }
+  .cabeza .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    margin: 0.4rem 0 0;
+  }
+  .descripcion {
+    font-size: 1.2rem;
+    color: var(--tinta-2);
+    max-width: 40rem;
+    margin: 1rem 0 0;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+  .vacio {
+    color: var(--tinta-3);
+  }
+</style>

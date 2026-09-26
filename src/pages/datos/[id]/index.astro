@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import TablaDatos from '../../../components/bloques/TablaDatos.astro';
+import Tarjeta from '../../../components/Tarjeta.astro';
+import { formatoFecha, isoFecha, obtenerArticulos } from '../../../lib/contenido';
+import { leerCSV } from '../../../lib/datos';
+import { SITIO } from '../../../lib/sitio';
+
+export async function getStaticPaths() {
+  const conjuntos = await getCollection('datos');
+  return conjuntos.map((conjunto) => ({ params: { id: conjunto.id }, props: { conjunto } }));
+}
+
+const { conjunto } = Astro.props;
+const d = conjunto.data;
+const tabla = leerCSV(d.csv);
+const usadoEn = (await obtenerArticulos('es')).filter((a) => (a.body ?? '').includes(`"${conjunto.id}"`));
+
+const jsonld = {
+  '@type': 'Dataset',
+  name: d.titulo,
+  description: d.descripcion || d.titulo,
+  url: `${SITIO.url}/datos/${conjunto.id}/`,
+  creator: { '@id': `${SITIO.url}/#organizacion` },
+  ...(d.fuente ? { isBasedOn: d.url || d.fuente } : {}),
+  ...(d.fecha ? { dateModified: isoFecha(d.fecha) } : {}),
+  license: d.licencia,
+  inLanguage: 'es',
+  variableMeasured: tabla.columnas,
+  distribution: {
+    '@type': 'DataDownload',
+    encodingFormat: 'text/csv',
+    contentUrl: `${SITIO.url}/datos/${conjunto.id}.csv`,
+  },
+};
+---
+
+<Base titulo={d.titulo} descripcion={(d.descripcion || d.titulo).slice(0, 160)} jsonld={jsonld}>
+  <div class="contenedor">
+    <div class="prosa">
+      <p class="etiqueta"><a href="/datos/">Datos</a></p>
+      <h1>{d.titulo}</h1>
+      {d.descripcion && <p class="descripcion">{d.descripcion}</p>}
+      <dl class="ficha">
+        {d.fuente && <><dt>Fuente</dt><dd>{d.url ? <a href={d.url}>{d.fuente}</a> : d.fuente}</dd></>}
+        {d.fecha && <><dt>Extracción</dt><dd>{formatoFecha(d.fecha)}</dd></>}
+        {d.licencia && <><dt>Licencia</dt><dd>{d.licencia}</dd></>}
+        <dt>Tamaño</dt><dd>{tabla.filas.length} filas × {tabla.columnas.length} columnas</dd>
+        <dt>Descarga</dt><dd><a href={`/datos/${conjunto.id}.csv`} download>CSV (UTF-8, separado por comas)</a></dd>
+      </dl>
+      {d.notas && <><h2>Notas y método</h2><p class="notas">{d.notas}</p></>}
+      <TablaDatos datos={conjunto.id} />
+    </div>
+  </div>
+  {
+    usadoEn.length > 0 && (
+      <aside class="contenedor usado">
+        <h2>Artículos que usan estos datos</h2>
+        <div class="rejilla">{usadoEn.map((a) => <Tarjeta articulo={a} />)}</div>
+      </aside>
+    )
+  }
+</Base>
+
+<style>
+  .prosa {
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .etiqueta {
+    margin: 0;
+  }
+  .etiqueta a {
+    color: inherit;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+    margin-top: 0.4rem !important;
+  }
+  .descripcion {
+    color: var(--tinta-2);
+  }
+  .ficha {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.4rem 1.25rem;
+    padding: 1rem 0;
+    border-block: 1px solid var(--linea);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+  dt {
+    color: var(--tinta-3);
+  }
+  dd {
+    margin: 0;
+  }
+  .notas {
+    white-space: pre-line;
+    color: var(--tinta-2);
+  }
+  .usado {
+    margin-top: 4rem;
+  }
+  .usado h2 {
+    border-top: 2px solid var(--tinta);
+    padding-top: 1rem;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+</style>

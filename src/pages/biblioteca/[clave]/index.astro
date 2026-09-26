@@ -1,0 +1,157 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Tarjeta from '../../../components/Tarjeta.astro';
+import { NOMBRES_TERRITORIO, NOMBRES_TIPO, referenciaAPA, referenciaTexto } from '../../../lib/biblioteca';
+import { obtenerArticulos } from '../../../lib/contenido';
+import { SITIO } from '../../../lib/sitio';
+
+export async function getStaticPaths() {
+  const referencias = await getCollection('biblioteca');
+  return referencias.map((ref) => ({ params: { clave: ref.id }, props: { ref } }));
+}
+
+const { ref } = Astro.props;
+const d = ref.data;
+const apa = referenciaAPA(ref);
+const temas = (await getCollection('temas')).filter((t) => d.temas.includes(t.id));
+const citadoEn = (await obtenerArticulos('es')).filter((a) => a.data.referencias.includes(ref.id));
+
+const tipoSchema = { articulo: 'ScholarlyArticle', libro: 'Book', capitulo: 'Chapter', tesis: 'Thesis', informe: 'Report', datos: 'Dataset', otro: 'CreativeWork' }[d.tipo];
+const jsonld = {
+  '@type': tipoSchema,
+  name: d.titulo,
+  headline: d.titulo,
+  author: d.autores.map((a) => ({ '@type': 'Person', name: a.split(',').reverse().map((s) => s.trim()).join(' ') })),
+  datePublished: String(d.anio),
+  inLanguage: d.idioma,
+  ...(d.revista ? { isPartOf: { '@type': 'Periodical', name: d.revista } } : {}),
+  ...(d.doi ? { sameAs: `https://doi.org/${d.doi}`, identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: d.doi } } : {}),
+  ...(d.url ? { url: d.url } : {}),
+  ...(d.resumen ? { abstract: d.resumen } : {}),
+  isAccessibleForFree: d.acceso === 'abierto',
+  subjectOf: { '@type': 'WebPage', url: `${SITIO.url}/biblioteca/${ref.id}/` },
+};
+const descripcion = (d.resumen || `${NOMBRES_TIPO[d.tipo]} de ${d.anio} sobre ${d.territorios.map((t) => NOMBRES_TERRITORIO[t] ?? t).join(', ')}.`).slice(0, 160);
+---
+
+<Base titulo={d.titulo} descripcion={descripcion} jsonld={jsonld}>
+  <div class="contenedor ficha">
+    <p class="etiqueta"><a href="/biblioteca/">Biblioteca</a> · {NOMBRES_TIPO[d.tipo]} · {d.anio}</p>
+    <h1>{d.titulo}</h1>
+    <p class="autores">{d.autores.map((a) => a.split(',').reverse().map((s) => s.trim()).join(' ')).join(', ')}</p>
+
+    <dl class="datos">
+      {d.revista && <><dt>Publicado en</dt><dd><em>{d.revista}</em>{d.volumen && `, ${d.volumen}`}{d.numero && `(${d.numero})`}{d.paginas && `, ${d.paginas}`}</dd></>}
+      {d.editorial && <><dt>Editorial</dt><dd>{d.editorial}</dd></>}
+      {d.territorios.length > 0 && <><dt>Territorios</dt><dd>{d.territorios.map((t) => NOMBRES_TERRITORIO[t] ?? t).join(', ')}</dd></>}
+      {temas.length > 0 && <><dt>Temas</dt><dd>{temas.map((t, i) => <>{i > 0 && ', '}<a href={`/tema/${t.id}/`}>{t.data.nombre}</a></>)}</dd></>}
+      <dt>Acceso</dt><dd>{d.acceso === 'abierto' ? 'Abierto' : d.acceso === 'cerrado' ? 'Cerrado' : 'Sin comprobar'}</dd>
+      {d.doi && <><dt>DOI</dt><dd><a href={`https://doi.org/${d.doi}`}>{d.doi}</a></dd></>}
+      {!d.doi && d.url && <><dt>Enlace</dt><dd><a href={d.url}>{d.url}</a></dd></>}
+      {d.pdf && <><dt>PDF</dt><dd><a href={d.pdf}>Descargar en acceso abierto</a></dd></>}
+    </dl>
+
+    {d.resumen && <section><h2>Qué dice</h2><p>{d.resumen}</p></section>}
+    {d.importancia && <section><h2>Por qué importa</h2><p>{d.importancia}</p></section>}
+
+    <section>
+      <h2>Cómo citar</h2>
+      <p class="apa">{apa.antes}<em>{apa.cursiva}</em>{apa.despues} {apa.enlace}</p>
+      <button type="button" class="copiar" data-texto={referenciaTexto(ref)}>Copiar referencia</button>
+    </section>
+  </div>
+
+  {
+    citadoEn.length > 0 && (
+      <aside class="contenedor citado">
+        <h2>Citada en macaronesico</h2>
+        <div class="rejilla">{citadoEn.map((a) => <Tarjeta articulo={a} />)}</div>
+      </aside>
+    )
+  }
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copiar').forEach((b) =>
+    b.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(b.dataset.texto ?? '');
+        b.textContent = 'Copiada';
+      } catch {
+        b.textContent = 'No se pudo copiar';
+      }
+    }),
+  );
+</script>
+
+<style>
+  .ficha {
+    max-width: calc(var(--ancho-texto) + 2 * var(--margen));
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .etiqueta {
+    margin: 0;
+  }
+  .etiqueta a {
+    color: inherit;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+    margin: 0.5rem 0 0;
+  }
+  .autores {
+    font-family: var(--sans);
+    color: var(--tinta-2);
+    margin: 0.75rem 0 0;
+  }
+  .datos {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.4rem 1.25rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-block: 1px solid var(--linea);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+  dt {
+    color: var(--tinta-3);
+  }
+  dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  h2 {
+    font-size: 1.2rem;
+    margin: 2rem 0 0.5rem;
+  }
+  .apa {
+    font-size: 0.95em;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+    overflow-wrap: anywhere;
+  }
+  .copiar {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--acento);
+    background: none;
+    color: var(--acento);
+    border-radius: var(--radio);
+    cursor: pointer;
+  }
+  .citado {
+    margin-top: 4rem;
+  }
+  .citado h2 {
+    border-top: 2px solid var(--tinta);
+    padding-top: 1rem;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+</style>

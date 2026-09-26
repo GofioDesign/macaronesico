@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import { formatoFecha, idiomaDe, isoFecha, urlArticulo, type Articulo } from '../lib/contenido';
+import { CATEGORIAS } from '../lib/sitio';
+
+interface Props {
+  articulo: Articulo;
+  grande?: boolean;
+  mostrarSeccion?: boolean;
+}
+const { articulo, grande = false, mostrarSeccion = true } = Astro.props;
+const d = articulo.data;
+const url = urlArticulo(articulo);
+---
+
+<article class:list={['tarjeta', { grande }]}>
+  {
+    d.portada && (
+      <a href={url} class="imagen" tabindex="-1" aria-hidden="true">
+        <Image
+          src={d.portada}
+          alt=""
+          widths={grande ? [640, 960, 1280] : [400, 640]}
+          sizes={grande ? '(min-width: 64rem) 60vw, 100vw' : '(min-width: 64rem) 24rem, 100vw'}
+        />
+      </a>
+    )
+  }
+  <div class="texto">
+    {mostrarSeccion && <p class="etiqueta">{CATEGORIAS[d.categoria].nombre}</p>}
+    <h3><a href={url}>{d.titulo}</a></h3>
+    {(d.entradilla || d.descripcion) && <p class="entradilla">{d.entradilla || d.descripcion}</p>}
+    <p class="meta">
+      <time datetime={isoFecha(d.fecha)}>{formatoFecha(d.fecha, idiomaDe(articulo))}</time>
+      {d.estado === 'borrador' && <span class="borrador"> · borrador</span>}
+    </p>
+  </div>
+</article>
+
+<style>
+  .tarjeta {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+  }
+  .imagen {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radio);
+    background: var(--papel-2);
+  }
+  .imagen :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .tarjeta:hover .imagen :global(img) {
+    transform: scale(1.02);
+  }
+  .etiqueta {
+    margin: 0 0 0.4rem;
+  }
+  h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  .grande h3 {
+    font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem);
+  }
+  h3 a {
+    color: var(--tinta);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--acento);
+  }
+  .entradilla {
+    margin: 0.6rem 0 0;
+    color: var(--tinta-2);
+    font-size: 0.95em;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .grande .entradilla {
+    font-size: 1.1em;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+  .meta {
+    margin: 0.6rem 0 0;
+  }
+  .borrador {
+    color: var(--acento);
+  }
+  @media (min-width: 56rem) {
+    .grande {
+      grid-template-columns: 3fr 2fr;
+      gap: 2rem;
+      align-items: center;
+    }
+  }
+</style>

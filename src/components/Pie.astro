@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import { SITIO, type Idioma } from '../lib/sitio';
+
+interface Props {
+  idioma: Idioma;
+}
+const paginas = await getCollection('paginas');
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor rejilla">
+    <div>
+      <p class="nombre">{SITIO.nombre}</p>
+      <p>{SITIO.descripcion}</p>
+    </div>
+    <nav aria-label="Información">
+      <ul>
+        <li><a href="/macaronesia/macaronesico/">Artículo fundacional</a></li>
+        {paginas.map((p) => <li><a href={`/${p.id}/`}>{p.data.titulo}</a></li>)}
+      </ul>
+    </nav>
+    <nav aria-label="Seguir y reutilizar">
+      <ul>
+        <li><a href="/feed.xml">RSS: todos los artículos</a></li>
+        <li><a href="/biblioteca/">Biblioteca</a></li>
+        <li><a href="/datos/">Datos abiertos</a></li>
+        <li><a href={SITIO.repositorio}>Código fuente</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="contenedor legal">© {anio} {SITIO.nombre}. Salvo indicación, los textos se publican con licencia Creative Commons y pueden republicarse citando la fuente.</p>
+</footer>
+
+<style>
+  .pie {
+    margin-top: 6rem;
+    border-top: 1px solid var(--linea);
+    background: var(--papel-2);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--tinta-2);
+    padding-block: 2.5rem 1.5rem;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+  .nombre {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--tinta);
+    margin: 0 0 0.4rem;
+  }
+  p {
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+  a {
+    color: var(--tinta-2);
+  }
+  a:hover {
+    color: var(--acento);
+  }
+  .legal {
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+</style>

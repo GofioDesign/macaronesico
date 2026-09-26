@@ -1,0 +1,194 @@
+---
+import { cargarDatos, esNumero, formatoNumero, listaColumnas, ordenarFilas } from '../../lib/datos';
+
+interface Props {
+  datos: string;
+  columnas?: string;
+  resaltar?: string;
+  orden?: string;
+  pie?: string;
+}
+
+const { datos, columnas, resaltar, orden, pie } = Astro.props;
+const { meta, tabla } = await cargarDatos(datos);
+const elegidas = listaColumnas(columnas).filter((c) => tabla.columnas.includes(c));
+const cols = elegidas.length ? elegidas : tabla.columnas;
+const filas = ordenarFilas(tabla, orden);
+const numericas = new Set(cols.filter((c) => filas.every((f) => f[c] === '' || esNumero(f[c]))));
+const [colOrden, dirOrden] = (orden ?? '').split(/:(?=asc$|desc$)/).map((s) => s.trim());
+const conSigno = (c: string) => /brecha|diferencia|variaci/i.test(c);
+---
+
+<figure class="tabla-datos amplio" data-tabla-ordenable>
+  <div class="desplazable" role="region" aria-label={meta.data.titulo} tabindex="0">
+    <table>
+      <thead>
+        <tr>
+          {
+            cols.map((c) => (
+              <th
+                scope="col"
+                class:list={{ num: numericas.has(c), resaltada: c === resaltar }}
+                aria-sort={c === colOrden ? (dirOrden === 'asc' ? 'ascending' : 'descending') : undefined}
+              >
+                <button type="button" data-tipo={numericas.has(c) ? 'num' : 'texto'}>
+                  {c}
+                  <span class="flecha" aria-hidden="true" />
+                </button>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody>
+        {
+          filas.map((f) => (
+            <tr>
+              {cols.map((c, i) =>
+                i === 0 && !numericas.has(c) ? (
+                  <th scope="row" data-v={f[c]}>
+                    {f[c]}
+                  </th>
+                ) : (
+                  <td class:list={{ num: numericas.has(c), resaltada: c === resaltar }} data-v={f[c]}>
+                    {formatoNumero(f[c], 'es-ES', conSigno(c))}
+                  </td>
+                ),
+              )}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <figcaption>
+    {pie && <span>{pie}</span>}
+    <span class="enlaces">
+      <a href={`/datos/${meta.id}/`}>Sobre estos datos</a>
+      <a href={`/datos/${meta.id}.csv`} download>Descargar CSV</a>
+    </span>
+  </figcaption>
+</figure>
+
+<script>
+  function ordenar(tabla: HTMLTableElement, indice: number, numerica: boolean, asc: boolean) {
+    const cuerpo = tabla.tBodies[0];
+    const filas = Array.from(cuerpo.rows);
+    const valor = (f: HTMLTableRowElement) => f.cells[indice]?.dataset.v ?? '';
+    filas.sort((a, b) => {
+      const x = valor(a);
+      const y = valor(b);
+      const r = numerica ? Number(x) - Number(y) : x.localeCompare(y, 'es');
+      return asc ? r : -r;
+    });
+    cuerpo.append(...filas);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-tabla-ordenable]').forEach((figura) => {
+    const tabla = figura.querySelector('table');
+    if (!tabla) return;
+    const cabeceras = Array.from(tabla.tHead?.rows[0].cells ?? []);
+    cabeceras.forEach((th, i) => {
+      const boton = th.querySelector('button');
+      boton?.addEventListener('click', () => {
+        const numerica = boton.dataset.tipo === 'num';
+        const actual = th.getAttribute('aria-sort');
+        const asc = actual ? actual === 'descending' : !numerica;
+        cabeceras.forEach((x) => x.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+        ordenar(tabla, i, numerica, asc);
+      });
+    });
+  });
+</script>
+
+<style>
+  .tabla-datos {
+    margin-block: 2.5rem !important;
+    font-family: var(--sans);
+  }
+  .desplazable {
+    overflow-x: auto;
+    border-top: 2px solid var(--tinta);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    font-variant-numeric: tabular-nums;
+  }
+  th,
+  td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--linea);
+    text-align: left;
+    vertical-align: top;
+  }
+  tbody th {
+    font-weight: 500;
+    min-width: 14rem;
+  }
+  thead th {
+    padding: 0;
+    vertical-align: bottom;
+    border-bottom: 1px solid var(--tinta-3);
+  }
+  thead button {
+    all: unset;
+    box-sizing: border-box;
+    display: flex;
+    gap: 0.3rem;
+    align-items: flex-end;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-weight: 600;
+    color: var(--tinta);
+    cursor: pointer;
+  }
+  thead button:focus-visible {
+    outline: 2px solid var(--foco);
+    outline-offset: -2px;
+  }
+  .num {
+    text-align: right;
+    white-space: nowrap;
+  }
+  th.num button {
+    justify-content: flex-end;
+    text-align: right;
+  }
+  .resaltada {
+    background: var(--acento-suave);
+    font-weight: 600;
+  }
+  .flecha::after {
+    content: '↕';
+    opacity: 0.35;
+    font-size: 0.8em;
+  }
+  [aria-sort='ascending'] .flecha::after {
+    content: '↑';
+    opacity: 1;
+  }
+  [aria-sort='descending'] .flecha::after {
+    content: '↓';
+    opacity: 1;
+  }
+  tbody tr:hover {
+    background: var(--papel-2);
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+  .enlaces {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

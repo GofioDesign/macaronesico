@@ -1,0 +1,191 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import { bloquesPortables } from '../../../components/portable';
+import { formatoFecha, obtenerArticulos, slugDe, urlArticulo } from '../../../lib/contenido';
+import { LICENCIAS, SITIO } from '../../../lib/sitio';
+
+export async function getStaticPaths() {
+  const articulos = await obtenerArticulos('es');
+  return articulos
+    .filter((a) => LICENCIAS[a.data.licencia].republicable)
+    .map((articulo) => ({
+      params: { seccion: articulo.data.categoria, slug: slugDe(articulo) },
+      props: { articulo },
+    }));
+}
+
+const { articulo } = Astro.props;
+const d = articulo.data;
+const { Content } = await render(articulo);
+const original = new URL(urlArticulo(articulo), SITIO.url).href;
+const licencia = LICENCIAS[d.licencia];
+---
+
+<Base titulo={`Republicar: ${d.titulo}`} noindex>
+  <div class="contenedor republicar">
+    <p class="etiqueta">Republicar</p>
+    <h1>{d.titulo}</h1>
+    <p class="intro">
+      Puedes republicar este artículo en tu web o blog, gratis, bajo la licencia
+      <a href={licencia.url} rel="license">{licencia.nombre}</a>. Solo te pedimos que respetes estas condiciones:
+    </p>
+    <ol class="condiciones">
+      <li>Mantén la atribución que va al principio del texto, con el enlace al original.</li>
+      {
+        d.licencia === 'cc-by-nc-nd' ? (
+          <li>No modifiques el texto ni lo uses con fines comerciales.</li>
+        ) : (
+          <li>Si lo adaptas, indica los cambios y publica tu versión con la misma licencia.</li>
+        )
+      }
+      <li>
+        Indica a los buscadores que el original es el nuestro. En WordPress, con Yoast SEO o Rank Math, pega esta
+        dirección en el campo «URL canónica» del artículo:
+        <code class="canonica">{original}</code>
+      </li>
+    </ol>
+
+    <h2>Cómo hacerlo en WordPress</h2>
+    <ol class="pasos">
+      <li>Pulsa «Copiar HTML».</li>
+      <li>En el editor de WordPress, añade un bloque «HTML personalizado» y pega el contenido. Si prefieres bloques normales, usa «Convertir a bloques» en el menú del bloque.</li>
+      <li>Pon el mismo título: «{d.titulo}».</li>
+    </ol>
+
+    <p class="acciones">
+      <button type="button" class="boton" id="copiar">Copiar HTML</button>
+      <span id="estado" role="status" class="meta"></span>
+    </p>
+
+    <label for="codigo" class="sr-only">HTML del artículo</label>
+    <textarea id="codigo" readonly rows="14" spellcheck="false"></textarea>
+
+    <h2>Vista previa</h2>
+    <div class="previa prosa" id="portable">
+      <p>
+        <em>
+          Este artículo se publicó originalmente en <a href={original}>{SITIO.nombre}</a> el {formatoFecha(d.fecha)} y se
+          reproduce bajo licencia <a href={licencia.url}>{licencia.nombre}</a>.
+        </em>
+      </p>
+      {d.entradilla && <p><strong>{d.entradilla}</strong></p>}
+      <Content components={bloquesPortables} />
+    </div>
+  </div>
+</Base>
+
+<script>
+  const origen = document.getElementById('portable');
+  const codigo = document.getElementById('codigo') as HTMLTextAreaElement | null;
+  if (origen && codigo) {
+    const copia = origen.cloneNode(true) as HTMLElement;
+    copia.querySelectorAll('*').forEach((el) => {
+      for (const atributo of Array.from(el.attributes)) {
+        const nombre = atributo.name;
+        if (nombre === 'href' && el instanceof HTMLAnchorElement) el.setAttribute('href', el.href);
+        else if (nombre === 'src' && el instanceof HTMLImageElement) el.setAttribute('src', el.src);
+        else if (!['href', 'src', 'alt', 'width', 'height', 'colspan', 'rowspan', 'scope'].includes(nombre))
+          el.removeAttribute(nombre);
+      }
+    });
+    codigo.value = copia.innerHTML
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n\s*\n+/g, '\n')
+      .trim();
+  }
+
+  document.getElementById('copiar')?.addEventListener('click', async () => {
+    const estado = document.getElementById('estado');
+    try {
+      await navigator.clipboard.writeText(codigo?.value ?? '');
+      if (estado) estado.textContent = 'Copiado. Ya puedes pegarlo en WordPress.';
+    } catch {
+      codigo?.select();
+      if (estado) estado.textContent = 'Selecciona el texto y cópialo con Ctrl+C o Cmd+C.';
+    }
+  });
+</script>
+
+<style>
+  .republicar {
+    max-width: calc(var(--ancho-texto) + 2 * var(--margen));
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+    margin: 0.4rem 0 1.2rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+  }
+  .intro,
+  .condiciones,
+  .pasos {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--tinta-2);
+  }
+  .condiciones li + li,
+  .pasos li + li {
+    margin-top: 0.5rem;
+  }
+  .canonica {
+    display: block;
+    margin-top: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    background: var(--papel-2);
+    border-radius: var(--radio);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+    user-select: all;
+  }
+  .acciones {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .boton {
+    padding: 0.6rem 1rem;
+    border: 0;
+    border-radius: var(--radio);
+    background: var(--acento);
+    color: var(--papel);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  textarea {
+    width: 100%;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 0.75rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--papel-2);
+    color: var(--tinta);
+  }
+  .previa {
+    padding: 1.5rem;
+    border: 1px dashed var(--linea);
+    border-radius: var(--radio);
+    font-size: 0.95em;
+  }
+  .previa :global(table) {
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+  }
+  .previa :global(th),
+  .previa :global(td) {
+    border: 1px solid var(--linea);
+    padding: 0.3rem 0.5rem;
+  }
+</style>

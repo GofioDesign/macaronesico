@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Tarjeta from '../../../components/Tarjeta.astro';
+import { obtenerArticulos } from '../../../lib/contenido';
+import { SITIO } from '../../../lib/sitio';
+
+export async function getStaticPaths() {
+  const personas = await getCollection('autoria');
+  const articulos = await obtenerArticulos('es');
+  return personas.map((persona) => ({
+    params: { autor: persona.id },
+    props: { persona, articulos: articulos.filter((a) => a.data.autoria.includes(persona.id)) },
+  }));
+}
+
+const { persona, articulos } = Astro.props;
+const jsonld = {
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: persona.data.nombre,
+    ...(persona.data.bio ? { description: persona.data.bio } : {}),
+    ...(persona.data.web ? { sameAs: [persona.data.web] } : {}),
+    url: `${SITIO.url}/autoria/${persona.id}/`,
+  },
+};
+---
+
+<Base titulo={persona.data.nombre} descripcion={persona.data.bio || `Textos de ${persona.data.nombre} en macaronesico.`} jsonld={jsonld}>
+  <div class="contenedor">
+    <header class="cabeza">
+      <p class="etiqueta">Autoría</p>
+      <h1>{persona.data.nombre}</h1>
+      {persona.data.bio && <p class="descripcion">{persona.data.bio}</p>}
+      {persona.data.web && <p class="meta"><a href={persona.data.web} rel="me">{persona.data.web}</a></p>}
+    </header>
+    <div class="rejilla">{articulos.map((a) => <Tarjeta articulo={a} />)}</div>
+  </div>
+</Base>
+
+<style>
+  .cabeza {
+    max-width: var(--ancho-amplio);
+    padding-block: clamp(2rem, 5vw, 4rem) 2.5rem;
+  }
+  .cabeza .etiqueta {
+    margin: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 3.4rem);
+    margin: 0.4rem 0 0;
+  }
+  .descripcion {
+    font-size: 1.15rem;
+    color: var(--tinta-2);
+    max-width: 42rem;
+    margin: 1rem 0 0;
+  }
+  .rejilla {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+</style>

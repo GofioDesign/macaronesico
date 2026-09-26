@@ -1,0 +1,36 @@
+---
+interface Props {
+  src: string;
+  titulo: string;
+  alto?: number;
+}
+const { src, titulo, alto = 600 } = Astro.props;
+---
+
+<figure class="pieza amplio">
+  <iframe
+    src={src}
+    title={titulo}
+    loading="lazy"
+    style={`height:${alto}px`}
+    sandbox="allow-scripts allow-same-origin allow-popups allow-downloads"></iframe>
+  <figcaption><a href={src}>Abrir «{titulo}» a pantalla completa</a></figcaption>
+</figure>
+
+<style>
+  .pieza {
+    margin-block: 2.5rem !important;
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--papel);
+  }
+  figcaption {
+    margin-top: 0.5rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+  }
+</style>
