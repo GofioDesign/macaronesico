@@ -16,7 +16,7 @@ const articulos = defineCollection({
       descripcion: texto,
       fecha: z.coerce.date(),
       actualizado: z.coerce.date().nullish(),
-      categoria: z.enum(['canarias', 'costa-norafricana', 'macaronesia', 'internacional']),
+      categoria: z.enum(['canarias', 'costa-norafricana', 'macaronesia', 'internacional', 'editorial']),
       temas: lista,
       autoria: lista,
       portada: image().nullish(),

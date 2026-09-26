@@ -1,0 +1,167 @@
+---
+/**
+ * Examen: cuadrícula de aprobados y suspensos. Cada fila es una afirmación y
+ * cada columna un grupo; la casilla se rellena si el porcentaje supera el
+ * umbral (por defecto, la mitad). Arriba, el recuento de aprobados por grupo.
+ * Se genera al compilar, sin JavaScript.
+ */
+import { cargarDatos, esNumero, listaColumnas } from '../../lib/datos';
+
+interface Props {
+  datos: string;
+  titulo?: string;
+  /** Columnas (grupos) a mostrar. Por defecto, todas las numéricas. */
+  series?: string;
+  umbral?: number | string;
+  pie?: string;
+}
+
+const { datos, titulo, series, umbral = 50, pie } = Astro.props;
+const { meta, tabla } = await cargarDatos(datos);
+const etiqueta = tabla.columnas[0];
+const pedidas = listaColumnas(series).filter((c) => tabla.columnas.includes(c));
+const cols = pedidas.length ? pedidas : tabla.columnas.filter((c) => c !== etiqueta && tabla.filas.every((f) => esNumero(f[c])));
+const u = Number(umbral);
+const aprueba = (v: string) => Number(v) > u;
+const aprobados = cols.map((c) => tabla.filas.filter((f) => aprueba(f[c])).length);
+const fmt = (v: string) => Math.round(Number(v)).toLocaleString('es-ES');
+---
+
+<figure class="examen amplio" style={`--columnas:${cols.length}`}>
+  {titulo && <figcaption class="titulo">{titulo}</figcaption>}
+  <div class="rejilla" role="table" aria-label={titulo ?? meta.data.titulo}>
+    <div class="fila cabeza" role="row">
+      <span class="et" role="columnheader"><span class="leyenda"><span class="c ok"></span> Más de la mitad de acuerdo</span></span>
+      {
+        cols.map((c, i) => (
+          <span class="grupo" role="columnheader">
+            <span class="nombre">{c}</span>
+            <span class="cuenta">
+              <strong>{aprobados[i]}</strong> de {tabla.filas.length}
+            </span>
+          </span>
+        ))
+      }
+    </div>
+    {
+      tabla.filas.map((f) => (
+        <div class="fila" role="row">
+          <span class="et" role="rowheader">{f[etiqueta]}</span>
+          {cols.map((c) => (
+            <span class:list={['c', { ok: aprueba(f[c]) }]} role="cell" aria-label={`${c}: ${fmt(f[c])}%${aprueba(f[c]) ? ', aprobado' : ', suspenso'}`}>
+              {fmt(f[c])}
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+  <p class="pie">
+    {pie && <span>{pie} </span>}
+    <a href={`/datos/${meta.id}/`}>Ver los datos</a>
+  </p>
+</figure>
+
+<style>
+  .examen {
+    margin-block: 2rem 2.5rem !important;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--tinta-2);
+  }
+  .titulo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--tinta);
+    margin-bottom: 0.75rem;
+  }
+  .fila {
+    display: grid;
+    grid-template-columns: minmax(9rem, 1fr) repeat(var(--columnas), minmax(3.2rem, 6.5rem));
+    gap: 3px 0.4rem;
+    align-items: center;
+    padding-block: 2px;
+  }
+  .cabeza {
+    align-items: end;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .et {
+    color: var(--tinta);
+    line-height: 1.25;
+  }
+  .grupo {
+    display: grid;
+    gap: 0.2rem;
+    text-align: center;
+  }
+  .nombre {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--tinta-2);
+    line-height: 1.2;
+  }
+  .cuenta {
+    color: var(--tinta-3);
+    font-size: 0.75rem;
+  }
+  .cuenta strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--serie-1);
+  }
+  .c {
+    display: grid;
+    place-items: center;
+    min-height: 1.9rem;
+    border-radius: 3px;
+    border: 1px solid var(--linea);
+    color: var(--tinta-3);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8rem;
+  }
+  .c.ok {
+    background: var(--serie-1);
+    border-color: var(--serie-1);
+    color: var(--papel);
+    font-weight: 700;
+  }
+  .leyenda {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--tinta-3);
+  }
+  .leyenda .c {
+    display: inline-block;
+    width: 0.9rem;
+    min-height: 0.9rem;
+  }
+  .pie {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+  @media (max-width: 40rem) {
+    .fila {
+      grid-template-columns: repeat(var(--columnas), 1fr);
+      padding-block: 0.3rem;
+    }
+    .et {
+      grid-column: 1 / -1;
+      font-size: 0.8rem;
+    }
+    .cabeza .et {
+      order: 2;
+    }
+    .cuenta strong {
+      font-size: 1.6rem;
+    }
+  }
+</style>

@@ -1,0 +1,6 @@
+---
+import TablaSimple from './TablaSimple.astro';
+const { datos, titulo, pie, umbral = 50 } = Astro.props;
+---
+
+<TablaSimple datos={datos} titulo={titulo} pie={pie} aviso={`Se considera aprobado cuando más del ${umbral}% está de acuerdo.`} />

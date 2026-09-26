@@ -35,7 +35,9 @@ const datos = await getCollection('datos');
       <h2 id="titulo-secciones" class="titulo-bloque">Desde dónde escribimos</h2>
       <ul>
         {
-          Object.entries(CATEGORIAS).map(([clave, c]) => (
+          Object.entries(CATEGORIAS)
+            .filter(([clave]) => clave !== 'editorial' && articulos.some((a) => a.data.categoria === clave))
+            .map(([clave, c]) => (
             <li>
               <a href={`/${clave}/`}>{c.nombre}</a>
               <p>{c.descripcion}</p>

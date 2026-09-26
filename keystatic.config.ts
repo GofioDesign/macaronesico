@@ -16,6 +16,7 @@ const CATEGORIAS = [
   { label: 'Costa norafricana', value: 'costa-norafricana' },
   { label: 'Macaronesia', value: 'macaronesia' },
   { label: 'Internacional', value: 'internacional' },
+  { label: 'Editorial', value: 'editorial' },
 ];
 
 const LICENCIAS = [
@@ -96,6 +97,19 @@ const bloques = {
       orden: fields.text({ label: 'Orden (opcional)', description: 'Columna:asc o columna:desc' }),
       unidad: fields.text({ label: 'Unidad', defaultValue: '%' }),
       pie: fields.text({ label: 'Pie del gráfico', multiline: true }),
+    },
+  }),
+
+  Examen: block({
+    label: 'Aprobados y suspensos',
+    description:
+      'Cuadrícula: cada fila una afirmación, cada columna un grupo. La casilla se rellena si el porcentaje supera el umbral, y arriba se cuentan los aprobados.',
+    schema: {
+      datos: fields.relationship({ label: 'Conjunto de datos', collection: 'datos', validation: { isRequired: true } }),
+      titulo: fields.text({ label: 'Título' }),
+      series: fields.text({ label: 'Columnas (grupos)', description: 'Separadas por comas. Vacío: todas las numéricas.' }),
+      umbral: fields.integer({ label: 'Umbral de aprobado (%)', defaultValue: 50 }),
+      pie: fields.text({ label: 'Pie', multiline: true }),
     },
   }),
 

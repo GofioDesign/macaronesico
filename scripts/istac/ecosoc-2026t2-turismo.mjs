@@ -223,7 +223,20 @@ const edadYOrigen = tablaPorGrupos(
   ],
 );
 
-// 3. Explorador de toda la encuesta: una fila por combinación de edad,
+// 3. El examen: las 18 afirmaciones favorables al turismo, por edad. Un
+//    «aprobado» es que más de la mitad esté de acuerdo.
+const FAVORABLES = [
+  'P50A', 'P50B', 'P50C', 'P217A', 'P217B', 'P217E', 'P218A', 'P218C', 'P218F',
+  'P218G', 'P218H', 'P219A', 'P219B', 'P219C', 'P219D', 'P219E', 'P220E', 'P220F',
+];
+const examen = tablaPorGrupos(FAVORABLES, [
+  ['18-34 años', filas.filter((r) => EDAD(r) === '18-34')],
+  ['35-54 años', filas.filter((r) => EDAD(r) === '35-54')],
+  ['55 y más', filas.filter((r) => EDAD(r) === '55 y más')],
+  ['18-34, nacidos en Canarias', cruce('18-34', 'Canarias')],
+]);
+
+// 4. Explorador de toda la encuesta: una fila por combinación de edad,
 //    ingresos, sexo, nacimiento, isla y vínculo del hogar con el turismo, con
 //    el número de entrevistas, la suma de pesos y el % de cada respuesta.
 //    Promediando filas (ponderadas por el peso) se obtiene cualquier grupo más
@@ -309,3 +322,4 @@ async function escribirCSV(id, texto) {
 await escribirCSV('ecosoc-2026t2-turismo-por-origen', porOrigen);
 await escribirCSV('ecosoc-2026t2-turismo-edad-y-origen', edadYOrigen);
 await escribirCSV('ecosoc-2026t2-turismo-explorador', explorador);
+await escribirCSV('ecosoc-2026t2-turismo-examen', examen);

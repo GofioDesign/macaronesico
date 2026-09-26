@@ -2,6 +2,7 @@
 import { CATEGORIAS, IDIOMAS, SITIO, type Idioma } from '../lib/sitio';
 import { t } from '../i18n/textos';
 import Logo from './Logo.astro';
+import { obtenerArticulos } from '../lib/contenido';
 
 interface Props {
   idioma: Idioma;
@@ -10,8 +11,12 @@ const { idioma } = Astro.props;
 const textos = t(idioma);
 const ruta = Astro.url.pathname;
 const inicio = `${IDIOMAS[idioma].prefijo}/`;
+const conArticulos = new Set((await obtenerArticulos('es')).map((a) => a.data.categoria as string));
 const enlaces = [
-  ...Object.entries(CATEGORIAS).map(([clave, c]) => ({ href: `/${clave}/`, texto: c.nombre })),
+  // Solo las secciones que ya tienen algún artículo publicado.
+  ...Object.entries(CATEGORIAS)
+    .filter(([clave]) => conArticulos.has(clave))
+    .map(([clave, c]) => ({ href: `/${clave}/`, texto: c.nombre })),
   { href: '/biblioteca/', texto: textos.biblioteca },
   { href: '/datos/', texto: textos.datos },
 ];
@@ -58,10 +63,12 @@ const enlaces = [
     text-decoration: none;
     color: var(--tinta);
   }
-  .logo {
+  .marca :global(.logo) {
     display: block;
     height: clamp(2.2rem, 1.8rem + 1.5vw, 2.9rem);
     width: auto;
+    max-width: none;
+    flex-shrink: 0;
   }
   .lema {
     margin: 0;

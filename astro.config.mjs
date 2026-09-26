@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 
-const categorias = ['canarias', 'costa-norafricana', 'macaronesia', 'internacional'];
+const categorias = ['canarias', 'costa-norafricana', 'macaronesia', 'internacional', 'editorial'];
 
 export default defineConfig({
   site: 'https://macaronesico.com',
@@ -31,6 +31,7 @@ export default defineConfig({
   redirects: {
     '/admin': '/keystatic',
     '/feed': '/feed.xml',
+    '/macaronesia/macaronesico': '/editorial/macaronesico/',
     ...Object.fromEntries(categorias.map((c) => [`/${c}/feed`, `/${c}/feed.xml`])),
   },
 

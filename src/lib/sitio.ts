@@ -25,6 +25,10 @@ export const CATEGORIAS = {
     nombre: 'Internacional',
     descripcion: 'El orden global leído desde los márgenes: geopolítica, extractivismo y derecho internacional.',
   },
+  editorial: {
+    nombre: 'Editorial',
+    descripcion: 'Desde dónde escribimos y cómo trabajamos.',
+  },
 } as const;
 
 export type Categoria = keyof typeof CATEGORIAS;
