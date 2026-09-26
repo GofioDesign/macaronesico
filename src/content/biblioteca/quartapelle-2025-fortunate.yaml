@@ -1,4 +1,4 @@
-titulo: "Las Fortunate Insule de Claudio Ptolomeo"
+titulo: "Las Fortunate Insule de Claudio Ptolomeo: ¿islas imaginarias, islas de Cabo Verde, Antillas Menores o las islas Canarias?"
 autores:
   - "Quartapelle, Alberto"
 anio: 2025
@@ -6,11 +6,11 @@ tipo: articulo
 revista: "Revista de Historia Canaria"
 volumen: ""
 numero: "207"
-paginas: ""
-editorial: ""
-doi: ""
-url: "https://riull.ull.es/xmlui/bitstream/handle/915/42187/RHC%20_207_%20(2025)_05.pdf"
-idioma: es
+paginas: "93-117"
+editorial: "University of La Laguna"
+doi: "10.25145/j.histcan.2025.207.05"
+url: "https://doi.org/10.25145/j.histcan.2025.207.05"
+idioma: otro
 acceso: desconocido
 pdf: ""
 territorios:
@@ -21,4 +21,4 @@ temas:
 resumen: ""
 importancia: ""
 estado: pendiente
-verificada: false
+verificada: true
