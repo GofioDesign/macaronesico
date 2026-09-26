@@ -1,12 +1,13 @@
 titulo: "El discurso colonial sobre las mujeres en las crónicas de la conquista de Canarias"
 autores:
   - "González Carracedo, Laura Sabina"
-tipo: articulo
-revista: ""
+anio: 2025
+tipo: "capitulo"
+revista: "Prácticas, discursos y representaciones: aportes para una historia de la temprana modernidad entre Europa y América (siglos XVI-XIX)"
 volumen: ""
 numero: ""
-paginas: ""
-editorial: ""
+paginas: "167-198"
+editorial: "Universidad Nacional de La Plata"
 doi: ""
 url: "https://www.academia.edu/128400104"
 idioma: es
@@ -21,4 +22,4 @@ temas:
 resumen: ""
 importancia: ""
 estado: pendiente
-verificada: false
+verificada: true

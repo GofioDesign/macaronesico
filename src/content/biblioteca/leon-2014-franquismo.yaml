@@ -1,12 +1,13 @@
 titulo: "El franquismo en Canarias"
 autores:
   - "León Álvarez, Aarón"
-tipo: articulo
+anio: 2014
+tipo: "libro"
 revista: ""
 volumen: ""
 numero: ""
 paginas: ""
-editorial: ""
+editorial: "Instituto de Estudios Canarios; Le Canarien Ediciones"
 doi: ""
 url: "https://www.academia.edu/6877919"
 idioma: es
@@ -19,4 +20,4 @@ temas:
 resumen: ""
 importancia: ""
 estado: pendiente
-verificada: false
+verificada: true
