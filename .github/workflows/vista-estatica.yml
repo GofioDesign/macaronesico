@@ -29,6 +29,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout --orphan vista-estatica
           git rm -rfq . > /dev/null
+          git clean -fdxq
           cp -r /tmp/dist/. .
           git add -A
           git commit -qm "Vista estática ${{ github.sha }}"
