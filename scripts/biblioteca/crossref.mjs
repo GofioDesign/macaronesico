@@ -103,7 +103,16 @@ export async function consultarCrossref(doi) {
   const idioma = (m.language ?? '').slice(0, 2);
   const licencia = (m.license ?? []).map((l) => l.URL).join(' ');
   return {
-    titulo: arreglarMayusculas((m.title?.[0] ?? '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()),
+    titulo: arreglarMayusculas(
+      (m.title?.[0] ?? '')
+        .replace(/<[^>]+>/g, '')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    ),
     autores: (m.author ?? [])
       .map((a) => (a.family ? `${a.family}, ${a.given ?? ''}`.trim().replace(/,$/, '') : a.name ?? ''))
       .filter((a) => a && !INSTITUCION.test(a))
