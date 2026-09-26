@@ -1,0 +1,24 @@
+# Cuarto lote: avisos de Academia.edu reenviados desde juanalbglz@gmail.com (26/09/2026)
+# De 101 avisos distintos: 25 nuevos sobre Canarias, Macaronesia o el Atlántico; el resto ya estaba o queda fuera de tema.
+titulo: Las relaciones comerciales entre Canarias y la bahía de Cádiz tras la conquista castellana (1496-1520). Una aproximación a partir de la documentación notarial jerezana | autor: Ruiz Pilares, Enrique José | url: https://www.academia.edu/63856369 | territorios: canarias | temas: comercio-atlantico, historia
+titulo: El español de Canarias a través de la documentación testamentaria (siglos XVI-XVIII) | autor: Medina López, Javier | territorios: canarias | temas: historia, fuentes-historicas
+titulo: La expansión de Cortaderia selloana (Schult. & Schult. f.) Asch. & Graebn. (Poaceae) en Tenerife, islas Canarias | autor: Rodríguez Navarro, María Leticia | territorios: tenerife | temas: biodiversidad
+titulo: Canarias prehispánica | autor: Pérez González, Samuel | territorios: canarias | temas: arqueologia
+titulo: El «ingenio canario»: Bartolomé Cairasco de Figueroa y Canarias en el Siglo de Oro | autor: Miranda Vélez, Óscar Alessandro | territorios: gran-canaria, canarias | temas: historia, fuentes-historicas
+titulo: El origen de las Islas Canarias: un modelo de síntesis | territorios: canarias | temas: biodiversidad
+titulo: El ajuar femenino como relato histórico en Canarias (1500-1550). Propuesta de estudio | autor: Serrano-Niza, Dolores; Monzón Perdomo, María Eugenia | territorios: canarias | temas: genero, historia
+titulo: El comercio interinsular de La Palma con las Canarias orientales y occidentales en la segunda mitad del siglo XVI | autor: Cumplido Mancera, Luis Francisco | territorios: la-palma, canarias | temas: comercio-atlantico, historia
+titulo: El desarrollo urbano-portuario en las Islas Canarias a finales del siglo XIX | autor: Pérez González, Samuel | territorios: canarias | temas: historia, territorio
+titulo: Hispanismos y canarismos en un corpus de textos ingleses sobre Canarias | autor: González-Cruz, María Isabel | territorios: canarias | temas: fuentes-historicas
+titulo: La marca turística de los municipios de Santa Cruz | autor: Álvarez, Alejandra | territorios: canarias | temas: turismo
+titulo: La ecología cultural de las sociedades aborígenes canarias (Tenerife): hacia una nueva metodología | autor: Clavijo Hernández, Fernando | territorios: tenerife | temas: arqueologia
+titulo: Mujeres al frente de los hogares de Tenerife, siglos XVIII-XIX | autor: Barbero, Paula | territorios: tenerife | temas: genero, historia
+prefijo: Mujeres, conquista y colonización occidental en la frontera atlántica al final de la Edad Media: el caso de las islas Canarias | territorios: canarias | temas: genero, historia, colonialidad
+prefijo: Grabados rupestres, espacios domésticos y prácticas | autor: Mederos Martín, Alfredo | territorios: canarias | temas: arqueologia
+prefijo: Physicochemical Study of a Germplasm Collection | autor: Afonso Morales, Desirée | territorios: canarias | temas: biodiversidad
+prefijo: Adiciones y comentarios a la | autor: González, Ricardo | territorios: canarias | temas: biodiversidad
+prefijo: Interconexiones en el espacio atlántico: | autor: Cumplido Mancera, Luis Francisco | territorios: canarias | temas: comercio-atlantico, historia
+prefijo: La historia de un libro | autor: Miteva, Yuliya | territorios: tenerife | temas: historia, fuentes-historicas
+prefijo: Las Fortunate Insule de Claudio | autor: Quartapelle, Alberto | territorios: canarias | temas: antiguedad, fuentes-historicas
+prefijo: Monanthetum pallentis as. nova del | autor: Rodríguez Delgado, Octavio | territorios: canarias | temas: biodiversidad
+prefijo: Sobre la presencia de Pericallis | autor: Rodríguez Navarro, María Leticia | territorios: canarias | temas: biodiversidad

@@ -11,6 +11,7 @@
  *   doi: 10.15304/ohm.34.10016
  *   titulo: Firms' takeover in War Times: The incorporation of the Tenerife...
  *   isbn: 9788416404124
+ *   prefijo: comienzo de un título truncado (p. ej. de un aviso de Academia.edu)
  *   buscar: texto libre (un resumen, autor y año…): solo propone candidatos
  *
  * Opcionalmente, tras barras: | territorios: tenerife, canarias | temas: historia
@@ -54,7 +55,7 @@ const temasValidos = new Set(
 
 function leerLinea(linea) {
   const [principal, ...opciones] = linea.split('|').map((s) => s.trim());
-  const m = principal.match(/^(doi|titulo|título|isbn|buscar)\s*:\s*(.+)$/i);
+  const m = principal.match(/^(doi|titulo|título|isbn|prefijo|buscar)\s*:\s*(.+)$/i);
   if (!m) return null;
   const extra = {};
   for (const o of opciones) {
@@ -121,6 +122,23 @@ async function procesar(archivo) {
         const ficha = aplicarExtras(await consultarISBN(e.valor), e.extra, avisos);
         const clave = await guardarFicha(ficha, presentes);
         (clave ? altas : yaEstaban).push({ clave, titulo: ficha.titulo, origen: `ISBN ${e.valor}`, avisos });
+      } else if (e.modo === 'prefijo') {
+        const prefijo = normalizar(e.valor.replace(/(\.\.\.|…)\s*$/, ''));
+        const apellido = normalizar((e.extra.autor ?? '').split(',')[0]).split(' ')[0];
+        const candidatos = (await buscarCrossref(`${e.valor} ${e.extra.autor ?? ''}`, 8)).map((c) => ({
+          ...c,
+          sim: similitud(e.valor, c.titulo),
+        }));
+        const mejor = candidatos.find(
+          (c) => normalizar(c.titulo).startsWith(prefijo) && prefijo.length >= 15 && (!apellido || normalizar(c.autores).includes(apellido)),
+        );
+        if (mejor) {
+          const ficha = aplicarExtras(await consultarCrossref(mejor.doi), e.extra, avisos);
+          const clave = await guardarFicha(ficha, presentes);
+          (clave ? altas : yaEstaban).push({ clave, titulo: ficha.titulo, origen: `título truncado (DOI ${mejor.doi})`, avisos });
+        } else {
+          revisar.push({ consulta: `${e.valor} (${e.extra.autor ?? 'sin autoría'})`, modo: e.modo, candidatos: candidatos.slice(0, 3) });
+        }
       } else {
         const candidatos = (await buscarCrossref(e.valor, 5)).map((c) => ({ ...c, sim: similitud(e.valor, c.titulo) }));
         candidatos.sort((a, b) => b.sim - a.sim);
