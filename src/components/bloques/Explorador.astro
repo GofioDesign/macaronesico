@@ -1,0 +1,437 @@
+---
+/**
+ * Explorador de encuesta: una fila por pregunta y un selector por rasgo
+ * (edad, ingresos, sexo…). El grupo elegido se resalta; la media de toda la
+ * población y los demás grupos del mismo tipo quedan en segundo plano.
+ *
+ * El conjunto de datos tiene una fila por combinación de rasgos con:
+ *  - una columna por rasgo (las que se indiquen en «dimensiones»),
+ *  - «Entrevistas» (número de personas) y «Peso» (suma de pesos),
+ *  - una columna por pregunta con el % dentro de esa combinación.
+ *    Si el nombre lleva « · », lo anterior es el bloque («Social · …»).
+ * Los grupos más amplios se calculan promediando filas ponderadas por el peso.
+ * Sin JavaScript se ve la media de toda la población.
+ */
+import { cargarDatos, listaColumnas } from '../../lib/datos';
+
+interface Props {
+  datos: string;
+  dimensiones: string;
+  titulo?: string;
+  pie?: string;
+  /** Por debajo de estas entrevistas no se muestran porcentajes. */
+  minimo?: number | string;
+  /** Por debajo de estas entrevistas se avisa del margen de error. */
+  aviso?: number | string;
+}
+
+const { datos, dimensiones, titulo, pie, minimo = 10, aviso = 50 } = Astro.props;
+const { meta, tabla } = await cargarDatos(datos);
+
+const COL_N = 'Entrevistas';
+const COL_PESO = 'Peso';
+const dims = listaColumnas(dimensiones).filter((c) => tabla.columnas.includes(c));
+if (!dims.length || !tabla.columnas.includes(COL_N) || !tabla.columnas.includes(COL_PESO)) {
+  throw new Error(`[macaronesico] El explorador de "${datos}" necesita dimensiones y las columnas "${COL_N}" y "${COL_PESO}".`);
+}
+const preguntas = tabla.columnas.filter((c) => !dims.includes(c) && c !== COL_N && c !== COL_PESO);
+const opciones = dims.map((d) => [...new Set(tabla.filas.map((f) => f[d]))]);
+const filas = tabla.filas.map((f) => [
+  dims.map((d, i) => opciones[i].indexOf(f[d])),
+  Number(f[COL_N]),
+  Number(f[COL_PESO]),
+  preguntas.map((p) => Number(f[p])),
+]);
+
+const pesoTotal = tabla.filas.reduce((s, f) => s + Number(f[COL_PESO]), 0);
+const entrevistas = tabla.filas.reduce((s, f) => s + Number(f[COL_N]), 0);
+const media = preguntas.map((p) => tabla.filas.reduce((s, f) => s + Number(f[p]) * Number(f[COL_PESO]), 0) / pesoTotal);
+
+const bloques: { nombre: string; items: { texto: string; j: number }[] }[] = [];
+preguntas.forEach((p, j) => {
+  const [nombre, texto] = p.includes(' · ') ? p.split(' · ') : ['', p];
+  let b = bloques.find((x) => x.nombre === nombre);
+  if (!b) bloques.push((b = { nombre, items: [] }));
+  b.items.push({ texto, j });
+});
+
+const fmt = (v: number) => v.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const miles = (v: number) => v.toLocaleString('es-ES');
+const marcas = [0, 25, 50, 75, 100];
+const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), aviso: Number(aviso) });
+---
+
+<figure class="explorador amplio" data-explorador>
+  {titulo && <figcaption class="titulo">{titulo}</figcaption>}
+
+  <form class="selectores" aria-label="Elegir grupo">
+    {
+      dims.map((d, i) => (
+        <label>
+          <span>{d}</span>
+          <select name={`d${i}`}>
+            <option value="">Todos</option>
+            {opciones[i].map((o, k) => (
+              <option value={k}>{o}</option>
+            ))}
+          </select>
+        </label>
+      ))
+    }
+  </form>
+
+  <p class="estado" aria-live="polite" data-estado>Toda la población: {miles(entrevistas)} entrevistas.</p>
+
+  <ul class="leyenda" aria-label="Leyenda">
+    <li><span class="m m-sel" aria-hidden="true"></span>Grupo elegido</li>
+    <li><span class="m m-media" aria-hidden="true"></span>Media de toda la población</li>
+    <li><span class="m m-otro" aria-hidden="true"></span>Los demás grupos del mismo tipo</li>
+  </ul>
+
+  <div class="fila eje" aria-hidden="true">
+    <span class="et"></span>
+    <span class="pista">
+      {
+        marcas.map((m, i) => (
+          <span class:list={['marca', { primera: i === 0, ultima: i === marcas.length - 1 }]} style={`left:${m}%`}>
+            {m}%
+          </span>
+        ))
+      }
+    </span>
+    <span class="valor"></span>
+  </div>
+
+  {
+    bloques.map((b) => (
+      <div class="bloque">
+        {b.nombre && <p class="nombre-bloque">{b.nombre}</p>}
+        <ol class="filas">
+          {b.items.map(({ texto, j }) => (
+            <li class="fila" data-j={j}>
+              <span class="et">{texto}</span>
+              <span class="pista" aria-hidden="true">
+                {marcas.map((m) => (
+                  <span class="guia" style={`left:${m}%`} />
+                ))}
+                <span class="otros" data-otros />
+                <span class="media" style={`left:${media[j].toFixed(2)}%`} />
+                <span class="punto" data-sel style={`left:${media[j].toFixed(2)}%`} />
+              </span>
+              <span class="valor">
+                <span data-valor>{fmt(media[j])}%</span>
+                <span class="dif" data-dif />
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))
+  }
+
+  <p class="pie">
+    {pie && <span>{pie} </span>}
+    <a href={`/datos/${meta.id}/`}>Ver los datos</a>
+  </p>
+  <script type="application/json" data-datos set:html={json} />
+</figure>
+
+<script>
+  type Datos = {
+    dims: string[];
+    opciones: string[][];
+    filas: [number[], number, number, number[]][];
+    minimo: number;
+    aviso: number;
+  };
+  const fmt = (v: number, signo = false) =>
+    (signo && v > 0 ? '+' : '') + v.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+  function iniciar(raiz: HTMLElement) {
+    const d: Datos = JSON.parse(raiz.querySelector('[data-datos]')?.textContent ?? '{}');
+    const selects = [...raiz.querySelectorAll('select')];
+    const filasDom = [...raiz.querySelectorAll<HTMLElement>('[data-j]')];
+    const estado = raiz.querySelector('[data-estado]');
+    const numPreguntas = d.filas[0]?.[3].length ?? 0;
+
+    function agregar(filtro: (number | null)[]) {
+      let n = 0;
+      let peso = 0;
+      const suma = new Array(numPreguntas).fill(0);
+      for (const [cod, fn, fp, valores] of d.filas) {
+        if (filtro.some((v, i) => v !== null && cod[i] !== v)) continue;
+        n += fn;
+        peso += fp;
+        valores.forEach((v, j) => (suma[j] += v * fp));
+      }
+      return { n, valores: peso ? suma.map((x) => x / peso) : [] };
+    }
+
+    const media = agregar(d.dims.map(() => null));
+
+    /** Todas las combinaciones de las dimensiones elegidas. */
+    function combinaciones(elegidas: number[]) {
+      let res: (number | null)[][] = [d.dims.map(() => null)];
+      for (const i of elegidas) res = res.flatMap((f) => d.opciones[i].map((_, k) => f.map((v, x) => (x === i ? k : v))));
+      return res;
+    }
+
+    function pintar() {
+      const filtro = selects.map((s) => (s.value === '' ? null : Number(s.value)));
+      const elegidas = filtro.flatMap((v, i) => (v === null ? [] : [i]));
+      const grupo = agregar(filtro);
+      const otros = combinaciones(elegidas)
+        .filter((f) => f.some((v, i) => v !== filtro[i]))
+        .map(agregar)
+        .filter((g) => g.n >= d.minimo);
+      const pocos = grupo.n < d.minimo;
+
+      const nombre = elegidas.length ? elegidas.map((i) => d.opciones[i][filtro[i] as number]).join(' · ') : 'Toda la población';
+      let texto = `${nombre}: ${grupo.n.toLocaleString('es-ES')} entrevistas.`;
+      if (pocos) texto += ' Son demasiado pocas para dar porcentajes.';
+      else if (grupo.n < d.aviso) texto += ' Son pocas: los porcentajes tienen un margen de error amplio.';
+      if (estado) estado.textContent = texto;
+      raiz.classList.toggle('sin-datos', pocos);
+      raiz.classList.toggle('pocos', !pocos && grupo.n < d.aviso);
+
+      for (const li of filasDom) {
+        const j = Number(li.dataset.j);
+        const cont = li.querySelector('[data-otros]');
+        cont?.replaceChildren(
+          ...otros.map((g) => {
+            const s = document.createElement('span');
+            s.className = 'otro';
+            s.style.left = `${g.valores[j].toFixed(2)}%`;
+            return s;
+          }),
+        );
+        const punto = li.querySelector<HTMLElement>('[data-sel]');
+        const valor = li.querySelector('[data-valor]');
+        const dif = li.querySelector('[data-dif]');
+        if (pocos) {
+          if (punto) punto.hidden = true;
+          if (valor) valor.textContent = '–';
+          if (dif) dif.textContent = '';
+        } else {
+          const v = grupo.valores[j];
+          if (punto) {
+            punto.hidden = false;
+            punto.style.left = `${v.toFixed(2)}%`;
+          }
+          if (valor) valor.textContent = `${fmt(v)}%`;
+          if (dif) dif.textContent = elegidas.length ? fmt(v - media.valores[j], true) : '';
+        }
+      }
+    }
+
+    selects.forEach((s) => s.addEventListener('change', pintar));
+    raiz.querySelector('form')?.addEventListener('submit', (e) => e.preventDefault());
+    pintar();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-explorador]').forEach(iniciar);
+</script>
+
+<style>
+  .explorador {
+    margin-block: 2.5rem !important;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--tinta-2);
+  }
+  .titulo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--tinta);
+    margin-bottom: 0.75rem;
+  }
+  .selectores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--papel-2);
+    border-radius: var(--radio);
+  }
+  .selectores label {
+    display: grid;
+    gap: 0.3rem;
+  }
+  .selectores span {
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  select {
+    font: inherit;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--linea);
+    border-radius: var(--radio);
+    background: var(--papel);
+    color: var(--tinta);
+  }
+  .estado {
+    margin: 0.9rem 0 0.4rem;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  .pocos .estado,
+  .sin-datos .estado {
+    color: var(--serie-2);
+  }
+  .leyenda {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    padding: 0;
+    margin: 0 0 0.75rem;
+  }
+  .leyenda li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .m {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+  }
+  .m-sel {
+    background: var(--serie-1);
+  }
+  .m-otro {
+    background: var(--tinta-3);
+    opacity: 0.35;
+  }
+  .m-media {
+    width: 2px;
+    height: 1rem;
+    border-radius: 0;
+    background: var(--tinta);
+  }
+
+  .nombre-bloque {
+    margin: 1.25rem 0 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--tinta-3);
+  }
+  .filas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .fila {
+    display: grid;
+    grid-template-columns: minmax(10rem, 36%) 1fr 5.5rem;
+    gap: 0.25rem 1rem;
+    align-items: center;
+    padding-block: 0.4rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .fila.eje {
+    border-bottom: 0;
+    padding-bottom: 0.2rem;
+  }
+  .et {
+    line-height: 1.3;
+    color: var(--tinta);
+  }
+  .pista {
+    position: relative;
+    min-height: 1.4rem;
+    margin-inline: 0.5rem;
+  }
+  .marca {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    color: var(--tinta-3);
+    white-space: nowrap;
+  }
+  .marca.primera {
+    transform: none;
+  }
+  .marca.ultima {
+    transform: translateX(-100%);
+  }
+  .guia {
+    position: absolute;
+    top: -0.4rem;
+    bottom: -0.4rem;
+    width: 1px;
+    background: var(--linea);
+  }
+  .otros :global(.otro) {
+    position: absolute;
+    top: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--tinta-3);
+    opacity: 0.3;
+  }
+  .media {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: var(--tinta);
+  }
+  .punto {
+    position: absolute;
+    top: 50%;
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--serie-1);
+    box-shadow: 0 0 0 2px var(--papel);
+    transition: left 0.25s ease;
+  }
+  .punto[hidden] {
+    display: none;
+  }
+  .valor {
+    display: grid;
+    justify-items: end;
+    font-variant-numeric: tabular-nums;
+  }
+  .valor [data-valor] {
+    font-weight: 700;
+    color: var(--tinta);
+  }
+  .dif {
+    font-size: 0.75rem;
+    color: var(--tinta-3);
+  }
+  .pie {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    color: var(--tinta-3);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .punto {
+      transition: none;
+    }
+  }
+  @media (max-width: 40rem) {
+    .fila {
+      grid-template-columns: 1fr 4rem;
+    }
+    .et {
+      grid-column: 1 / -1;
+    }
+    .selectores {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

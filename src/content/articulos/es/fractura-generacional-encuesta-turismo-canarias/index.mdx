@@ -85,9 +85,29 @@ Los microdatos de la encuesta permiten separar a quien nació en Canarias de qui
 
 <TablaDatos datos="ecosoc-2026t2-turismo-por-origen" pie="% de acuerdo. Entrevistas: 1.681 nacidos en Canarias, 204 en otra comunidad, 431 en otro país." />
 
+<PasoAPaso datos="ecosoc-2026t2-turismo-por-origen">
+
+1. **Microdatos.** Descargamos del ISTAC los microdatos públicos del módulo (2.316 entrevistas, una fila por persona) y su diseño de registros, que explica qué significa cada código. Están copiados en el repositorio de macaronesico junto al script que hace todos los cálculos (`scripts/istac/ecosoc-2026t2-turismo.mjs`).
+2. **Lugar de nacimiento.** Variable P3: Canarias (1.681 entrevistas), otra comunidad autónoma (204) u otro país (431).
+3. **Qué contamos como «de acuerdo».** Las respuestas 4 («de acuerdo») y 5 («muy de acuerdo») de la escala. En la vivienda vacacional (P230), la respuesta «debería ser más estricta».
+4. **Peso de cada entrevista.** Cada persona cuenta con su peso oficial (variable «peso»), que corrige que unos grupos estén más representados que otros en la muestra. El porcentaje es la suma de pesos de quienes están de acuerdo dividida entre la suma de pesos de todo el grupo, incluidas las personas que no saben o no contestan.
+5. **Comprobación.** Con este método el script reproduce exactamente las cifras publicadas por el ISTAC, por ejemplo el 67,9% del total y el 58,7% de los jóvenes que consideran el turismo muy beneficioso. Si alguna no coincide, el script se detiene y no escribe nada.
+
+</PasoAPaso>
+
 Los llegados de otras comunidades son, de hecho, los más críticos con la vivienda (86,1%) y con los residuos (72%). La fractura de verdad aparece al cruzar el origen con la edad. **Los jóvenes nacidos en Canarias son el grupo más crítico de toda la encuesta**, y los jóvenes nacidos fuera opinan casi como los mayores.
 
 <TablaDatos datos="ecosoc-2026t2-turismo-edad-y-origen" pie="% de acuerdo. Entrevistas: 331 jóvenes nacidos en Canarias, 103 jóvenes nacidos fuera, 641 mayores nacidos en Canarias, 234 mayores nacidos fuera." />
+
+<PasoAPaso datos="ecosoc-2026t2-turismo-edad-y-origen">
+
+1. **Mismos microdatos y mismo método** que la tabla anterior: respuestas 4 y 5, peso oficial de cada entrevista y todas las entrevistas del grupo en el denominador.
+2. **Edad.** Agrupamos la variable «edad» como lo hace el ISTAC y nos quedamos con los extremos: 18-34 años y 55 y más.
+3. **Nacimiento.** Para que los grupos no sean demasiado pequeños juntamos «otra comunidad autónoma» y «otro país» en «nacidos fuera».
+4. **Cruce.** Calculamos el porcentaje dentro de cada uno de los cuatro grupos: 331 jóvenes nacidos en Canarias, 103 jóvenes nacidos fuera, 641 mayores nacidos en Canarias y 234 mayores nacidos fuera.
+5. **Margen de error.** Con 103 entrevistas el margen ronda los ±10 puntos, así que en el texto solo comentamos diferencias grandes.
+
+</PasoAPaso>
 
 Entre los jóvenes nacidos en Canarias, los partidarios de seguir potenciando el turismo (39,8%) empatan con los detractores (39,1%). Es el único grupo en el que son más quienes niegan que los beneficios superen a los costes (41,9%) que quienes lo afirman (32,9%). El 57,8% cree que el turismo no mejora su calidad de vida. El 53,7% niega que ayude a mantener la identidad y la cultura de las islas.
 
@@ -98,6 +118,24 @@ Hay dos terrenos en los que los jóvenes coinciden sea cual sea su origen: el pr
 La encuesta sugiere una explicación para la diferencia en lo demás. El 44,6% de los jóvenes nacidos fuera vive en un hogar donde alguien trabaja o tiene un vínculo económico con el turismo, frente al 26,4% de los jóvenes nacidos en las islas. Es plausible que muchos llegaran, precisamente, para trabajar en el sector.
 
 Conviene una precisión: nacer fuera no equivale a no ser canario. De los 431 entrevistados nacidos en otro país, 232 tienen nacionalidad española, un grupo en el que previsiblemente hay muchos hijos y nietos de la emigración canaria.
+
+## Explorar por grupos
+
+Elige edad, ingresos del hogar, sexo o lugar de nacimiento, solos o combinados.
+
+<Explorador datos="ecosoc-2026t2-turismo-explorador" dimensiones="Edad, Ingresos del hogar, Sexo, Nacimiento" titulo="¿Qué piensa cada grupo del turismo?" pie="% de acuerdo con cada afirmación («de acuerdo» + «muy de acuerdo»; en la tasa, «sí»; en la vivienda vacacional, «más estricta»). A la derecha, diferencia en puntos con la media. Fuente: microdatos del ISTAC, ECOSOC 2026 T2." />
+
+<PasoAPaso datos="ecosoc-2026t2-turismo-explorador">
+
+1. **Mismos microdatos y mismo método** que las tablas anteriores.
+2. **Cuatro rasgos.** Dividimos las 2.316 entrevistas por edad (18-34, 35-54, 55 y más), ingreso disponible del hogar en los tramos del ISTAC (variable ing_hog: hasta 500 €, de 500 a 1.000, de 1.000 a 1.500, más de 1.500 o no consta), sexo (P1) y lugar de nacimiento (P3: Canarias o fuera). Salen 60 combinaciones.
+3. **Una fila por combinación.** Para cada una guardamos el número de entrevistas, la suma de sus pesos y el porcentaje de acuerdo con cada una de las 30 afirmaciones. Es el conjunto de datos que se puede descargar.
+4. **Grupos más amplios.** Si eliges solo algunos rasgos, el gráfico junta las combinaciones que encajan y promedia sus porcentajes ponderando por el peso. Sin elegir nada sale exactamente la media publicada por el ISTAC.
+5. **Los puntos claros** son los demás grupos del mismo tipo: si eliges edad y sexo, las otras cinco combinaciones de edad y sexo.
+6. **Pocas entrevistas.** Si un grupo tiene menos de 10 entrevistas no mostramos sus porcentajes; por debajo de 50 avisamos de que el margen de error es amplio. Muchas combinaciones de los cuatro rasgos quedan por debajo.
+7. **Los ingresos son del hogar**, no de la persona: muchos jóvenes viven con su familia y aparecen en hogares con más ingresos que los suyos propios.
+
+</PasoAPaso>
 
 ## Dependientes, pero no conformes
 
@@ -125,7 +163,7 @@ Cuando una encuesta oficial se resume en un único porcentaje favorable, esa fra
 
 ECOSOC es una encuesta trimestral del ISTAC a la población de 18 y más años que reside en viviendas familiares de Canarias. El módulo de turismo se realizó en el segundo trimestre de 2026 y ya se hizo en 2024. Los porcentajes por edad proceden de las tablas oficiales publicadas en el catálogo de datos abiertos del ISTAC; los totales coinciden con los de la nota de prensa.
 
-Los cruces por lugar de nacimiento son elaboración propia a partir de los microdatos públicos del módulo (2.316 entrevistas), aplicando el peso oficial de cada entrevista. Recalculados con ese método, los totales y los datos por edad coinciden con los publicados por el ISTAC. En los grupos pequeños el margen de error es amplio (unos ±10 puntos para los 103 jóvenes nacidos fuera), por lo que el texto solo destaca diferencias grandes.
+Los cruces por lugar de nacimiento, ingresos y sexo son elaboración propia a partir de los microdatos públicos del módulo (2.316 entrevistas), aplicando el peso oficial de cada entrevista. El script que hace los cálculos y los microdatos están en el [repositorio de macaronesico](https://github.com/GofioDesign/macaronesico/tree/main/scripts/istac). Recalculados con ese método, los totales y los datos por edad coinciden con los publicados por el ISTAC. En los grupos pequeños el margen de error es amplio (unos ±10 puntos para los 103 jóvenes nacidos fuera), por lo que el texto solo destaca diferencias grandes.
 
 </NotaMetodologica>
 

@@ -99,6 +99,22 @@ const bloques = {
     },
   }),
 
+  Explorador: block({
+    label: 'Explorador de encuesta',
+    description:
+      'Una fila por pregunta y un selector por rasgo (edad, sexo…): resalta el grupo elegido frente a la media y a los demás grupos. El conjunto de datos necesita las columnas Entrevistas y Peso.',
+    schema: {
+      datos: fields.relationship({ label: 'Conjunto de datos', collection: 'datos', validation: { isRequired: true } }),
+      dimensiones: fields.text({
+        label: 'Columnas de los selectores',
+        description: 'Separadas por comas. Por ejemplo: Edad, Ingresos del hogar, Sexo, Nacimiento',
+        validation: { length: { min: 1 } },
+      }),
+      titulo: fields.text({ label: 'Título' }),
+      pie: fields.text({ label: 'Pie', multiline: true }),
+    },
+  }),
+
   NotaMetodologica: wrapper({
     label: 'Nota metodológica',
     description: 'Recuadro plegable con método, muestra y márgenes de error.',
