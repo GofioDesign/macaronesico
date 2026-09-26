@@ -16,6 +16,7 @@ const CATEGORIAS = [
   { label: 'Costa norafricana', value: 'costa-norafricana' },
   { label: 'Macaronesia', value: 'macaronesia' },
   { label: 'Internacional', value: 'internacional' },
+  { label: 'Taller', value: 'taller' },
   { label: 'Editorial', value: 'editorial' },
 ];
 

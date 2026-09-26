@@ -25,6 +25,10 @@ export const CATEGORIAS = {
     nombre: 'Internacional',
     descripcion: 'El orden global leído desde los márgenes: geopolítica, extractivismo y derecho internacional.',
   },
+  taller: {
+    nombre: 'Taller',
+    descripcion: 'Ejercicios para hacer a solas, en el aula o en un colectivo: mirarse, situarse y decidir sobre nuestro lugar en la cadena.',
+  },
   editorial: {
     nombre: 'Editorial',
     descripcion: 'Desde dónde escribimos y cómo trabajamos.',

@@ -6,7 +6,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 
-const categorias = ['canarias', 'costa-norafricana', 'macaronesia', 'internacional', 'editorial'];
+const categorias = ['canarias', 'costa-norafricana', 'macaronesia', 'internacional', 'taller', 'editorial'];
 
 export default defineConfig({
   site: 'https://macaronesico.com',
@@ -32,6 +32,8 @@ export default defineConfig({
     '/admin': '/keystatic',
     '/feed': '/feed.xml',
     '/macaronesia/macaronesico': '/editorial/macaronesico/',
+    // El (I) de «Cómo no ser parte de la maquinaria extractivista» pasó de Canarias a Taller
+    '/canarias/como-no-ser-parte-de-la-maquinaria-extractivista-01': '/taller/como-no-ser-parte-de-la-maquinaria-extractivista-01/',
     ...Object.fromEntries(categorias.map((c) => [`/${c}/feed`, `/${c}/feed.xml`])),
   },
 
