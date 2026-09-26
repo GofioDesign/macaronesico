@@ -18,7 +18,7 @@ const anio = new Date().getFullYear();
     <nav aria-label="Información">
       <ul>
         <li><a href="/participa/">Propón una pieza</a></li>
-        <li><a href="/editorial/macaronesico/">Artículo fundacional</a></li>
+        <li><a href="/editorial/macaronesico/">Desde dónde escribimos</a></li>
         {paginas.filter((p) => p.id !== 'participa').map((p) => <li><a href={`/${p.id}/`}>{p.data.titulo}</a></li>)}
       </ul>
     </nav>
