@@ -24,7 +24,12 @@ const cols = pedidas.length ? pedidas : tabla.columnas.filter((c) => c !== etiqu
 const u = Number(umbral);
 const aprueba = (v: string) => Number(v) > u;
 const aprobados = cols.map((c) => tabla.filas.filter((f) => aprueba(f[c])).length);
-const fmt = (v: string) => Math.round(Number(v)).toLocaleString('es-ES');
+// Enteros, salvo cerca del umbral, donde el redondeo confundiría (49,8 no aprueba; 50,3 sí).
+const fmt = (v: string) => {
+  const n = Number(v);
+  const decimales = Math.round(n) === Math.round(u) ? 1 : 0;
+  return n.toLocaleString('es-ES', { minimumFractionDigits: decimales, maximumFractionDigits: decimales });
+};
 ---
 
 <figure class="examen amplio" style={`--columnas:${cols.length}`}>
