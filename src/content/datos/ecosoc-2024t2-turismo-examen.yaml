@@ -1,0 +1,33 @@
+titulo: 'El examen del turismo: afirmaciones favorables por edad (ECOSOC 2024 T2)'
+descripcion: >-
+  Porcentaje de acuerdo con las 18 afirmaciones favorables al turismo de la
+  encuesta, por grupo de edad y para los jóvenes nacidos en Canarias.
+fuente: Elaboración de macaronesico a partir de los microdatos del ISTAC (ECOSOC 2024 T2)
+url: https://datos.canarias.es/catalogos/estadisticas/dataset/microdatos-de-la-encuesta-de-habitos-y-confianza-socioeconomica-2024-segundo-trimestre
+fecha: 2026-09-26
+licencia: CC BY 4.0 (datos del ISTAC); elaboración de macaronesico
+notas: >-
+  Calculado con scripts/istac/ecosoc-2024t2-turismo.mjs, con las mismas 18
+  afirmaciones favorables que el conjunto de 2026. Porcentaje de «de acuerdo» y
+  «muy de acuerdo» sobre todas las entrevistas del grupo, con el peso oficial.
+  Los datos por edad coinciden con las tablas publicadas por el ISTAC.
+csv: |
+  Afirmación,18-34 años,35-54 años,55 y más,"18-34, nacidos en Canarias"
+  Ha sido muy beneficioso para la isla,51.1,63.7,66.8,48.9
+  Se debe seguir potenciando,47.2,64.0,72.2,41.9
+  Sus beneficios superan a sus costes,38.5,50.2,56.5,34.8
+  Contribuye al desarrollo económico,69.3,78.5,78.6,66.8
+  Atrae inversiones necesarias,55.6,70.4,73.4,51.4
+  Contribuye al consumo de productos locales,48.9,58.4,60.0,45.1
+  Aumenta la calidad de vida,26.5,45.2,59.9,22.6
+  Mejora los servicios de mi comarca,28.6,41.9,49.0,26.0
+  Crea una sociedad más tolerante,43.0,55.9,63.9,41.5
+  Mejora las infraestructuras,40.8,56.8,63.7,37.6
+  Mejora la imagen de mi municipio,39.1,53.3,61.4,37.5
+  Ayuda a mantener la identidad y la cultura,33.5,47.0,49.2,30.1
+  Ayuda a conservar los monumentos,39.8,54.9,55.7,35.3
+  Aumenta la oferta cultural y festiva,52.4,58.3,58.6,51.7
+  Favorece el intercambio entre culturas,65.1,75.0,75.0,62.8
+  Permite relacionarse con gente de otros lugares,80.9,80.7,78.9,80.0
+  Tiene prácticas sostenibles,20.1,27.6,41.0,18.9
+  Ayuda a conservar los espacios naturales,18.9,29.3,46.2,18.5

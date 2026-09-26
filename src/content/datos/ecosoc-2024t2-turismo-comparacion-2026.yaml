@@ -1,0 +1,38 @@
+titulo: 'Percepción del turismo por edad en 2024 y 2026 (ECOSOC T2)'
+descripcion: >-
+  Porcentaje de acuerdo con cada afirmación sobre el turismo en las dos oleadas
+  del módulo de percepción del turismo de la ECOSOC (segundo trimestre de 2024 y
+  de 2026), en total y por grupo de edad.
+fuente: Elaboración de macaronesico a partir de los microdatos del ISTAC (ECOSOC 2024 T2 y 2026 T2)
+url: https://datos.canarias.es/catalogos/estadisticas/dataset/microdatos-de-la-encuesta-de-habitos-y-confianza-socioeconomica-2024-segundo-trimestre
+fecha: 2026-09-26
+licencia: CC BY 4.0 (datos del ISTAC); elaboración de macaronesico
+notas: >-
+  Calculado con scripts/istac/ecosoc-2024t2-turismo.mjs con el mismo método en
+  las dos oleadas (2.233 entrevistas en 2024 y 2.316 en 2026). Son muestras
+  distintas: con este tamaño, una diferencia en el total de menos de unos 3
+  puntos puede deberse al azar, y en cada grupo de edad el margen es mayor
+  (unos 4 o 5 puntos).
+csv: |
+  Afirmación,Total · 2024,Total · 2026,18-34 · 2024,18-34 · 2026,35-54 · 2024,35-54 · 2026,55 y más · 2024,55 y más · 2026
+  Provoca tensiones entre residentes y turistas,44.6,43.4,57.9,58.8,42.8,47.0,38.5,31.3
+  Perjudica el tráfico y la movilidad,56.2,58.7,68.8,74.5,54.3,61.0,50.7,47.7
+  Causa daños irreparables a los ecosistemas,57.1,53.1,68.2,67.9,55.9,56.5,51.6,41.6
+  Provoca cambios de residencia de la población local,63.3,62.8,71.9,75.2,63.2,65.7,58.3,53.2
+  Encarece el coste de la vida,69.1,64.0,76.6,75.7,66.2,65.6,67.5,55.9
+  "Consume agua, energía o suelo en detrimento de los residentes",62.1,58.6,69.3,66.2,60.8,62.2,59.0,51.0
+  Los turistas deben pagar una tasa por noche,43.3,49.7,53.8,58.0,41.9,51.3,38.2,43.7
+  Genera demasiados residuos y contaminación,60.9,61.0,65.7,69.0,60.2,63.1,58.7,54.7
+  Colapsa los servicios sanitarios,44.5,42.8,38.7,49.8,44.9,43.8,47.6,38.0
+  Encarece el precio de la vivienda,76.6,77.1,87.2,83.5,76.2,78.7,70.8,72.0
+  La regulación de la vivienda vacacional debe ser más estricta,63.7,51.7,71.0,57.6,61.7,53.6,61.3,46.7
+  Genera empleo precario,61.9,63.4,61.9,66.8,60.6,61.4,63.0,63.3
+  Ha sido muy beneficioso para la isla,62.0,67.9,51.1,58.7,63.7,67.5,66.8,73.5
+  Contribuye al desarrollo económico,76.4,77.3,69.3,67.2,78.5,79.3,78.6,81.2
+  Sus beneficios son muy superiores a sus costes,49.9,45.7,38.5,36.4,50.2,47.0,56.5,49.8
+  Mejora los servicios de mi comarca,41.6,37.3,28.6,28.8,41.9,36.0,49.0,43.4
+  Tiene prácticas sostenibles,31.1,24.6,20.1,18.5,27.6,23.3,41.0,29.2
+  Ayuda a conservar los espacios naturales,33.5,29.3,18.9,17.3,29.3,28.4,46.2,36.9
+  Se debe seguir potenciando como motor de la economía,63.3,62.8,47.2,48.2,64.0,62.8,72.2,71.0
+  Aumenta la calidad de vida de los residentes,46.6,38.9,26.5,27.2,45.2,33.0,59.9,50.9
+  Ayuda a mejorar las infraestructuras,55.8,51.9,40.8,38.7,56.8,47.7,63.7,63.1

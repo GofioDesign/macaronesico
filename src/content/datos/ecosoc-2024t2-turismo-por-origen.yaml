@@ -1,0 +1,21 @@
+titulo: 'Percepción del turismo según lugar de nacimiento (ECOSOC 2024 T2)'
+descripcion: >-
+  Porcentaje de acuerdo con afirmaciones sobre el turismo según el lugar de
+  nacimiento: Canarias, otra comunidad autónoma u otro país.
+fuente: Elaboración de macaronesico a partir de los microdatos del ISTAC (ECOSOC 2024 T2)
+url: https://datos.canarias.es/catalogos/estadisticas/dataset/microdatos-de-la-encuesta-de-habitos-y-confianza-socioeconomica-2024-segundo-trimestre
+fecha: 2026-09-26
+licencia: CC BY 4.0 (datos del ISTAC); elaboración de macaronesico
+notas: >-
+  Cálculo propio a partir de los microdatos públicos del módulo (2.233
+  entrevistas), aplicando el peso oficial de cada entrevista. Entrevistas por
+  grupo: nacidos en Canarias 1.619; en otra comunidad 176; en otro país 438.
+csv: |
+  Afirmación,Nacidos en Canarias,Nacidos en otra comunidad,Nacidos en otro país
+  Ha sido muy beneficioso para la isla,60.2,69.4,64.3
+  Se debe seguir potenciando,61.0,63.6,69.4
+  Aumenta la calidad de vida,42.8,42.2,58.4
+  Encarece la vivienda,76.2,78.7,77.1
+  Encarece el coste de la vida,68.0,71.4,71.3
+  Genera demasiados residuos y contaminación,61.0,66.1,58.8
+  Regulación de la vivienda vacacional más estricta,65.3,69.1,57.4
