@@ -119,7 +119,7 @@ export async function consultarCrossref(doi) {
       .filter((a, i, xs) => xs.indexOf(a) === i),
     anio: Number(fecha[0]) || null,
     tipo: TIPOS[m.type] ?? 'otro',
-    revista: arreglarMayusculas((m['container-title']?.[0] ?? '').replace(/\s+n[úu]mero\s+\d+\s*$/i, '')),
+    revista: arreglarMayusculas((m['container-title']?.[0] ?? '').replace(/&amp;/g, '&').replace(/\s+n[úu]mero\s+\d+\s*$/i, '')),
     volumen: m.volume ?? '',
     numero: m.issue ?? (m['container-title']?.[0] ?? '').match(/n[úu]mero\s+(\d+)\s*$/i)?.[1] ?? '',
     paginas: m.page ?? '',
