@@ -2,10 +2,16 @@ name: Compilar
 
 # Comprueba que el sitio compila en cada cambio. Si falla, Cloudflare Pages
 # tampoco publicará, así que aquí se ve el error antes.
+# El resultado de la última compilación de main se guarda también en la rama
+# "registro-compilacion" (registro.txt), para poder consultarlo sin entrar en Actions.
 on:
   push:
+    branches-ignore: [registro-compilacion]
   pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   compilar:
@@ -15,5 +21,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-audit --no-fund
-      - run: npm run build
+      - name: Instalar y compilar
+        run: |
+          set -o pipefail
+          { npm install --no-audit --no-fund && npm run build; } 2>&1 | tee registro.txt
+      - name: Guardar registro
+        if: always() && github.event_name == 'push'
+        run: |
+          RESULTADO="${{ job.status }}"
+          cp registro.txt /tmp/registro.txt || echo "sin registro" > /tmp/registro.txt
+          git config user.name "macaronesico-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan registro-compilacion
+          git rm -rfq . > /dev/null
+          { echo "commit: ${{ github.sha }}"; echo "rama: ${{ github.ref_name }}"; echo "fecha: $(date -u +%FT%TZ)"; echo "estado: $RESULTADO"; echo; tail -n 400 /tmp/registro.txt; } > registro.txt
+          git add registro.txt
+          git commit -qm "Registro de compilación ${{ github.sha }}"
+          git push -f origin registro-compilacion
