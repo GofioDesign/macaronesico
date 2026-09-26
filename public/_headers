@@ -1,0 +1,8 @@
+# Cabeceras de Cloudflare Pages.
+# Las direcciones *.pages.dev (la de producción y las vistas previas de cada
+# rama) son copias de macaronesico.com: que los buscadores no las indexen.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
