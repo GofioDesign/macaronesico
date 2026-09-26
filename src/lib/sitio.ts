@@ -1,8 +1,8 @@
 export const SITIO = {
   nombre: 'macaronesico',
-  lema: 'Entender las islas para decidir sobre ellas',
+  lema: 'Entender el territorio a través de quienes lo habitan',
   descripcion:
-    'Revista de análisis sobre Canarias y la Macaronesia: derechos, sostenibilidad y humanidad contados con datos, contexto y una mirada creativa.',
+    'Revista sobre Canarias y la Macaronesia que explica el territorio a través de la vida de quienes lo habitan: derechos, sostenibilidad y humanidad.',
   url: 'https://macaronesico.com',
   idioma: 'es',
   repositorio: 'https://github.com/GofioDesign/macaronesico',

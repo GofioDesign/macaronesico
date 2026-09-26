@@ -31,5 +31,5 @@ cargar tipografías externas.
 - Por debajo de 24 px de alto, usar solo el favicon simplificado.
 - No cambiar las proporciones, no añadir sombras ni degradados, no girar el
   zigzag.
-- Lema: «Entender las islas para decidir sobre ellas». La línea editorial
+- Lema: «Entender el territorio a través de quienes lo habitan». La línea editorial
   completa está en el documento «Línea editorial de macaronesico».
