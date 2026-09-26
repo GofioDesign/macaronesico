@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El mapa del congelador · Ficha del taller · macaronesico</title>
+<!--
+  Ficha descargable del taller «Cómo no ser parte de la maquinaria extractivista: el mapa del congelador».
+  Para regenerar el PDF: node scripts/fichas/generar.mjs
+-->
+<style>
+  @page { size: A4 portrait; margin: 14mm 14mm 16mm; }
+  @page apaisada { size: A4 landscape; margin: 10mm 12mm 12mm; }
+  :root {
+    --papel: #faf8f4; --papel-2: #f2eee6; --tinta: #1d1b18; --tinta-2: #4f4a43; --tinta-3: #6b665d;
+    --linea: #e2ddd2; --acento: #a13d18; --acento-suave: #f4e7de;
+    --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Charter, Georgia, serif;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: var(--serif); color: var(--tinta); font-size: 10.5pt; line-height: 1.45; }
+  .hoja { break-after: page; position: relative; }
+  .hoja:last-child { break-after: auto; }
+  .apaisada { page: apaisada; }
+  header.cab { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--linea); padding-bottom: 3mm; margin-bottom: 6mm; }
+  header.cab img { height: 9mm; }
+  header.cab span { font-family: var(--sans); font-size: 8pt; color: var(--tinta-3); letter-spacing: .04em; text-transform: uppercase; }
+  h1 { font-size: 26pt; line-height: 1.1; margin: 0 0 3mm; }
+  h2 { font-size: 16pt; margin: 0 0 2mm; }
+  h2 .n { color: var(--acento); margin-right: 2mm; }
+  h3 { font-family: var(--sans); font-size: 9.5pt; text-transform: uppercase; letter-spacing: .05em; color: var(--acento); margin: 5mm 0 1.5mm; }
+  p { margin: 0 0 2.5mm; }
+  .entradilla { font-size: 12pt; color: var(--tinta-2); margin-bottom: 6mm; }
+  .tiempos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin: 5mm 0; }
+  .tiempo { border-top: 3px solid var(--acento); background: var(--papel); padding: 3mm 3.5mm; }
+  .tiempo b { display: block; font-family: var(--sans); font-size: 11pt; margin-bottom: 1mm; }
+  .tiempo p { font-size: 9.5pt; color: var(--tinta-2); margin: 0; }
+  ul { margin: 0 0 2.5mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+  .caja { border: 1px solid var(--linea); border-left: 3px solid var(--acento); padding: 3mm 4mm; margin: 4mm 0; font-size: 9.5pt; background: var(--papel); }
+  table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 8.5pt; }
+  th { text-align: left; font-weight: 600; background: var(--acento-suave); color: var(--tinta); padding: 2mm; border: 1px solid var(--linea); vertical-align: bottom; }
+  th small { display: block; font-weight: 400; color: var(--tinta-3); font-size: 7.5pt; }
+  td { border: 1px solid var(--linea); height: 10mm; padding: 1mm 2mm; }
+  td.num { width: 7mm; color: var(--tinta-3); text-align: center; }
+  .mapa { height: 125mm; margin-top: 2mm; }
+  .mapa img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .leyenda { display: flex; gap: 8mm; font-family: var(--sans); font-size: 8.5pt; color: var(--tinta-2); margin-top: 2mm; }
+  .leyenda i { display: inline-block; width: 10mm; height: 0; border-top: 2.5px solid; vertical-align: middle; margin-right: 2mm; }
+  .lineas { border-bottom: 1px solid var(--linea); height: 8mm; }
+  .pregunta { margin-top: 4mm; }
+  .pregunta b { font-family: var(--sans); font-size: 10pt; }
+  .pie { margin-top: 5mm; border-top: 1px solid var(--linea); padding-top: 2mm; font-family: var(--sans); font-size: 7.5pt; color: var(--tinta-3); display: flex; justify-content: space-between; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+</style>
+</head>
+<body>
+
+<!-- 1. Portada e instrucciones -->
+<section class="hoja">
+  <header class="cab"><img src="../../public/logo.svg" alt="macaronesico"><span>Taller · Ficha para casa o aula</span></header>
+  <h1>El mapa del congelador</h1>
+  <p class="entradilla">Cómo no ser parte de la maquinaria extractivista. Un taller para ver, a partir de lo que guardamos a 18 grados bajo cero, la cadena global que llega hasta una cocina de Canarias y el lugar que ocupamos en ella.</p>
+
+  <div class="tiempos">
+    <div class="tiempo"><b>1. Mirarse</b><p>Foto del congelador tal como está. Lee las etiquetas y rellena la tabla.</p></div>
+    <div class="tiempo"><b>2. Situarse</b><p>Lleva cada producto al mapa: collage, hilos o mapa al revés. Busca una noticia de un lugar de origen.</p></div>
+    <div class="tiempo"><b>3. Decidir</b><p>Qué alternativa hay en las islas, qué depende de ti y qué hay que decidir en común.</p></div>
+  </div>
+
+  <h3>Qué necesitas</h3>
+  <ul>
+    <li>Un móvil para la foto y, si puedes, una copia impresa de la foto.</li>
+    <li>Esta ficha, tijeras, pegamento, lápices de tres colores (o hilo de tres colores y chinchetas).</li>
+    <li>Entre una y dos horas. En clase, dos sesiones de 50 minutos.</li>
+  </ul>
+
+  <h3>Cómo leer una etiqueta de pescado</h3>
+  <ul>
+    <li><b>Zona de captura.</b> Aparece como «FAO 34» o «Atlántico Centro-Oriental». Canarias está en la zona 34, junto a Marruecos, el Sáhara Occidental y Mauritania.</li>
+    <li><b>«Capturado» o «criado».</b> Si es criado, es acuicultura y el país es el de la granja.</li>
+    <li><b>Arte de pesca.</b> Arrastre, cerco, palangre, enmalle… Cada uno deja una huella distinta.</li>
+    <li><b>Envasado en</b> no quiere decir pescado en. Anótalos por separado.</li>
+  </ul>
+
+  <div class="caja">
+    <b>Tres lugares por producto.</b> Donde se produjo, donde se preparó y donde está la empresa que lo vende. Si la etiqueta no dice alguno, anótalo también: la falta de información es un dato.
+  </div>
+
+  <h3>En clase</h3>
+  <p>Grupos de 4 o 5 personas. Cada persona trae la tabla rellena de casa (con o sin foto: quien no quiera enseñar su casa puede usar el congelador de una tienda). En la primera sesión se hace un mapa común; en la segunda, cada grupo presenta un lugar de origen en dos minutos y se cierra con la parte de decidir.</p>
+  <div class="pie"><span>macaronesico.com/taller/como-no-ser-parte-de-la-maquinaria-extractivista</span><span>CC BY-SA 4.0 · Puedes copiarla y adaptarla</span></div>
+</section>
+
+<!-- 2. Mirarse: tabla -->
+<section class="hoja apaisada">
+  <header class="cab"><img src="../../public/logo.svg" alt="macaronesico"><span>1 · Mirarse</span></header>
+  <h2><span class="n">1</span>Lo que hay en el congelador</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Qué es</th>
+        <th>Origen<small>País o zona FAO. ¿Capturado o criado?</small></th>
+        <th>Envasado en</th>
+        <th>Quién lo vende<small>Marca, empresa y ciudad</small></th>
+        <th>Lo que no dice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">1</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">2</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">3</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">4</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">5</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">6</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">7</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">8</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">9</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">10</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">11</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="num">12</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <div class="pie"><span>macaronesico.com/taller/como-no-ser-parte-de-la-maquinaria-extractivista</span><span>CC BY-SA 4.0 · Puedes copiarla y adaptarla</span></div>
+</section>
+
+<!-- 3. Situarse: mapa -->
+<section class="hoja apaisada">
+  <header class="cab"><img src="../../public/logo.svg" alt="macaronesico"><span>2 · Situarse</span></header>
+  <h2><span class="n">2</span>Del envase al mapa</h2>
+  <p style="font-size:9.5pt;color:var(--tinta-2)">Pega aquí los recortes de la foto en su lugar de origen (collage), o une Canarias con cada lugar con una línea de color. Para el mapa al revés, gira la hoja: el sur queda arriba.</p>
+  <div class="mapa"><img src="mapa-mundo.svg" alt="Mapa del mundo con Canarias marcada"></div>
+  <div class="leyenda">
+    <span><i style="border-color:#a13d18"></i>Origen</span>
+    <span><i style="border-color:#1d1b18;border-top-style:dashed"></i>Envasado</span>
+    <span><i style="border-color:#6b665d;border-top-style:dotted"></i>Sede de la empresa</span>
+  </div>
+  <div class="pie"><span>macaronesico.com/taller/como-no-ser-parte-de-la-maquinaria-extractivista</span><span>CC BY-SA 4.0 · Puedes copiarla y adaptarla</span></div>
+</section>
+
+<!-- 4. Situarse y decidir -->
+<section class="hoja">
+  <header class="cab"><img src="../../public/logo.svg" alt="macaronesico"><span>2 · Situarse · 3 · Decidir</span></header>
+  <h2><span class="n">2</span>Un lugar con nombre</h2>
+  <p>Elige un lugar del mapa y busca una noticia reciente sobre él: una huelga, un conflicto por el agua, una protesta de pescadores, una sentencia. No hace falta probar que tu producto lo causó. Se trata de que el origen deje de ser un punto y pase a ser un lugar donde vive gente.</p>
+  <div class="pregunta"><b>Lugar elegido y noticia (titular, medio y fecha)</b></div>
+  <div class="lineas"></div><div class="lineas"></div><div class="lineas"></div>
+  <div class="pregunta"><b>¿Quién decide sobre lo que se saca de ese lugar?</b></div>
+  <div class="lineas"></div><div class="lineas"></div>
+
+  <h2 style="margin-top:8mm"><span class="n">3</span>Qué margen hay</h2>
+  <div class="dos">
+    <div>
+      <div class="pregunta"><b>Tiene alternativa real en las islas</b><br><small>Que se pueda pagar, esté cerca y no pida un tiempo que no tenemos.</small></div>
+      <div class="lineas"></div><div class="lineas"></div><div class="lineas"></div>
+    </div>
+    <div>
+      <div class="pregunta"><b>No tiene alternativa</b><br><small>Sin culpa: también es un dato sobre el territorio.</small></div>
+      <div class="lineas"></div><div class="lineas"></div><div class="lineas"></div>
+    </div>
+  </div>
+  <div class="pregunta"><b>Una decisión que puedo tomar yo</b></div>
+  <div class="lineas"></div><div class="lineas"></div>
+  <div class="pregunta"><b>Una decisión que hay que pedir en común, y a quién</b><br><small>Un comedor escolar, un hospital, un ayuntamiento, una cofradía, un supermercado…</small></div>
+  <div class="lineas"></div><div class="lineas"></div>
+
+  <div class="caja" style="margin-top:6mm">Si compartes el mapa o el collage, hazlo de forma sobria, con una frase sencilla y la etiqueta <b>#ElExtractivismoEmpiezaAqui</b>. Si es el mapa de una clase y quieres que lo publiquemos, escríbenos desde macaronesico.com/participa.</div>
+  <div class="pie"><span>macaronesico.com/taller/como-no-ser-parte-de-la-maquinaria-extractivista</span><span>CC BY-SA 4.0 · Puedes copiarla y adaptarla</span></div>
+</section>
+
+</body>
+</html>

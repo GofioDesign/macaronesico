@@ -32,8 +32,9 @@ export default defineConfig({
     '/admin': '/keystatic',
     '/feed': '/feed.xml',
     '/macaronesia/macaronesico': '/editorial/macaronesico/',
-    // El (I) de «Cómo no ser parte de la maquinaria extractivista» pasó de Canarias a Taller
-    '/canarias/como-no-ser-parte-de-la-maquinaria-extractivista-01': '/taller/como-no-ser-parte-de-la-maquinaria-extractivista-01/',
+    // «Cómo no ser parte de la maquinaria extractivista» pasó de Canarias a Taller y dejó de ser la parte I
+    '/canarias/como-no-ser-parte-de-la-maquinaria-extractivista-01': '/taller/como-no-ser-parte-de-la-maquinaria-extractivista/',
+    '/taller/como-no-ser-parte-de-la-maquinaria-extractivista-01': '/taller/como-no-ser-parte-de-la-maquinaria-extractivista/',
     ...Object.fromEntries(categorias.map((c) => [`/${c}/feed`, `/${c}/feed.xml`])),
   },
 
