@@ -64,10 +64,9 @@ const diferencia = (f: Record<string, string>) => {
       <span class="et" />
       <span class="pista">
         {
-          marcas.map((m) => (
-            <span class="marca" style={`left:${pos(m)}`}>
-              {m}
-              {unidad === '%' ? '%' : ''}
+          marcas.map((m, i) => (
+            <span class:list={['marca', { primera: i === 0, ultima: i === marcas.length - 1 }]} style={`left:${pos(m)}`}>
+              {`${m}${unidad === '%' ? '%' : ''}`}
             </span>
           ))
         }
@@ -213,6 +212,13 @@ const diferencia = (f: Record<string, string>) => {
     font-size: 0.75rem;
     color: var(--tinta-3);
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .marca.primera {
+    transform: none;
+  }
+  .marca.ultima {
+    transform: translateX(-100%);
   }
   .guia {
     position: absolute;

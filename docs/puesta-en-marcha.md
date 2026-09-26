@@ -28,7 +28,12 @@ privacidad, cookies). Si alguno falla, abre el registro y copia el error.
 6. En el proyecto → **Settings** → **Runtime** → **Compatibility flags**,
    añade `nodejs_compat` en Production y en Preview.
 
-Cada rama que no sea `main` genera su propia vista previa, con los borradores
+7. En **Settings** → **Builds** → **Branch control**, en *Preview branch*
+   elige **Custom branches** e incluye `contenido/*`. Así solo generan vista
+   previa las ramas de trabajo del gestor (la rama `registro-compilacion`,
+   que usa GitHub para guardar el registro de compilación, queda fuera).
+
+Cada rama `contenido/…` genera su propia vista previa, con los borradores
 visibles. `main` es lo publicado.
 
 ## 3. Activar el gestor (Keystatic)
