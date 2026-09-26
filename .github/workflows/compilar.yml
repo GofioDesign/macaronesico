@@ -25,6 +25,18 @@ jobs:
         run: |
           set -o pipefail
           { npm install --no-audit --no-fund && npm run build; } 2>&1 | tee registro.txt
+      - name: Guardar vista estática
+        # Copia de la web compilada en la rama "vista-estatica", para poder
+        # revisarla en local (python3 -m http.server dentro de la rama).
+        if: success() && github.event_name == 'push' && github.ref_name == 'main'
+        run: |
+          cd dist
+          git init -q -b vista-estatica
+          git config user.name "macaronesico-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Vista estática ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" vista-estatica
       - name: Guardar registro
         if: always() && github.event_name == 'push'
         run: |
