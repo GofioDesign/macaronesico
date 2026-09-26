@@ -1,8 +1,8 @@
 export const SITIO = {
   nombre: 'macaronesico',
-  lema: 'Revista de análisis crítico y pensamiento decolonial',
+  lema: 'Entender las islas para decidir sobre ellas',
   descripcion:
-    'Revista de análisis crítico y pensamiento decolonial desde Canarias, la Macaronesia y otros márgenes del sistema.',
+    'Revista de análisis sobre Canarias y la Macaronesia: derechos, sostenibilidad y humanidad contados con datos, contexto y una mirada creativa.',
   url: 'https://macaronesico.com',
   idioma: 'es',
   repositorio: 'https://github.com/GofioDesign/macaronesico',
