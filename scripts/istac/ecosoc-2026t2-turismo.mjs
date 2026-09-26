@@ -68,7 +68,6 @@ const PREGUNTAS = [
   ['P215B', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su isla'],
   ['P215C', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su municipio'],
   ['P215D', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su hogar'],
-  ['P216', SI, 'Dependencia del turismo (alta o muy alta)', 'Alguien de su hogar trabaja o tiene vínculo con el turismo (sí)'],
   ['P221A', BUENA, 'Gestión pública (buena o muy buena)', 'Promoción turística'],
   ['P221B', BUENA, 'Gestión pública (buena o muy buena)', 'Infraestructuras turísticas'],
   ['P221C', BUENA, 'Gestión pública (buena o muy buena)', 'Promoción cultural ligada al turismo'],
@@ -102,7 +101,8 @@ const PREGUNTAS = [
   ['P230', ['2'], 'Vivienda vacacional', 'Debería ser menos estricta'],
   ['P230', ['3'], 'Vivienda vacacional', 'Está adecuadamente regulada'],
   ['P53', ['4', '5'], 'Vivienda vacacional', 'Hay bastante o mucha en su zona'],
-  ['P229', SI, 'Vivienda vacacional', 'Alguien de su hogar tiene vínculo con ella (sí)'],
+  ['P216', SI, 'Vínculos del hogar', 'Alguien trabaja o tiene vínculo económico con el turismo'],
+  ['P229', SI, 'Vínculos del hogar', 'Alguien tiene vínculo económico con la vivienda vacacional'],
 ];
 // Textos de las tablas del artículo (más cortos que los del explorador).
 const TEXTO_TABLA = {
@@ -131,7 +131,7 @@ const ISLA = (r) =>
     ES707: 'La Palma',
     ES703: 'El Hierro',
   })[r.isla_nut];
-const VINCULO = (r) => ({ 1: 'Sí', 6: 'No' })[r.P216] ?? 'No consta';
+const VINCULO = (r) => ({ 1: 'Sí', 6: 'No' })[Number(r.P216)] ?? 'No consta';
 
 // --- Lectura ---------------------------------------------------------------
 const [cabecera, ...lineas] = (await readFile(MICRODATOS, 'latin1')).split(/\r?\n/).filter(Boolean);
@@ -139,7 +139,7 @@ const nombres = cabecera.split(';');
 const filas = lineas.map((l) => {
   const v = l.split(';');
   const r = Object.fromEntries(nombres.map((n, i) => [n, v[i]]));
-  for (const k of ['edad', 'P1', 'P3', 'P216', 'ing_hog']) r[k] = Number(r[k]);
+  for (const k of ['edad', 'P1', 'P3', 'ing_hog']) r[k] = Number(r[k]);
   r.peso = Number(r.peso);
   return r;
 });

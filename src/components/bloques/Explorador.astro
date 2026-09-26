@@ -60,7 +60,19 @@ const baseDe = preguntas.map((p) => {
 });
 
 // Agrega las filas por las dimensiones usadas (las demás se suman).
-const opciones = dims.map((d) => [...new Set(tabla.filas.map((f) => f[d]))]);
+// Orden de las opciones: por la primera cifra («18-34», «Hasta 500 €»,
+// «De 500 a 1.000 €»…), si no hay cifras, alfabético; «No consta» al final.
+function claveOrden(v: string): [number, number, string] {
+  if (/^no consta$/i.test(v)) return [2, 0, v];
+  const m = v.match(/\d[\d.]*/);
+  if (!m) return [1, 0, v];
+  return [0, Number(m[0].replace(/\./g, '')) - (/^hasta/i.test(v) ? 0.5 : 0), v];
+}
+const ordenar = (a: string, b: string) => {
+  const [x, y] = [claveOrden(a), claveOrden(b)];
+  return x[0] - y[0] || x[1] - y[1] || x[2].localeCompare(y[2], 'es');
+};
+const opciones = dims.map((d) => [...new Set(tabla.filas.map((f) => f[d]))].sort(ordenar));
 type Celda = { cod: number[]; n: number[]; peso: number[]; suma: number[] };
 const celdas = new Map<string, Celda>();
 for (const f of tabla.filas) {
@@ -335,6 +347,7 @@ const pantallaCompleta = modo === 'articulo' && meta.data.dimensiones ? `/explor
     border-radius: var(--radio);
   }
   .selectores label {
+    min-width: 0;
     display: grid;
     gap: 0.2rem;
   }
@@ -347,6 +360,8 @@ const pantallaCompleta = modo === 'articulo' && meta.data.dimensiones ? `/explor
     grid-column: 1 / -1;
   }
   select {
+    width: 100%;
+    min-width: 0;
     font: inherit;
     min-height: 2.5rem;
     padding: 0.35rem 0.5rem;
