@@ -279,6 +279,11 @@ export default config({
         fecha: fields.date({ label: 'Fecha de extracción' }),
         licencia: fields.text({ label: 'Licencia de los datos', defaultValue: 'CC BY 4.0' }),
         notas: fields.text({ label: 'Notas y método', multiline: true }),
+        dimensiones: fields.text({
+          label: 'Columnas para el explorador (opcional)',
+          description:
+            'Si el conjunto sirve para el Explorador de encuesta, escribe aquí las columnas de los selectores separadas por comas. Se publicará también a pantalla completa en /explorador/.',
+        }),
         csv: fields.text({
           label: 'Datos (CSV)',
           description:

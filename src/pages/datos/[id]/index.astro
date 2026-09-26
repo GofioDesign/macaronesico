@@ -48,9 +48,10 @@ const jsonld = {
         {d.licencia && <><dt>Licencia</dt><dd>{d.licencia}</dd></>}
         <dt>Tamaño</dt><dd>{tabla.filas.length} filas × {tabla.columnas.length} columnas</dd>
         <dt>Descarga</dt><dd><a href={`/datos/${conjunto.id}.csv`} download>CSV (UTF-8, separado por comas)</a></dd>
+        {d.dimensiones && <><dt>Explorar</dt><dd><a href={`/explorador/${conjunto.id}/`}>Explorador a pantalla completa</a></dd></>}
       </dl>
       {d.notas && <><h2>Notas y método</h2><p class="notas">{d.notas}</p></>}
-      <TablaDatos datos={conjunto.id} />
+      <TablaDatos datos={conjunto.id} maximo={60} />
     </div>
   </div>
   {

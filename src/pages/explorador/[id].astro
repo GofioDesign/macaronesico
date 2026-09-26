@@ -1,0 +1,109 @@
+---
+/**
+ * Explorador a pantalla completa de cualquier conjunto de datos que tenga
+ * «dimensiones». Es un recurso propio, enlazable desde los artículos
+ * republicados en otras webs.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Explorador from '../../components/bloques/Explorador.astro';
+import Logo from '../../components/Logo.astro';
+import { obtenerArticulos, urlArticulo } from '../../lib/contenido';
+import { SITIO } from '../../lib/sitio';
+
+export async function getStaticPaths() {
+  const conjuntos = await getCollection('datos');
+  return conjuntos.filter((c) => c.data.dimensiones).map((conjunto) => ({ params: { id: conjunto.id }, props: { conjunto } }));
+}
+
+const { conjunto } = Astro.props;
+const d = conjunto.data;
+const anio = (d.fecha ?? new Date()).getFullYear();
+const articulos = (await obtenerArticulos('es')).filter((a) => (a.body ?? '').includes(`"${conjunto.id}"`));
+const descripcion = (d.descripcion || d.titulo).slice(0, 160);
+
+const jsonld = {
+  '@type': 'WebPage',
+  name: d.titulo,
+  description: descripcion,
+  url: `${SITIO.url}/explorador/${conjunto.id}/`,
+  isPartOf: { '@id': `${SITIO.url}/#web` },
+  about: { '@type': 'Dataset', name: d.titulo, url: `${SITIO.url}/datos/${conjunto.id}/` },
+  license: 'https://creativecommons.org/licenses/by-sa/4.0/',
+};
+---
+
+<Base titulo={d.titulo} descripcion={descripcion} jsonld={jsonld} pantalla>
+  <div class="pantalla">
+    <header class="barra">
+      <a class="marca" href="/" aria-label={`${SITIO.nombre}, inicio`}><Logo class="logo" /></a>
+      <nav aria-label="Relacionado">
+        {articulos.map((a) => <a href={urlArticulo(a)}>Leer el artículo</a>)}
+        <a href={`/datos/${conjunto.id}/`}>Los datos y el método</a>
+      </nav>
+    </header>
+    <h1>{d.titulo}</h1>
+    {d.descripcion && <p class="descripcion">{d.descripcion}</p>}
+    <Explorador datos={conjunto.id} modo="pantalla" pie={d.fuente ? `Fuente: ${d.fuente}.` : undefined} />
+  </div>
+  <p class="agua" aria-label={`${anio}, licencia CC BY-SA 4.0, ${SITIO.nombre}.com`}>
+    {anio} · <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a> · <a href="/">macaronesico.com</a>
+  </p>
+</Base>
+
+<style>
+  .pantalla {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1rem var(--margen, 1rem) 4rem;
+  }
+  .barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--linea);
+  }
+  .marca :global(.logo) {
+    display: block;
+    height: 2rem;
+    width: auto;
+    color: var(--tinta);
+  }
+  .barra nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+  }
+  h1 {
+    font-size: clamp(1.3rem, 1rem + 1.4vw, 1.9rem);
+    margin: 1.25rem 0 0.4rem;
+    max-width: 50rem;
+  }
+  .descripcion {
+    margin: 0 0 1rem;
+    max-width: 50rem;
+    color: var(--tinta-2);
+    font-size: 0.95rem;
+  }
+  .agua {
+    position: fixed;
+    right: 0.75rem;
+    bottom: 0.6rem;
+    z-index: 5;
+    margin: 0;
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radio);
+    background: color-mix(in srgb, var(--papel) 85%, transparent);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--tinta-3);
+  }
+  .agua a {
+    color: inherit;
+  }
+</style>

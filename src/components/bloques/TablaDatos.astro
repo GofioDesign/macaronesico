@@ -7,13 +7,16 @@ interface Props {
   resaltar?: string;
   orden?: string;
   pie?: string;
+  /** Número máximo de filas que se muestran (el CSV descargable las tiene todas). */
+  maximo?: number;
 }
 
-const { datos, columnas, resaltar, orden, pie } = Astro.props;
+const { datos, columnas, resaltar, orden, pie, maximo } = Astro.props;
 const { meta, tabla } = await cargarDatos(datos);
 const elegidas = listaColumnas(columnas).filter((c) => tabla.columnas.includes(c));
 const cols = elegidas.length ? elegidas : tabla.columnas;
-const filas = ordenarFilas(tabla, orden);
+const todas = ordenarFilas(tabla, orden);
+const filas = maximo && todas.length > maximo ? todas.slice(0, maximo) : todas;
 const numericas = new Set(cols.filter((c) => filas.every((f) => f[c] === '' || esNumero(f[c]))));
 const [colOrden, dirOrden] = (orden ?? '').split(/:(?=asc$|desc$)/).map((s) => s.trim());
 const conSigno = (c: string) => /brecha|diferencia|variaci/i.test(c);
@@ -63,6 +66,7 @@ const conSigno = (c: string) => /brecha|diferencia|variaci/i.test(c);
   </div>
   <figcaption>
     {pie && <span>{pie}</span>}
+    {filas.length < todas.length && <span>Se muestran {filas.length} de {todas.length} filas; el CSV las tiene todas.</span>}
     <span class="enlaces">
       <a href={`/datos/${meta.id}/`}>Sobre estos datos</a>
       <a href={`/datos/${meta.id}.csv`} download>Descargar CSV</a>

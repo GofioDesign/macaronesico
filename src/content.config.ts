@@ -48,6 +48,7 @@ const datos = defineCollection({
     fecha: z.coerce.date().nullish(),
     licencia: texto,
     notas: texto,
+    dimensiones: texto,
     csv: z.string(),
   }),
 });

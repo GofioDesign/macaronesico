@@ -1,86 +1,108 @@
 ---
 /**
  * Explorador de encuesta: una fila por pregunta y un selector por rasgo
- * (edad, ingresos, sexo…). El grupo elegido se resalta; la media de toda la
- * población y los demás grupos del mismo tipo quedan en segundo plano.
+ * (edad, ingresos, sexo…), más un filtro por temática. El grupo elegido se
+ * resalta; la media de toda la población y los demás grupos del mismo tipo
+ * quedan en segundo plano. La cabecera (selectores y escala) se queda fija
+ * arriba al desplazarse.
  *
  * El conjunto de datos tiene una fila por combinación de rasgos con:
- *  - una columna por rasgo (las que se indiquen en «dimensiones»),
+ *  - una columna por rasgo,
  *  - «Entrevistas» (número de personas) y «Peso» (suma de pesos),
- *  - una columna por pregunta con el % dentro de esa combinación.
- *    Si el nombre lleva « · », lo anterior es el bloque («Social · …»).
- * Los grupos más amplios se calculan promediando filas ponderadas por el peso.
+ *  - una columna por pregunta con el % dentro de esa combinación. Lo que va
+ *    antes de « · » es la temática («Social · …»).
+ *  - opcional: «Entrevistas · temática» y «Peso · temática» para las
+ *    temáticas que solo se preguntaron a una parte de la muestra.
+ * Solo se usan las dimensiones indicadas: las demás se agregan al compilar.
  * Sin JavaScript se ve la media de toda la población.
  */
 import { cargarDatos, listaColumnas } from '../../lib/datos';
 
 interface Props {
   datos: string;
-  dimensiones: string;
+  /** Columnas de los selectores. Por defecto, las del conjunto de datos. */
+  dimensiones?: string;
   titulo?: string;
   pie?: string;
   /** Por debajo de estas entrevistas no se muestran porcentajes. */
   minimo?: number | string;
   /** Por debajo de estas entrevistas se avisa del margen de error. */
   aviso?: number | string;
+  /** "pantalla": versión a pantalla completa (sin enlace a sí misma). */
+  modo?: 'articulo' | 'pantalla';
 }
 
-const { datos, dimensiones, titulo, pie, minimo = 10, aviso = 50 } = Astro.props;
+const { datos, dimensiones, titulo, pie, minimo = 10, aviso = 50, modo = 'articulo' } = Astro.props;
 const { meta, tabla } = await cargarDatos(datos);
 
 const COL_N = 'Entrevistas';
 const COL_PESO = 'Peso';
-const dims = listaColumnas(dimensiones).filter((c) => tabla.columnas.includes(c));
+const dims = listaColumnas(dimensiones || meta.data.dimensiones).filter((c) => tabla.columnas.includes(c));
+const todasDims = listaColumnas(meta.data.dimensiones);
 if (!dims.length || !tabla.columnas.includes(COL_N) || !tabla.columnas.includes(COL_PESO)) {
   throw new Error(`[macaronesico] El explorador de "${datos}" necesita dimensiones y las columnas "${COL_N}" y "${COL_PESO}".`);
 }
-const preguntas = tabla.columnas.filter((c) => !dims.includes(c) && c !== COL_N && c !== COL_PESO);
+const esBase = (c: string) => c.startsWith(`${COL_N} · `) || c.startsWith(`${COL_PESO} · `);
+const preguntas = tabla.columnas.filter(
+  (c) => !dims.includes(c) && !todasDims.includes(c) && c !== COL_N && c !== COL_PESO && !esBase(c),
+);
+const temaDe = (p: string) => (p.includes(' · ') ? p.slice(0, p.indexOf(' · ')) : '');
+const textoDe = (p: string) => (p.includes(' · ') ? p.slice(p.indexOf(' · ') + 3) : p);
+
+// Bases: la general (índice 0) y una por cada temática con base propia.
+const bases = [{ n: COL_N, peso: COL_PESO }];
+const baseDe = preguntas.map((p) => {
+  const tema = temaDe(p);
+  if (!tabla.columnas.includes(`${COL_PESO} · ${tema}`)) return 0;
+  let i = bases.findIndex((b) => b.peso === `${COL_PESO} · ${tema}`);
+  if (i < 0) i = bases.push({ n: `${COL_N} · ${tema}`, peso: `${COL_PESO} · ${tema}` }) - 1;
+  return i;
+});
+
+// Agrega las filas por las dimensiones usadas (las demás se suman).
 const opciones = dims.map((d) => [...new Set(tabla.filas.map((f) => f[d]))]);
-const filas = tabla.filas.map((f) => [
-  dims.map((d, i) => opciones[i].indexOf(f[d])),
-  Number(f[COL_N]),
-  Number(f[COL_PESO]),
-  preguntas.map((p) => Number(f[p])),
+type Celda = { cod: number[]; n: number[]; peso: number[]; suma: number[] };
+const celdas = new Map<string, Celda>();
+for (const f of tabla.filas) {
+  const cod = dims.map((d, i) => opciones[i].indexOf(f[d]));
+  const clave = cod.join('|');
+  let c = celdas.get(clave);
+  if (!c) celdas.set(clave, (c = { cod, n: bases.map(() => 0), peso: bases.map(() => 0), suma: preguntas.map(() => 0) }));
+  const pesos = bases.map((b) => Number(f[b.peso]) || 0);
+  bases.forEach((b, i) => {
+    c.n[i] += Number(f[b.n]) || 0;
+    c.peso[i] += pesos[i];
+  });
+  preguntas.forEach((p, j) => (c.suma[j] += (Number(f[p]) || 0) * pesos[baseDe[j]]));
+}
+const redondeo = (x: number) => Math.round(x * 100) / 100;
+const filas = [...celdas.values()].map((c) => [
+  c.cod,
+  c.n,
+  c.peso.map(redondeo),
+  c.suma.map((s, j) => (c.peso[baseDe[j]] ? redondeo(s / c.peso[baseDe[j]]) : 0)),
 ]);
 
-const pesoTotal = tabla.filas.reduce((s, f) => s + Number(f[COL_PESO]), 0);
-const entrevistas = tabla.filas.reduce((s, f) => s + Number(f[COL_N]), 0);
-const media = preguntas.map((p) => tabla.filas.reduce((s, f) => s + Number(f[p]) * Number(f[COL_PESO]), 0) / pesoTotal);
+const totalPeso = bases.map((_, i) => [...celdas.values()].reduce((s, c) => s + c.peso[i], 0));
+const entrevistas = [...celdas.values()].reduce((s, c) => s + c.n[0], 0);
+const media = preguntas.map((_, j) => [...celdas.values()].reduce((s, c) => s + c.suma[j], 0) / totalPeso[baseDe[j]]);
 
-const bloques: { nombre: string; items: { texto: string; j: number }[] }[] = [];
+const temas: { nombre: string; items: { texto: string; j: number }[] }[] = [];
 preguntas.forEach((p, j) => {
-  const [nombre, texto] = p.includes(' · ') ? p.split(' · ') : ['', p];
-  let b = bloques.find((x) => x.nombre === nombre);
-  if (!b) bloques.push((b = { nombre, items: [] }));
-  b.items.push({ texto, j });
+  const nombre = temaDe(p);
+  let t = temas.find((x) => x.nombre === nombre);
+  if (!t) temas.push((t = { nombre, items: [] }));
+  t.items.push({ texto: textoDe(p), j });
 });
 
 const fmt = (v: number) => v.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const miles = (v: number) => v.toLocaleString('es-ES');
 const marcas = [0, 25, 50, 75, 100];
-const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), aviso: Number(aviso) });
+const json = JSON.stringify({ dims, opciones, filas, baseDe, minimo: Number(minimo), aviso: Number(aviso) });
+const pantallaCompleta = modo === 'articulo' && meta.data.dimensiones ? `/explorador/${meta.id}/` : null;
 ---
 
-<figure class="explorador amplio" data-explorador>
+<figure class:list={['explorador', { amplio: modo === 'articulo', pantalla: modo === 'pantalla' }]} data-explorador>
   {titulo && <figcaption class="titulo">{titulo}</figcaption>}
-
-  <form class="selectores" aria-label="Elegir grupo">
-    {
-      dims.map((d, i) => (
-        <label>
-          <span>{d}</span>
-          <select name={`d${i}`}>
-            <option value="">Todos</option>
-            {opciones[i].map((o, k) => (
-              <option value={k}>{o}</option>
-            ))}
-          </select>
-        </label>
-      ))
-    }
-  </form>
-
-  <p class="estado" aria-live="polite" data-estado>Toda la población: {miles(entrevistas)} entrevistas.</p>
 
   <ul class="leyenda" aria-label="Leyenda">
     <li><span class="m m-sel" aria-hidden="true"></span>Grupo elegido</li>
@@ -88,26 +110,59 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     <li><span class="m m-otro" aria-hidden="true"></span>Los demás grupos del mismo tipo</li>
   </ul>
 
-  <div class="fila eje" aria-hidden="true">
-    <span class="et"></span>
-    <span class="pista">
+  <div class="cabeza">
+    <form class="selectores" aria-label="Elegir grupo y temática">
       {
-        marcas.map((m, i) => (
-          <span class:list={['marca', { primera: i === 0, ultima: i === marcas.length - 1 }]} style={`left:${m}%`}>
-            {m}%
-          </span>
+        temas.length > 1 && (
+          <label class="tema">
+            <span>Temática</span>
+            <select name="tema" data-tema>
+              <option value="">Todas</option>
+              {temas.map((t, k) => (
+                <option value={k}>{t.nombre}</option>
+              ))}
+            </select>
+          </label>
+        )
+      }
+      {
+        dims.map((d, i) => (
+          <label>
+            <span>{d}</span>
+            <select name={`d${i}`} data-dim={i}>
+              <option value="">Todos</option>
+              {opciones[i].map((o, k) => (
+                <option value={k}>{o}</option>
+              ))}
+            </select>
+          </label>
         ))
       }
-    </span>
-    <span class="valor"></span>
+    </form>
+
+    <p class="estado" aria-live="polite" data-estado>Toda la población: {entrevistas.toLocaleString('es-ES')} entrevistas.</p>
+
+    <div class="fila eje" aria-hidden="true">
+      <span class="et"></span>
+      <span class="pista">
+        {
+          marcas.map((m, i) => (
+            <span class:list={['marca', { primera: i === 0, ultima: i === marcas.length - 1 }]} style={`left:${m}%`}>
+              {m}%
+            </span>
+          ))
+        }
+      </span>
+      <span class="valor"></span>
+    </div>
   </div>
 
   {
-    bloques.map((b) => (
-      <div class="bloque">
-        {b.nombre && <p class="nombre-bloque">{b.nombre}</p>}
+    temas.map((t, k) => (
+      <section class="bloque" data-bloque={k} aria-label={t.nombre || undefined}>
+        {t.nombre && <p class="nombre-bloque">{t.nombre}</p>}
         <ol class="filas">
-          {b.items.map(({ texto, j }) => (
+          {t.items.map(({ texto, j }) => (
             <li class="fila" data-j={j}>
               <span class="et">{texto}</span>
               <span class="pista" aria-hidden="true">
@@ -125,12 +180,13 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
             </li>
           ))}
         </ol>
-      </div>
+      </section>
     ))
   }
 
   <p class="pie">
     {pie && <span>{pie} </span>}
+    {pantallaCompleta && <a href={pantallaCompleta}>Ver toda la encuesta a pantalla completa</a>}
     <a href={`/datos/${meta.id}/`}>Ver los datos</a>
   </p>
   <script type="application/json" data-datos set:html={json} />
@@ -140,92 +196,102 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
   type Datos = {
     dims: string[];
     opciones: string[][];
-    filas: [number[], number, number, number[]][];
+    filas: [number[], number[], number[], number[]][];
+    baseDe: number[];
     minimo: number;
     aviso: number;
   };
+  type Grupo = { n: number[]; peso: number[]; suma: number[] };
   const fmt = (v: number, signo = false) =>
     (signo && v > 0 ? '+' : '') + v.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   function iniciar(raiz: HTMLElement) {
     const d: Datos = JSON.parse(raiz.querySelector('[data-datos]')?.textContent ?? '{}');
-    const selects = [...raiz.querySelectorAll('select')];
+    const selDims = [...raiz.querySelectorAll<HTMLSelectElement>('[data-dim]')];
+    const selTema = raiz.querySelector<HTMLSelectElement>('[data-tema]');
+    const bloques = [...raiz.querySelectorAll<HTMLElement>('[data-bloque]')];
     const filasDom = [...raiz.querySelectorAll<HTMLElement>('[data-j]')];
     const estado = raiz.querySelector('[data-estado]');
-    const numPreguntas = d.filas[0]?.[3].length ?? 0;
-
-    function agregar(filtro: (number | null)[]) {
-      let n = 0;
-      let peso = 0;
-      const suma = new Array(numPreguntas).fill(0);
-      for (const [cod, fn, fp, valores] of d.filas) {
-        if (filtro.some((v, i) => v !== null && cod[i] !== v)) continue;
-        n += fn;
-        peso += fp;
-        valores.forEach((v, j) => (suma[j] += v * fp));
+    const nP = d.baseDe.length;
+    const nB = d.filas[0]?.[1].length ?? 1;
+    const nuevo = (): Grupo => ({ n: new Array(nB).fill(0), peso: new Array(nB).fill(0), suma: new Array(nP).fill(0) });
+    const sumar = (g: Grupo, [, n, peso, valores]: Datos['filas'][number]) => {
+      for (let b = 0; b < nB; b++) {
+        g.n[b] += n[b];
+        g.peso[b] += peso[b];
       }
-      return { n, valores: peso ? suma.map((x) => x / peso) : [] };
-    }
+      for (let j = 0; j < nP; j++) g.suma[j] += valores[j] * peso[d.baseDe[j]];
+    };
+    const valor = (g: Grupo, j: number) => g.suma[j] / g.peso[d.baseDe[j]];
 
-    const media = agregar(d.dims.map(() => null));
+    const media = nuevo();
+    d.filas.forEach((f) => sumar(media, f));
 
-    /** Todas las combinaciones de las dimensiones elegidas. */
-    function combinaciones(elegidas: number[]) {
-      let res: (number | null)[][] = [d.dims.map(() => null)];
-      for (const i of elegidas) res = res.flatMap((f) => d.opciones[i].map((_, k) => f.map((v, x) => (x === i ? k : v))));
-      return res;
+    function filtrarTema() {
+      const k = selTema?.value ?? '';
+      for (const b of bloques) b.hidden = k !== '' && b.dataset.bloque !== k;
     }
 
     function pintar() {
-      const filtro = selects.map((s) => (s.value === '' ? null : Number(s.value)));
+      const filtro = selDims.map((s) => (s.value === '' ? null : Number(s.value)));
       const elegidas = filtro.flatMap((v, i) => (v === null ? [] : [i]));
-      const grupo = agregar(filtro);
-      const otros = combinaciones(elegidas)
-        .filter((f) => f.some((v, i) => v !== filtro[i]))
-        .map(agregar)
-        .filter((g) => g.n >= d.minimo);
-      const pocos = grupo.n < d.minimo;
+      // Una pasada: agrupa todas las filas por las dimensiones elegidas.
+      const grupos = new Map<string, Grupo>();
+      for (const f of d.filas) {
+        const clave = elegidas.map((i) => f[0][i]).join('|');
+        let g = grupos.get(clave);
+        if (!g) grupos.set(clave, (g = nuevo()));
+        sumar(g, f);
+      }
+      const clave = elegidas.map((i) => filtro[i]).join('|');
+      const grupo = grupos.get(clave) ?? nuevo();
+      const otros = elegidas.length ? [...grupos.entries()].filter(([k]) => k !== clave).map(([, g]) => g) : [];
+      const pocos = grupo.n[0] < d.minimo;
 
       const nombre = elegidas.length ? elegidas.map((i) => d.opciones[i][filtro[i] as number]).join(' · ') : 'Toda la población';
-      let texto = `${nombre}: ${grupo.n.toLocaleString('es-ES')} entrevistas.`;
+      let texto = `${nombre}: ${grupo.n[0].toLocaleString('es-ES')} entrevistas.`;
       if (pocos) texto += ' Son demasiado pocas para dar porcentajes.';
-      else if (grupo.n < d.aviso) texto += ' Son pocas: los porcentajes tienen un margen de error amplio.';
+      else if (grupo.n[0] < d.aviso) texto += ' Son pocas: los porcentajes tienen un margen de error amplio.';
       if (estado) estado.textContent = texto;
       raiz.classList.toggle('sin-datos', pocos);
-      raiz.classList.toggle('pocos', !pocos && grupo.n < d.aviso);
+      raiz.classList.toggle('pocos', !pocos && grupo.n[0] < d.aviso);
 
       for (const li of filasDom) {
         const j = Number(li.dataset.j);
-        const cont = li.querySelector('[data-otros]');
-        cont?.replaceChildren(
-          ...otros.map((g) => {
-            const s = document.createElement('span');
-            s.className = 'otro';
-            s.style.left = `${g.valores[j].toFixed(2)}%`;
-            return s;
-          }),
+        const b = d.baseDe[j];
+        li.querySelector('[data-otros]')?.replaceChildren(
+          ...otros
+            .filter((g) => g.n[b] >= d.minimo)
+            .map((g) => {
+              const s = document.createElement('span');
+              s.className = 'otro';
+              s.style.left = `${valor(g, j).toFixed(2)}%`;
+              return s;
+            }),
         );
         const punto = li.querySelector<HTMLElement>('[data-sel]');
-        const valor = li.querySelector('[data-valor]');
+        const celda = li.querySelector('[data-valor]');
         const dif = li.querySelector('[data-dif]');
-        if (pocos) {
+        if (grupo.n[b] < d.minimo) {
           if (punto) punto.hidden = true;
-          if (valor) valor.textContent = '–';
-          if (dif) dif.textContent = '';
+          if (celda) celda.textContent = '–';
+          if (dif) dif.textContent = pocos ? '' : 'pocas respuestas';
         } else {
-          const v = grupo.valores[j];
+          const v = valor(grupo, j);
           if (punto) {
             punto.hidden = false;
             punto.style.left = `${v.toFixed(2)}%`;
           }
-          if (valor) valor.textContent = `${fmt(v)}%`;
-          if (dif) dif.textContent = elegidas.length ? fmt(v - media.valores[j], true) : '';
+          if (celda) celda.textContent = `${fmt(v)}%`;
+          if (dif) dif.textContent = elegidas.length ? fmt(v - valor(media, j), true) : '';
         }
       }
     }
 
-    selects.forEach((s) => s.addEventListener('change', pintar));
+    selDims.forEach((s) => s.addEventListener('change', pintar));
+    selTema?.addEventListener('change', filtrarTema);
     raiz.querySelector('form')?.addEventListener('submit', (e) => e.preventDefault());
+    filtrarTema();
     pintar();
   }
 
@@ -239,6 +305,9 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     font-size: 0.85rem;
     color: var(--tinta-2);
   }
+  .explorador.pantalla {
+    margin: 0 !important;
+  }
   .titulo {
     font-family: var(--serif);
     font-size: 1.15rem;
@@ -246,33 +315,48 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     color: var(--tinta);
     margin-bottom: 0.75rem;
   }
+
+  /* Cabecera fija: selectores, estado y escala siempre a la vista. */
+  .cabeza {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--papel);
+    padding-top: 0.5rem;
+    border-bottom: 1px solid var(--linea);
+    box-shadow: 0 6px 8px -8px rgb(0 0 0 / 0.25);
+  }
   .selectores {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    gap: 0.75rem;
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+    gap: 0.5rem 0.75rem;
+    padding: 0.75rem;
     background: var(--papel-2);
     border-radius: var(--radio);
   }
   .selectores label {
     display: grid;
-    gap: 0.3rem;
+    gap: 0.2rem;
   }
   .selectores span {
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--tinta);
+  }
+  .selectores .tema {
+    grid-column: 1 / -1;
   }
   select {
     font: inherit;
     min-height: 2.5rem;
-    padding: 0.4rem 0.5rem;
+    padding: 0.35rem 0.5rem;
     border: 1px solid var(--linea);
     border-radius: var(--radio);
     background: var(--papel);
     color: var(--tinta);
   }
   .estado {
-    margin: 0.9rem 0 0.4rem;
+    margin: 0.6rem 0 0.3rem;
     font-weight: 600;
     color: var(--tinta);
   }
@@ -284,9 +368,10 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 1.25rem;
+    gap: 0.25rem 1.25rem;
     padding: 0;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.6rem;
+    font-size: 0.8rem;
   }
   .leyenda li {
     display: inline-flex;
@@ -313,6 +398,9 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     background: var(--tinta);
   }
 
+  .bloque[hidden] {
+    display: none;
+  }
   .nombre-bloque {
     margin: 1.25rem 0 0.25rem;
     font-size: 0.75rem;
@@ -336,7 +424,7 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
   }
   .fila.eje {
     border-bottom: 0;
-    padding-bottom: 0.2rem;
+    padding-block: 0.1rem 0.3rem;
   }
   .et {
     line-height: 1.3;
@@ -346,6 +434,9 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     position: relative;
     min-height: 1.4rem;
     margin-inline: 0.5rem;
+  }
+  .eje .pista {
+    min-height: 1rem;
   }
   .marca {
     position: absolute;
@@ -403,6 +494,7 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
   .valor {
     display: grid;
     justify-items: end;
+    text-align: right;
     font-variant-numeric: tabular-nums;
   }
   .valor [data-valor] {
@@ -414,6 +506,9 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
     color: var(--tinta-3);
   }
   .pie {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
     margin: 0.75rem 0 0;
     font-size: 0.8rem;
     color: var(--tinta-3);
@@ -425,13 +520,28 @@ const json = JSON.stringify({ dims, opciones, filas, minimo: Number(minimo), avi
   }
   @media (max-width: 40rem) {
     .fila {
-      grid-template-columns: 1fr 4rem;
+      grid-template-columns: 1fr 4.5rem;
     }
     .et {
       grid-column: 1 / -1;
     }
+    .fila.eje .et {
+      display: none;
+    }
     .selectores {
       grid-template-columns: 1fr 1fr;
+      padding: 0.5rem;
+      gap: 0.4rem 0.5rem;
+    }
+    .selectores span {
+      font-size: 0.7rem;
+    }
+    select {
+      min-height: 2.25rem;
+      font-size: 0.8rem;
+    }
+    .estado {
+      font-size: 0.8rem;
     }
   }
 </style>

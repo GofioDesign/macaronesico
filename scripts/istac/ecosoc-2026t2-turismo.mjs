@@ -28,8 +28,13 @@ const MICRODATOS = path.join(import.meta.dirname, 'microdatos/ecosoc-2026t2/ECOS
 const DATOS = path.join(RAIZ, 'src/content/datos');
 const soloPrueba = process.argv.includes('--prueba');
 
-// Preguntas: variable, respuestas que cuentan y texto corto.
+// Preguntas: variable, respuestas que cuentan, temática, texto corto y, si
+// hace falta, códigos que no cuentan en el denominador (-1 = no se le preguntó).
 const ACUERDO = ['4', '5'];
+const ALTA = ['4', '5'];
+const BUENA = ['4', '5'];
+const SI = ['1'];
+const NO_PREGUNTADO = ['-1'];
 const PREGUNTAS = [
   ['P50A', ACUERDO, 'General', 'Ha sido muy beneficioso para la isla'],
   ['P50B', ACUERDO, 'General', 'Se debe seguir potenciando'],
@@ -59,9 +64,51 @@ const PREGUNTAS = [
   ['P220D', ACUERDO, 'Medioambiental', 'Genera demasiados residuos y contaminación'],
   ['P220E', ACUERDO, 'Medioambiental', 'Tiene prácticas sostenibles'],
   ['P220F', ACUERDO, 'Medioambiental', 'Ayuda a conservar los espacios naturales'],
-  ['P223', ['1'], 'Medidas', 'Los turistas deben pagar una tasa'],
-  ['P230', ['1'], 'Medidas', 'Regulación de la vivienda vacacional más estricta'],
+  ['P215A', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De Canarias'],
+  ['P215B', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su isla'],
+  ['P215C', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su municipio'],
+  ['P215D', ALTA, 'Dependencia del turismo (alta o muy alta)', 'De su hogar'],
+  ['P216', SI, 'Dependencia del turismo (alta o muy alta)', 'Alguien de su hogar trabaja o tiene vínculo con el turismo (sí)'],
+  ['P221A', BUENA, 'Gestión pública (buena o muy buena)', 'Promoción turística'],
+  ['P221B', BUENA, 'Gestión pública (buena o muy buena)', 'Infraestructuras turísticas'],
+  ['P221C', BUENA, 'Gestión pública (buena o muy buena)', 'Promoción cultural ligada al turismo'],
+  ['P221D', BUENA, 'Gestión pública (buena o muy buena)', 'Protección ambiental de los espacios turísticos'],
+  ['P221E', BUENA, 'Gestión pública (buena o muy buena)', 'Museos y espacios culturales'],
+  ['P221F', BUENA, 'Gestión pública (buena o muy buena)', 'Limpieza de los espacios turísticos'],
+  ['P221G', BUENA, 'Gestión pública (buena o muy buena)', 'Seguridad en las zonas turísticas'],
+  ['P221H', BUENA, 'Gestión pública (buena o muy buena)', 'Fiscalidad de las actividades turísticas'],
+  ['P221I', BUENA, 'Gestión pública (buena o muy buena)', 'Formación en turismo'],
+  ['P221J', BUENA, 'Gestión pública (buena o muy buena)', 'Inspección laboral en el turismo'],
+  ['P221K', BUENA, 'Gestión pública (buena o muy buena)', 'Inspección de establecimientos turísticos'],
+  ['P221L', BUENA, 'Gestión pública (buena o muy buena)', 'Regulación de la vivienda vacacional'],
+  ['P221M', BUENA, 'Gestión pública (buena o muy buena)', 'Regulación general del turismo'],
+  ['P221N', BUENA, 'Gestión pública (buena o muy buena)', 'Ordenación urbanística ligada al turismo'],
+  ['P223', SI, 'Tasa turística', 'Los turistas deben pagar una tasa'],
+  ['P223', ['2'], 'Tasa turística', 'No está seguro de que deban pagarla'],
+  ['P223', ['3'], 'Tasa turística', 'No deben pagarla'],
+  ['P227', SI, 'Tasa turística', 'Los residentes también deberían pagarla'],
+  ['P226', SI, 'Tasa turística', 'Pagaría una tasa en sus vacaciones en las islas'],
+  ['P222', SI, 'Tasa turística', 'Ha visitado algún destino con tasa'],
+  ['P224', ['1'], 'Tasa: a qué destinarla (entre quienes la apoyan)', 'Proteger el medio ambiente', NO_PREGUNTADO],
+  ['P224', ['2'], 'Tasa: a qué destinarla (entre quienes la apoyan)', 'Mantener el patrimonio histórico y cultural', NO_PREGUNTADO],
+  ['P224', ['3'], 'Tasa: a qué destinarla (entre quienes la apoyan)', 'Mejorar los servicios públicos', NO_PREGUNTADO],
+  ['P224', ['4'], 'Tasa: a qué destinarla (entre quienes la apoyan)', 'Mejorar las infraestructuras', NO_PREGUNTADO],
+  ['P224', ['5'], 'Tasa: a qué destinarla (entre quienes la apoyan)', 'Otro fin', NO_PREGUNTADO],
+  ['P225', ['1'], 'Tasa: cuánto por noche (entre quienes la apoyan)', 'Hasta 1 euro', NO_PREGUNTADO],
+  ['P225', ['2'], 'Tasa: cuánto por noche (entre quienes la apoyan)', 'Hasta 2 euros', NO_PREGUNTADO],
+  ['P225', ['3'], 'Tasa: cuánto por noche (entre quienes la apoyan)', 'Hasta 3 euros', NO_PREGUNTADO],
+  ['P225', ['4'], 'Tasa: cuánto por noche (entre quienes la apoyan)', 'Más de 3 euros', NO_PREGUNTADO],
+  ['P230', SI, 'Vivienda vacacional', 'Su regulación debería ser más estricta'],
+  ['P230', ['2'], 'Vivienda vacacional', 'Debería ser menos estricta'],
+  ['P230', ['3'], 'Vivienda vacacional', 'Está adecuadamente regulada'],
+  ['P53', ['4', '5'], 'Vivienda vacacional', 'Hay bastante o mucha en su zona'],
+  ['P229', SI, 'Vivienda vacacional', 'Alguien de su hogar tiene vínculo con ella (sí)'],
 ];
+// Textos de las tablas del artículo (más cortos que los del explorador).
+const TEXTO_TABLA = {
+  P223: 'Los turistas deben pagar una tasa',
+  P230: 'Regulación de la vivienda vacacional más estricta',
+};
 
 // Grupos (con los códigos del diseño de registros).
 const EDAD = (r) => (r.edad <= 34 ? '18-34' : r.edad <= 54 ? '35-54' : '55 y más');
@@ -74,22 +121,35 @@ const INGRESOS = (r) =>
   ({ 1: 'Hasta 500 €', 2: 'De 500 a 1.000 €', 3: 'De 1.000 a 1.500 €' })[r.ing_hog] ??
   (r.ing_hog >= 4 ? 'Más de 1.500 €' : 'No consta');
 
+const ISLA = (r) =>
+  ({
+    ES708: 'Lanzarote',
+    ES704: 'Fuerteventura',
+    ES705: 'Gran Canaria',
+    ES709: 'Tenerife',
+    ES706: 'La Gomera',
+    ES707: 'La Palma',
+    ES703: 'El Hierro',
+  })[r.isla_nut];
+const VINCULO = (r) => ({ 1: 'Sí', 6: 'No' })[r.P216] ?? 'No consta';
+
 // --- Lectura ---------------------------------------------------------------
 const [cabecera, ...lineas] = (await readFile(MICRODATOS, 'latin1')).split(/\r?\n/).filter(Boolean);
 const nombres = cabecera.split(';');
 const filas = lineas.map((l) => {
   const v = l.split(';');
   const r = Object.fromEntries(nombres.map((n, i) => [n, v[i]]));
-  for (const k of ['edad', 'P1', 'P3', 'ing_hog']) r[k] = Number(r[k]);
+  for (const k of ['edad', 'P1', 'P3', 'P216', 'ing_hog']) r[k] = Number(r[k]);
   r.peso = Number(r.peso);
   return r;
 });
 
 /** % ponderado de quienes dan una de las respuestas «si» en la variable. */
-function porcentaje(grupo, variable, si) {
+function porcentaje(grupo, variable, si, fuera = []) {
   let total = 0;
   let favor = 0;
   for (const r of grupo) {
+    if (fuera.includes(r[variable])) continue;
     total += r.peso;
     if (si.includes(r[variable])) favor += r.peso;
   }
@@ -136,7 +196,7 @@ function tablaPorGrupos(variables, grupos) {
   const columnas = ['Afirmación', ...grupos.map(([nombre]) => nombre)];
   const filasTabla = variables.map((v) => {
     const [, si, , texto] = pregunta(v);
-    return [texto, ...grupos.map(([, g]) => porcentaje(g, v, si).toFixed(1))];
+    return [TEXTO_TABLA[v] ?? texto, ...grupos.map(([, g]) => porcentaje(g, v, si).toFixed(1))];
   });
   return csv(columnas, filasTabla);
 }
@@ -163,15 +223,20 @@ const edadYOrigen = tablaPorGrupos(
   ],
 );
 
-// 3. Explorador: una fila por combinación de edad, ingresos, sexo y
-//    nacimiento, con el número de entrevistas, la suma de pesos y el % de
-//    acuerdo con cada pregunta. Sumando filas (ponderadas por el peso) se
-//    obtiene cualquier grupo más amplio, también el total.
+// 3. Explorador de toda la encuesta: una fila por combinación de edad,
+//    ingresos, sexo, nacimiento, isla y vínculo del hogar con el turismo, con
+//    el número de entrevistas, la suma de pesos y el % de cada respuesta.
+//    Promediando filas (ponderadas por el peso) se obtiene cualquier grupo más
+//    amplio, también el total. Las preguntas que solo se hicieron a una parte
+//    (el destino y la cuantía de la tasa) llevan su propia base:
+//    «Entrevistas · temática» y «Peso · temática».
 const DIMENSIONES = [
   ['Edad', EDAD, ['18-34', '35-54', '55 y más']],
   ['Ingresos del hogar', INGRESOS, ['Hasta 500 €', 'De 500 a 1.000 €', 'De 1.000 a 1.500 €', 'Más de 1.500 €', 'No consta']],
   ['Sexo', SEXO, ['Mujer', 'Hombre']],
   ['Nacimiento', NACIMIENTO, ['Canarias', 'Fuera de Canarias']],
+  ['Isla', ISLA, ['Lanzarote', 'Fuerteventura', 'Gran Canaria', 'Tenerife', 'La Gomera', 'La Palma', 'El Hierro']],
+  ['Hogar vinculado al turismo', VINCULO, ['Sí', 'No', 'No consta']],
 ];
 const celdas = new Map();
 for (const r of filas) {
@@ -182,12 +247,27 @@ for (const r of filas) {
 const orden = (clave) =>
   clave.split('|').reduce((acc, v, i) => acc * 10 + DIMENSIONES[i][2].indexOf(v), 0);
 const claves = [...celdas.keys()].sort((a, b) => orden(a) - orden(b));
+const bases = [...new Map(PREGUNTAS.filter((p) => p[4]).map((p) => [p[2], p])).values()];
 const explorador = csv(
-  [...DIMENSIONES.map(([n]) => n), 'Entrevistas', 'Peso', ...PREGUNTAS.map(([, , bloque, texto]) => `${bloque} · ${texto}`)],
+  [
+    ...DIMENSIONES.map(([n]) => n),
+    'Entrevistas',
+    'Peso',
+    ...bases.flatMap(([, , bloque]) => [`Entrevistas · ${bloque}`, `Peso · ${bloque}`]),
+    ...PREGUNTAS.map(([, , bloque, texto]) => `${bloque} · ${texto}`),
+  ],
   claves.map((clave) => {
     const g = celdas.get(clave);
     const peso = g.reduce((s, r) => s + r.peso, 0);
-    return [...clave.split('|'), g.length, redondeo(peso, 2), ...PREGUNTAS.map(([v, si]) => redondeo(porcentaje(g, v, si), 2))];
+    const base = bases.flatMap(([v, , , , fuera]) => {
+      const dentro = g.filter((r) => !fuera.includes(r[v]));
+      return [dentro.length, redondeo(dentro.reduce((s, r) => s + r.peso, 0), 2)];
+    });
+    const valores = PREGUNTAS.map(([v, si, , , fuera]) => {
+      const x = porcentaje(g, v, si, fuera);
+      return Number.isNaN(x) ? 0 : redondeo(x, 2);
+    });
+    return [...clave.split('|'), g.length, redondeo(peso, 2), ...base, ...valores];
   }),
 );
 

@@ -21,6 +21,8 @@ interface Props {
   publicado?: Date;
   modificado?: Date | null;
   rss?: { titulo: string; url: string };
+  /** Página a pantalla completa: sin cabecera ni pie de la web. */
+  pantalla?: boolean;
 }
 
 const {
@@ -36,6 +38,7 @@ const {
   publicado,
   modificado,
   rss,
+  pantalla = false,
 } = Astro.props;
 
 const tituloCompleto = titulo ? `${titulo} · ${SITIO.nombre}` : `${SITIO.nombre} · ${SITIO.lema}`;
@@ -125,10 +128,10 @@ const textos = t(idioma);
   </head>
   <body>
     <a class="saltar" href="#contenido">{textos.saltar}</a>
-    <Cabecera idioma={idioma} />
+    {!pantalla && <Cabecera idioma={idioma} />}
     <main id="contenido">
       <slot />
     </main>
-    <Pie idioma={idioma} />
+    {!pantalla && <Pie idioma={idioma} />}
   </body>
 </html>

@@ -1,14 +1,13 @@
 ---
-/** Versión portátil del explorador: sin JavaScript, remite al original. */
+/** Versión portátil del explorador: sin JavaScript, enlaza a la versión a pantalla completa. */
 import { cargarDatos } from '../../lib/datos';
 import { SITIO } from '../../lib/sitio';
 const { datos, titulo } = Astro.props;
 const { meta } = await cargarDatos(datos);
+const enlace = meta.data.dimensiones ? `${SITIO.url}/explorador/${meta.id}/` : `${SITIO.url}/datos/${meta.id}/`;
 ---
 
 <p>
-  <em>
-    {titulo ? `${titulo}: ` : ''}gráfico interactivo disponible en el artículo original de {SITIO.nombre}. Datos:
-    <a href={`${SITIO.url}/datos/${meta.id}/`}>{meta.data.titulo}</a>.
-  </em>
+  <strong>{titulo ?? meta.data.titulo}</strong><br />
+  <a href={enlace}>Abrir el explorador interactivo en {SITIO.nombre}.com</a>
 </p>

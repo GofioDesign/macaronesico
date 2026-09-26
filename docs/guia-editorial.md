@@ -31,7 +31,7 @@ Cloudflare. Cuando esté revisado, se abre una *pull request* y se fusiona en
 | **Cifra destacada** | Un número grande con su frase: «27,2% de los jóvenes…» |
 | **Tabla de datos** | Tabla ordenable a partir de un conjunto de datos. Se puede resaltar una columna y fijar el orden inicial |
 | **Gráfico** | *Puntos enfrentados* para comparar dos grupos por fila (con la diferencia a la derecha) o *barras horizontales* |
-| **Explorador de encuesta** | Una fila por pregunta y un selector por rasgo (edad, ingresos, sexo…): resalta el grupo elegido frente a la media y a los demás grupos. Necesita un conjunto de datos con una fila por combinación y las columnas *Entrevistas* y *Peso* |
+| **Explorador de encuesta** | Una fila por pregunta y un selector por rasgo (edad, ingresos, sexo…): resalta el grupo elegido frente a la media y a los demás grupos. Tiene filtro por temática y cabecera fija. Necesita un conjunto de datos con una fila por combinación y las columnas *Entrevistas* y *Peso*. Si en el conjunto de datos se rellenan las *Columnas para el explorador*, se publica también a pantalla completa en `/explorador/…`, con marca de agua, para enlazarlo desde otras webs |
 | **Nota metodológica** | Recuadro plegable con el método, la muestra y los márgenes de error |
 | **Paso a paso** | Recuadro plegable con una lista numerada: cómo se llegó a las cifras de una tabla o un gráfico. Si se elige el conjunto de datos, añade el enlace de descarga |
 | **Fuentes** | Lista final de fuentes con enlaces |
