@@ -23,7 +23,7 @@ export const CATEGORIAS = {
   },
   internacional: {
     nombre: 'Internacional',
-    descripcion: 'El orden global leído desde los márgenes: geopolítica, extractivismo y derecho internacional.',
+    descripcion: 'Lo que pasa en el mundo, leído desde Canarias: geopolítica, recursos y memoria, con la norma y las fuentes a la vista.',
   },
   taller: {
     nombre: 'Taller',
