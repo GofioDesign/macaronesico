@@ -69,6 +69,7 @@ function leerLinea(linea) {
 }
 
 function aplicarExtras(ficha, extra, avisos) {
+  if (!ficha.autores?.length && extra.autor) ficha.autores = extra.autor.split(';').map((a) => a.trim());
   if (extra.territorios?.length) ficha.territorios = extra.territorios;
   if (extra.temas?.length) {
     const desconocidos = extra.temas.filter((t) => !temasValidos.has(t));

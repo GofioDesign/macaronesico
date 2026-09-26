@@ -65,6 +65,32 @@ const TIPOS = {
   dataset: 'datos',
 };
 
+const INSTITUCION = /universi|instituto|facultad|departamento|consejo superior|\(espa[ñn]a\)/i;
+const ROMANOS = /^(?:[ivxlcdm]+)$/i;
+const PROPIOS = new Set(
+  'canarias canaria canarios canarias, tenerife gran lanzarote fuerteventura gomera palma hierro graciosa arona orotava anaga macaronesia madeira azores cabo verde áfrica africa españa castilla portugal guinea sierra leona santa cruz laguna qanāriya túnez hornachos juba zurara gomes eanes'.split(' '),
+);
+
+/** Títulos en MAYÚSCULAS → tipo oración, respetando topónimos y números romanos */
+export function arreglarMayusculas(t) {
+  const letras = t.replace(/[^\p{L}]/gu, '');
+  const mayus = letras.replace(/[^\p{Lu}]/gu, '');
+  if (!letras || mayus.length / letras.length < 0.6) return t;
+  let inicio = true;
+  return t
+    .split(/(\s+)/)
+    .map((p) => {
+      if (/^\s+$/.test(p)) return p;
+      const limpio = p.replace(/[^\p{L}]/gu, '').toLowerCase();
+      let r = p.toLowerCase();
+      if (ROMANOS.test(limpio) && limpio.length <= 5 && !['di', 'mi', 'vi', 'mil', 'dc'].includes(limpio)) r = p.toUpperCase();
+      else if (inicio || PROPIOS.has(limpio)) r = r.replace(/\p{L}/u, (c) => c.toUpperCase());
+      inicio = /[.:?!]["»”)]?$/.test(p);
+      return r;
+    })
+    .join('');
+}
+
 export async function consultarCrossref(doi) {
   const r = await fetch(`https://api.crossref.org/works/${encodeURIComponent(doi)}`, {
     headers: { 'User-Agent': `macaronesico-biblioteca (mailto:${CONTACTO})` },
@@ -77,13 +103,16 @@ export async function consultarCrossref(doi) {
   const idioma = (m.language ?? '').slice(0, 2);
   const licencia = (m.license ?? []).map((l) => l.URL).join(' ');
   return {
-    titulo: (m.title?.[0] ?? '').replace(/\s+/g, ' ').trim(),
-    autores: (m.author ?? []).map((a) => (a.family ? `${a.family}, ${a.given ?? ''}`.trim().replace(/,$/, '') : a.name ?? '')),
+    titulo: arreglarMayusculas((m.title?.[0] ?? '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()),
+    autores: (m.author ?? [])
+      .map((a) => (a.family ? `${a.family}, ${a.given ?? ''}`.trim().replace(/,$/, '') : a.name ?? ''))
+      .filter((a) => a && !INSTITUCION.test(a))
+      .filter((a, i, xs) => xs.indexOf(a) === i),
     anio: Number(fecha[0]) || null,
     tipo: TIPOS[m.type] ?? 'otro',
-    revista: m['container-title']?.[0] ?? '',
+    revista: arreglarMayusculas((m['container-title']?.[0] ?? '').replace(/\s+n[úu]mero\s+\d+\s*$/i, '')),
     volumen: m.volume ?? '',
-    numero: m.issue ?? '',
+    numero: m.issue ?? (m['container-title']?.[0] ?? '').match(/n[úu]mero\s+(\d+)\s*$/i)?.[1] ?? '',
     paginas: m.page ?? '',
     editorial: m.publisher ?? '',
     doi: m.DOI ?? doi,

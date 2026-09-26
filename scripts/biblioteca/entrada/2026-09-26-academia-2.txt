@@ -1,0 +1,7 @@
+# Segundo lote: fichas de Academia.edu enviadas una a una (26/09/2026)
+doi: 10.22380/20274688.2251 | territorios: tenerife | temas: historia, colonialidad
+titulo: Historia de Canarias | autor: Viera y Clavijo, José de; Paz Sánchez, Manuel de | tipo: libro | anio: 2016 | url: https://www.academia.edu/26902204 | territorios: canarias | temas: historia, fuentes-historicas
+titulo: Tratado sobre la barrilla. Catálogo de los géneros y especies de plantas singulares de las Islas Canarias | autor: Viera y Clavijo, José de; Puig-Samper Mulero, Miguel Ángel; Paz Sánchez, Manuel de | tipo: libro | url: https://www.academia.edu/19708551 | territorios: canarias | temas: biodiversidad, fuentes-historicas
+titulo: Tangomãos en Tenerife y Sierra Leona a mediados del siglo XVI | autor: Wheat, David | anio: 2020 | revista: Cliocanarias | url: https://www.academia.edu/44311593 | territorios: tenerife, costa-africana | temas: comercio-atlantico, colonialidad, historia
+titulo: Prospección arqueológica del fondeadero del barranco de San Andrés o Abicore (Tenerife, Islas Canarias) | url: https://www.academia.edu/26765927 | territorios: tenerife | temas: arqueologia, historia
+titulo: Contribución al estudio de la conquista de Gran Canaria. Documentos del Archivo Municipal de Carmona y del General de Simancas | autor: Bello León, Juan Manuel | anio: 2015 | revista: Vegueta. Anuario de la Facultad de Geografía e Historia | url: https://www.academia.edu/111068653 | territorios: gran-canaria | temas: historia, colonialidad, fuentes-historicas

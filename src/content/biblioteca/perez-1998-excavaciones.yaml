@@ -1,11 +1,12 @@
 titulo: "Excavaciones Arqueológicas en la Iglesia de Nuestra Señora de La Concepción de Santa Cruz de Tenerife. Estudio preliminar de los materiales asociados a los restos antropológicos"
 autores:
   - "Pérez Álvarez, Ana Rosa"
-tipo: articulo
-revista: ""
-volumen: ""
+anio: 1998
+tipo: "capitulo"
+revista: "XII Coloquio de Historia Canario-Americana (1996)"
+volumen: "I"
 numero: ""
-paginas: ""
+paginas: "591-621"
 editorial: ""
 doi: ""
 url: "https://www.academia.edu/36686924"
@@ -20,4 +21,4 @@ temas:
 resumen: ""
 importancia: ""
 estado: pendiente
-verificada: false
+verificada: true
