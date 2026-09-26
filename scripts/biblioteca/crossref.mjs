@@ -16,6 +16,17 @@ const PALABRAS_VACIAS = new Set(
   'a al and de del el en for la las los of on the to un una y e o u the an in con por para sobre from'.split(' '),
 );
 
+const PARTICULAS = new Set(['de', 'del', 'la', 'las', 'los', 'da', 'do', 'dos', 'das', 'van', 'von', 'y']);
+
+/** "José de Viera y Clavijo" → "Viera y Clavijo, José de" */
+export function invertirNombre(nombre) {
+  const t = String(nombre).trim().split(/\s+/);
+  if (t.length < 2) return nombre;
+  const i = t.findIndex((p, k) => k > 0 && k < t.length - 1 && PARTICULAS.has(p.toLowerCase()));
+  if (i > 0 && t[i].toLowerCase() !== 'y') return `${t.slice(i + 1).join(' ')}, ${t.slice(0, i + 1).join(' ')}`;
+  return `${t.slice(1).join(' ')}, ${t[0]}`;
+}
+
 export function limpiarDOI(texto) {
   const m = String(texto).match(/10\.\d{4,9}\/[^\s"'<>]+/i);
   return m ? m[0].replace(/[.,;)\]]+$/, '') : null;
@@ -31,12 +42,15 @@ export function slug(texto) {
 }
 
 export function claveDe({ autores, anio, titulo }) {
-  const apellido = slug((autores[0] ?? 'anonimo').split(',')[0]).split('-')[0] || 'anonimo';
+  const apellido =
+    slug((autores[0] ?? 'anonimo').split(',')[0])
+      .split('-')
+      .find((p) => p && !PARTICULAS.has(p)) || 'anonimo';
   const palabra =
     slug(titulo)
       .split('-')
       .find((p) => p.length > 3 && !PALABRAS_VACIAS.has(p)) ?? 'obra';
-  return `${apellido}-${anio}-${palabra}`;
+  return `${apellido}-${anio || 'sf'}-${palabra}`;
 }
 
 const TIPOS = {
@@ -65,7 +79,7 @@ export async function consultarCrossref(doi) {
   return {
     titulo: (m.title?.[0] ?? '').replace(/\s+/g, ' ').trim(),
     autores: (m.author ?? []).map((a) => (a.family ? `${a.family}, ${a.given ?? ''}`.trim().replace(/,$/, '') : a.name ?? '')),
-    anio: Number(fecha[0]) || new Date().getFullYear(),
+    anio: Number(fecha[0]) || null,
     tipo: TIPOS[m.type] ?? 'otro',
     revista: m['container-title']?.[0] ?? '',
     volumen: m.volume ?? '',
@@ -79,6 +93,95 @@ export async function consultarCrossref(doi) {
   };
 }
 
+/** Normaliza un título para compararlo: sin tildes, signos ni mayúsculas */
+export function normalizar(t) {
+  return String(t ?? '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+/** Similitud de Dice sobre bigramas de caracteres (0 a 1) */
+export function similitud(a, b) {
+  const x = normalizar(a);
+  const y = normalizar(b);
+  if (!x || !y) return 0;
+  if (x === y) return 1;
+  const bigramas = (s) => {
+    const m = new Map();
+    for (let i = 0; i < s.length - 1; i++) {
+      const g = s.slice(i, i + 2);
+      m.set(g, (m.get(g) ?? 0) + 1);
+    }
+    return m;
+  };
+  const bx = bigramas(x);
+  const by = bigramas(y);
+  let comunes = 0;
+  for (const [g, n] of bx) comunes += Math.min(n, by.get(g) ?? 0);
+  return (2 * comunes) / (x.length - 1 + (y.length - 1));
+}
+
+/** Búsqueda bibliográfica en Crossref: devuelve candidatos con su DOI */
+export async function buscarCrossref(consulta, filas = 5) {
+  const url = new URL('https://api.crossref.org/works');
+  url.searchParams.set('query.bibliographic', consulta);
+  url.searchParams.set('rows', String(filas));
+  url.searchParams.set('select', 'DOI,title,author,issued,container-title,type,score');
+  const r = await fetch(url, { headers: { 'User-Agent': `macaronesico-biblioteca (mailto:${CONTACTO})` } });
+  if (!r.ok) throw new Error(`Crossref respondió ${r.status}`);
+  const { message } = await r.json();
+  return (message.items ?? []).map((m) => ({
+    doi: m.DOI,
+    titulo: (m.title?.[0] ?? '').replace(/\s+/g, ' ').trim(),
+    autores: (m.author ?? []).map((a) => [a.given, a.family].filter(Boolean).join(' ') || a.name).join('; '),
+    anio: m.issued?.['date-parts']?.[0]?.[0] ?? '',
+    revista: m['container-title']?.[0] ?? '',
+    puntuacion: m.score,
+  }));
+}
+
+/** Libro por ISBN: Google Books y, si no, Open Library */
+export async function consultarISBN(isbn) {
+  const limpio = String(isbn).replace(/[^0-9Xx]/g, '');
+  const g = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${limpio}`).then((r) => (r.ok ? r.json() : {}));
+  const v = g.items?.[0]?.volumeInfo;
+  if (v) {
+    return {
+      titulo: [v.title, v.subtitle].filter(Boolean).join(': '),
+      autores: (v.authors ?? []).map(invertirNombre),
+      anio: Number(String(v.publishedDate ?? '').slice(0, 4)) || null,
+      tipo: 'libro',
+      editorial: v.publisher ?? '',
+      url: v.infoLink ?? '',
+      idioma: ['es', 'pt', 'en', 'fr'].includes(v.language) ? v.language : 'otro',
+      acceso: 'desconocido',
+      isbn: limpio,
+    };
+  }
+  const o = await fetch(`https://openlibrary.org/isbn/${limpio}.json`).then((r) => (r.ok ? r.json() : null));
+  if (!o) throw new Error(`ISBN no encontrado: ${limpio}`);
+  const autores = [];
+  for (const a of o.authors ?? []) {
+    const d = await fetch(`https://openlibrary.org${a.key}.json`).then((r) => (r.ok ? r.json() : null));
+    if (d?.name) autores.push(invertirNombre(d.name));
+  }
+  return {
+    titulo: [o.title, o.subtitle].filter(Boolean).join(': '),
+    autores,
+    anio: Number(String(o.publish_date ?? '').match(/\d{4}/)?.[0]) || null,
+    tipo: 'libro',
+    editorial: o.publishers?.[0] ?? '',
+    url: `https://openlibrary.org/isbn/${limpio}`,
+    idioma: 'es',
+    acceso: 'desconocido',
+    isbn: limpio,
+  };
+}
+
 const q = (v) => JSON.stringify(v ?? '');
 
 export function aYAML(ficha) {
@@ -86,7 +189,7 @@ export function aYAML(ficha) {
   return [
     `titulo: ${q(ficha.titulo)}`,
     `autores:${lista(ficha.autores)}`,
-    `anio: ${ficha.anio}`,
+    ...(ficha.anio ? [`anio: ${ficha.anio}`] : []),
     `tipo: ${ficha.tipo}`,
     `revista: ${q(ficha.revista)}`,
     `volumen: ${q(ficha.volumen)}`,
@@ -103,6 +206,7 @@ export function aYAML(ficha) {
     `resumen: ${q(ficha.resumen)}`,
     `importancia: ${q(ficha.importancia)}`,
     `estado: ${ficha.estado ?? 'pendiente'}`,
+    `verificada: ${ficha.verificada === false ? 'false' : 'true'}`,
     '',
   ].join('\n');
 }
@@ -110,11 +214,13 @@ export function aYAML(ficha) {
 /** Guarda la ficha; si la clave existe, añade un sufijo. Devuelve la clave usada o null si el DOI ya estaba. */
 export async function guardarFicha(ficha, doisExistentes = new Set()) {
   if (ficha.doi && doisExistentes.has(ficha.doi.toLowerCase())) return null;
+  if (doisExistentes.has(`t:${normalizar(ficha.titulo)}`)) return null;
   await mkdir(DIR_BIBLIOTECA, { recursive: true });
   let clave = claveDe(ficha);
   for (let i = 2; existsSync(path.join(DIR_BIBLIOTECA, `${clave}.yaml`)); i++) clave = `${claveDe(ficha)}-${i}`;
   await writeFile(path.join(DIR_BIBLIOTECA, `${clave}.yaml`), aYAML(ficha));
   if (ficha.doi) doisExistentes.add(ficha.doi.toLowerCase());
+  doisExistentes.add(`t:${normalizar(ficha.titulo)}`);
   return clave;
 }
 
@@ -125,8 +231,11 @@ export async function doisPresentes() {
   if (!existsSync(DIR_BIBLIOTECA)) return presentes;
   for (const f of await readdir(DIR_BIBLIOTECA)) {
     if (!f.endsWith('.yaml')) continue;
-    const m = (await readFile(path.join(DIR_BIBLIOTECA, f), 'utf8')).match(/^doi:\s*"?([^"\n]+)"?/m);
+    const texto = await readFile(path.join(DIR_BIBLIOTECA, f), 'utf8');
+    const m = texto.match(/^doi:\s*"?([^"\n]+)"?/m);
     if (m && m[1].trim()) presentes.add(m[1].trim().toLowerCase());
+    const t = texto.match(/^titulo:\s*(.+)$/m);
+    if (t) presentes.add(`t:${normalizar(t[1].replace(/^["']|["']$/g, ''))}`);
   }
   return presentes;
 }

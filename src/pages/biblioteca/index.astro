@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { citaCorta, NOMBRES_TERRITORIO, NOMBRES_TIPO } from '../../lib/biblioteca';
+import { anioTexto, citaCorta, NOMBRES_TERRITORIO, NOMBRES_TIPO } from '../../lib/biblioteca';
 import { SITIO } from '../../lib/sitio';
 
 const referencias = (await getCollection('biblioteca')).sort(
-  (a, b) => b.data.anio - a.data.anio || a.data.titulo.localeCompare(b.data.titulo, 'es'),
+  (a, b) => (b.data.anio ?? 0) - (a.data.anio ?? 0) || a.data.titulo.localeCompare(b.data.titulo, 'es'),
 );
 const temas = await getCollection('temas');
 const nombreTema = Object.fromEntries(temas.map((t) => [t.id, t.data.nombre]));
@@ -105,14 +105,14 @@ const jsonld = {
                 data-abierto={r.data.acceso === 'abierto' ? '1' : '0'}
               >
                 <p class="etiqueta">
-                  {NOMBRES_TIPO[r.data.tipo]} · {r.data.anio}
+                  {NOMBRES_TIPO[r.data.tipo]} · {anioTexto(r.data.anio)}
                   {r.data.acceso === 'abierto' && <span class="abierto"> · acceso abierto</span>}
                 </p>
                 <h2>
                   <a href={`/biblioteca/${r.id}/`}>{r.data.titulo}</a>
                 </h2>
                 <p class="autoria">
-                  {citaCorta(r).replace(/, \d+$/, '')}
+                  {citaCorta(r).replace(/, (\d+|s\. f\.)$/, '')}
                   {r.data.revista && <> · <em>{r.data.revista}</em></>}
                 </p>
                 {r.data.resumen && <p class="resumen">{r.data.resumen}</p>}

@@ -59,8 +59,12 @@ Cada referencia científica es una ficha con sus datos bibliográficos,
 territorios, temas, un **resumen propio** y **por qué importa**.
 
 - Alta a mano: **Biblioteca** → **Add**.
-- Alta automática por DOI o importación de un listado: ver `scripts/biblioteca/`
-  (se puede pedir a Claude que lo ejecute).
+- Alta por lotes: sube a `scripts/biblioteca/entrada/` un `.txt` con una
+  referencia por línea (`doi:`, `titulo:`, `isbn:` o `buscar:`). GitHub la
+  procesa sola: busca cada obra en Crossref o por ISBN, crea las fichas y deja
+  un informe en `scripts/biblioteca/informes/`. Lo que no puede verificar lo
+  crea como ficha **provisional** (casilla *verificada* desmarcada) para
+  completarla en el gestor. Se puede pedir a Claude que prepare el listado.
 - Para citar dentro de un artículo usa el bloque **Cita bibliográfica**, y
   añade la referencia al campo **Bibliografía** del artículo para que salga en
   la lista final en formato APA.

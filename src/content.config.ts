@@ -57,7 +57,7 @@ const biblioteca = defineCollection({
   schema: z.object({
     titulo: z.string(),
     autores: lista,
-    anio: z.number().int(),
+    anio: z.number().int().nullish(),
     tipo: z.enum(['articulo', 'libro', 'capitulo', 'tesis', 'informe', 'datos', 'otro']).default('articulo'),
     revista: texto,
     volumen: texto,
@@ -74,6 +74,7 @@ const biblioteca = defineCollection({
     resumen: texto,
     importancia: texto,
     estado: z.enum(['pendiente', 'leida', 'resenada', 'usada']).default('pendiente'),
+    verificada: z.boolean().nullish().transform((v) => v !== false),
   }),
 });
 

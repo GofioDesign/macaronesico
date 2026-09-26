@@ -2,6 +2,11 @@ import type { CollectionEntry } from 'astro:content';
 
 export type Referencia = CollectionEntry<'biblioteca'>;
 
+/** Año o «s. f.» (sin fecha) */
+export function anioTexto(anio: number | null | undefined): string {
+  return anio ? String(anio) : 's. f.';
+}
+
 function apellido(autor: string): string {
   return autor.split(',')[0].trim();
 }
@@ -23,7 +28,7 @@ export function citaCorta(r: Referencia, paginas?: string): string {
   if (a.length === 1) quien = apellido(a[0]);
   else if (a.length === 2) quien = `${apellido(a[0])} y ${apellido(a[1])}`;
   else if (a.length > 2) quien = `${apellido(a[0])} et al.`;
-  return `${quien}, ${r.data.anio}${paginas ? `, p. ${paginas}` : ''}`;
+  return `${quien}, ${anioTexto(r.data.anio)}${paginas ? `, p. ${paginas}` : ''}`;
 }
 
 function autoresAPA(a: string[]): string {
@@ -42,7 +47,7 @@ export function referenciaAPA(r: Referencia): { antes: string; cursiva: string; 
   const d = r.data;
   const autores = autoresAPA(d.autores);
   const enlace = d.doi ? `https://doi.org/${d.doi}` : d.url;
-  const cabeza = `${autores ? `${autores} ` : ''}(${d.anio}). `;
+  const cabeza = `${autores ? `${autores} ` : ''}(${anioTexto(d.anio)}). `;
 
   if (d.tipo === 'articulo') {
     const vol = d.volumen ? `, ${d.volumen}` : '';
@@ -74,7 +79,7 @@ export function aBibtex(r: Referencia): string {
   const campos: [string, string][] = [
     ['title', d.titulo],
     ['author', d.autores.join(' and ')],
-    ['year', String(d.anio)],
+    ['year', d.anio ? String(d.anio) : ''],
     [d.tipo === 'articulo' ? 'journal' : 'booktitle', d.tipo === 'articulo' || d.tipo === 'capitulo' ? d.revista : ''],
     ['volume', d.volumen],
     ['number', d.numero],
@@ -106,7 +111,7 @@ export function aCSL(r: Referencia) {
       const [family, given = ''] = a.split(',').map((s) => s.trim());
       return given ? { family, given } : { literal: family };
     }),
-    issued: { 'date-parts': [[d.anio]] },
+    ...(d.anio ? { issued: { 'date-parts': [[d.anio]] } } : {}),
     'container-title': d.revista || undefined,
     volume: d.volumen || undefined,
     issue: d.numero || undefined,

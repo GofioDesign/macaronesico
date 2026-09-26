@@ -279,7 +279,7 @@ export default config({
           label: 'Autoría',
           itemLabel: (p) => p.value || 'Autor/a',
         }),
-        anio: fields.integer({ label: 'Año', validation: { isRequired: true } }),
+        anio: fields.integer({ label: 'Año', description: 'Vacío si aún no se conoce (se muestra «s. f.»).' }),
         tipo: fields.select({
           label: 'Tipo',
           options: [
@@ -337,6 +337,11 @@ export default config({
             { label: 'Usada en artículo', value: 'usada' },
           ],
           defaultValue: 'pendiente',
+        }),
+        verificada: fields.checkbox({
+          label: 'Datos bibliográficos verificados',
+          description: 'Desmárcalo si autoría, año o revista están sin comprobar (fichas importadas de listados).',
+          defaultValue: true,
         }),
       },
     }),

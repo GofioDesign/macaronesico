@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Tarjeta from '../../../components/Tarjeta.astro';
-import { NOMBRES_TERRITORIO, NOMBRES_TIPO, referenciaAPA, referenciaTexto } from '../../../lib/biblioteca';
+import { anioTexto, NOMBRES_TERRITORIO, NOMBRES_TIPO, referenciaAPA, referenciaTexto } from '../../../lib/biblioteca';
 import { obtenerArticulos } from '../../../lib/contenido';
 import { SITIO } from '../../../lib/sitio';
 
@@ -23,7 +23,7 @@ const jsonld = {
   name: d.titulo,
   headline: d.titulo,
   author: d.autores.map((a) => ({ '@type': 'Person', name: a.split(',').reverse().map((s) => s.trim()).join(' ') })),
-  datePublished: String(d.anio),
+  ...(d.anio ? { datePublished: String(d.anio) } : {}),
   inLanguage: d.idioma,
   ...(d.revista ? { isPartOf: { '@type': 'Periodical', name: d.revista } } : {}),
   ...(d.doi ? { sameAs: `https://doi.org/${d.doi}`, identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: d.doi } } : {}),
@@ -32,12 +32,13 @@ const jsonld = {
   isAccessibleForFree: d.acceso === 'abierto',
   subjectOf: { '@type': 'WebPage', url: `${SITIO.url}/biblioteca/${ref.id}/` },
 };
-const descripcion = (d.resumen || `${NOMBRES_TIPO[d.tipo]} de ${d.anio} sobre ${d.territorios.map((t) => NOMBRES_TERRITORIO[t] ?? t).join(', ')}.`).slice(0, 160);
+const descripcion = (d.resumen || `${NOMBRES_TIPO[d.tipo]}${d.anio ? ` de ${d.anio}` : ''} sobre ${d.territorios.map((t) => NOMBRES_TERRITORIO[t] ?? t).join(', ')}.`).slice(0, 160);
 ---
 
 <Base titulo={d.titulo} descripcion={descripcion} jsonld={jsonld}>
   <div class="contenedor ficha">
-    <p class="etiqueta"><a href="/biblioteca/">Biblioteca</a> · {NOMBRES_TIPO[d.tipo]} · {d.anio}</p>
+    <p class="etiqueta"><a href="/biblioteca/">Biblioteca</a> · {NOMBRES_TIPO[d.tipo]} · {anioTexto(d.anio)}</p>
+    {!d.verificada && <p class="aviso">Ficha en revisión: los datos bibliográficos aún no están verificados.</p>}
     <h1>{d.titulo}</h1>
     <p class="autores">{d.autores.map((a) => a.split(',').reverse().map((s) => s.trim()).join(' ')).join(', ')}</p>
 
@@ -95,6 +96,16 @@ const descripcion = (d.resumen || `${NOMBRES_TIPO[d.tipo]} de ${d.anio} sobre ${
   }
   .etiqueta a {
     color: inherit;
+  }
+  .aviso {
+    display: inline-block;
+    margin: 0.75rem 0 0;
+    padding: 0.3rem 0.6rem;
+    background: var(--acento-suave);
+    color: var(--acento);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    border-radius: var(--radio);
   }
   h1 {
     font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
