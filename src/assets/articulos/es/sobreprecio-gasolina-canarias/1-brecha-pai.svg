@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" role="img" aria-label="Canarias paga más antes de impuestos">
+<style>
+svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --grid:#e6e5e0;
+      --can:#eb6834; --pen:#2a78d6; --band:#eb683426; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+@media (prefers-color-scheme: dark) {
+  svg { --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86; --grid:#33332f;
+        --can:#d95926; --pen:#3987e5; --band:#d9592633; }
+}
+.bg { fill: var(--surface); } .t1 { fill: var(--ink); } .t2 { fill: var(--ink2); } .t3 { fill: var(--muted); }
+.grid { stroke: var(--grid); stroke-width: 1; } .axis { stroke: var(--muted); stroke-width: 1; }
+.can { fill: var(--can); } .pen { fill: var(--pen); } .lcan { stroke: var(--can); } .lpen { stroke: var(--pen); }
+.hit { fill: transparent; } .hit:hover + .dot, .bar:hover { opacity: .8; }
+</style>
+<rect class="bg" width="760" height="420" rx="8"/>
+<text class="t1" x="24" y="34" font-size="18" font-weight="600">Canarias paga más antes de impuestos</text>
+<text class="t2" x="24" y="56" font-size="13">Precio medio mensual antes de impuestos (PAI) de la gasolina 95, €/L</text>
+<line class="grid" x1="64" x2="610" y1="360.0" y2="360.0"/>
+<text class="t3" x="56" y="364.0" font-size="11" text-anchor="end">0,20</text>
+<line class="grid" x1="64" x2="610" y1="309.8" y2="309.8"/>
+<text class="t3" x="56" y="313.8" font-size="11" text-anchor="end">0,40</text>
+<line class="grid" x1="64" x2="610" y1="259.6" y2="259.6"/>
+<text class="t3" x="56" y="263.6" font-size="11" text-anchor="end">0,60</text>
+<line class="grid" x1="64" x2="610" y1="209.5" y2="209.5"/>
+<text class="t3" x="56" y="213.5" font-size="11" text-anchor="end">0,80</text>
+<line class="grid" x1="64" x2="610" y1="159.3" y2="159.3"/>
+<text class="t3" x="56" y="163.3" font-size="11" text-anchor="end">1,00</text>
+<line class="grid" x1="64" x2="610" y1="109.1" y2="109.1"/>
+<text class="t3" x="56" y="113.1" font-size="11" text-anchor="end">1,20</text>
+<text class="t3" x="64.0" y="380" font-size="11" text-anchor="middle">2016</text>
+<line class="axis" x1="64.0" x2="64.0" y1="360" y2="365"/>
+<text class="t3" x="166.4" y="380" font-size="11" text-anchor="middle">2018</text>
+<line class="axis" x1="166.4" x2="166.4" y1="360" y2="365"/>
+<text class="t3" x="268.8" y="380" font-size="11" text-anchor="middle">2020</text>
+<line class="axis" x1="268.8" x2="268.8" y1="360" y2="365"/>
+<text class="t3" x="371.1" y="380" font-size="11" text-anchor="middle">2022</text>
+<line class="axis" x1="371.1" x2="371.1" y1="360" y2="365"/>
+<text class="t3" x="473.5" y="380" font-size="11" text-anchor="middle">2024</text>
+<line class="axis" x1="473.5" x2="473.5" y1="360" y2="365"/>
+<text class="t3" x="575.9" y="380" font-size="11" text-anchor="middle">2026</text>
+<line class="axis" x1="575.9" x2="575.9" y1="360" y2="365"/>
+<line class="axis" x1="64" x2="610" y1="360" y2="360"/>
+<polygon points="64.0,266.1 68.3,273.5 72.5,272.8 76.8,266.2 81.1,259.6 85.3,252.4 89.6,254.3 93.9,259.2 98.1,257.2 102.4,254.2 106.7,253.5 110.9,249.1 115.2,242.8 119.5,240.4 123.7,240.9 128.0,241.6 132.2,243.1 136.5,245.7 140.8,250.6 145.0,249.8 149.3,246.8 153.6,246.0 157.8,242.6 162.1,242.7 166.4,240.0 170.6,238.8 174.9,241.5 179.2,237.7 183.4,228.4 187.7,220.5 192.0,218.6 196.2,217.7 200.5,216.0 204.8,214.1 209.0,215.9 213.3,222.8 217.6,228.7 221.8,230.3 226.1,229.7 230.4,228.1 234.6,225.7 238.9,225.5 243.2,226.7 247.4,227.8 251.7,228.1 256.0,227.0 260.2,226.8 264.5,223.0 268.8,218.5 273.0,220.2 277.3,227.4 281.5,241.9 285.8,245.6 290.1,243.4 294.3,241.8 298.6,243.2 302.9,245.0 307.1,248.0 311.4,251.1 315.7,250.8 319.9,248.2 324.2,244.7 328.5,237.2 332.7,228.2 337.0,223.2 341.3,218.0 345.5,211.6 349.8,207.3 354.1,204.7 358.3,197.3 362.6,190.1 366.9,188.9 371.1,185.6 375.4,177.4 379.7,136.5 383.9,117.3 388.2,110.0 392.5,85.2 396.7,77.8 401.0,99.6 405.2,112.2 409.5,119.6 413.8,123.0 418.0,139.4 422.3,148.9 426.6,151.9 430.8,158.8 435.1,160.1 439.4,165.2 443.6,170.8 447.9,175.1 452.2,165.5 456.4,153.0 460.7,146.8 465.0,151.2 469.2,158.9 473.5,163.9 477.8,162.4 482.0,159.4 486.3,152.6 490.6,151.7 494.8,156.7 499.1,160.1 503.4,166.6 507.6,173.5 511.9,177.2 516.2,178.7 520.4,179.4 524.7,176.4 529.0,172.5 533.2,174.1 537.5,182.4 541.8,192.9 546.0,194.2 550.3,194.2 554.5,196.1 558.8,197.2 563.1,195.8 567.3,194.6 571.6,190.1 575.9,192.9 580.1,192.2 584.4,157.5 588.7,118.9 592.9,113.7 597.2,122.0 601.5,130.5 605.7,119.8 610.0,108.6 610.0,125.9 605.7,146.3 601.5,160.1 597.2,161.0 592.9,144.6 588.7,149.3 584.4,167.8 580.1,222.5 575.9,228.0 571.6,224.6 567.3,219.7 563.1,222.0 558.8,219.7 554.5,220.2 550.3,218.0 546.0,221.0 541.8,224.8 537.5,218.3 533.2,211.4 529.0,201.3 524.7,202.8 520.4,211.8 516.2,214.4 511.9,216.4 507.6,215.4 503.4,199.8 499.1,191.4 494.8,190.9 490.6,182.4 486.3,179.0 482.0,189.8 477.8,197.6 473.5,207.7 469.2,207.0 465.0,194.2 460.7,178.7 456.4,164.6 452.2,173.5 447.9,192.4 443.6,196.3 439.4,198.1 435.1,187.1 430.8,187.8 426.6,187.3 422.3,188.4 418.0,193.6 413.8,162.3 409.5,165.8 405.2,171.0 401.0,151.7 396.7,111.1 392.5,88.6 388.2,128.8 383.9,152.8 379.7,155.5 375.4,198.4 371.1,213.7 366.9,220.5 362.6,213.6 358.3,219.4 354.1,229.7 349.8,233.0 345.5,235.4 341.3,242.3 337.0,247.3 332.7,252.9 328.5,255.1 324.2,266.0 319.9,275.2 315.7,281.7 311.4,287.7 307.1,286.9 302.9,285.5 298.6,285.4 294.3,286.1 290.1,293.7 285.8,302.4 281.5,298.0 277.3,276.2 273.0,257.7 268.8,253.2 264.5,255.9 260.2,257.5 256.0,256.6 251.7,255.1 247.4,254.1 243.2,252.6 238.9,254.6 234.6,245.9 230.4,250.4 226.1,263.2 221.8,269.8 217.6,277.2 213.3,274.5 209.0,256.0 204.8,245.0 200.5,247.2 196.2,248.8 192.0,250.1 187.7,249.1 183.4,251.6 179.2,261.8 174.9,269.0 170.6,267.7 166.4,264.2 162.1,267.6 157.8,267.9 153.6,274.3 149.3,272.7 145.0,277.4 140.8,280.4 136.5,278.6 132.2,272.5 128.0,265.9 123.7,270.0 119.5,264.7 115.2,266.2 110.9,272.3 106.7,281.9 102.4,278.7 98.1,284.4 93.9,287.9 89.6,285.2 85.3,278.6 81.1,281.3 76.8,286.8 72.5,294.0 68.3,301.1 64.0,293.5" style="fill: var(--band)"/>
+<path d="M64.0,293.5 L68.3,301.1 L72.5,294.0 L76.8,286.8 L81.1,281.3 L85.3,278.6 L89.6,285.2 L93.9,287.9 L98.1,284.4 L102.4,278.7 L106.7,281.9 L110.9,272.3 L115.2,266.2 L119.5,264.7 L123.7,270.0 L128.0,265.9 L132.2,272.5 L136.5,278.6 L140.8,280.4 L145.0,277.4 L149.3,272.7 L153.6,274.3 L157.8,267.9 L162.1,267.6 L166.4,264.2 L170.6,267.7 L174.9,269.0 L179.2,261.8 L183.4,251.6 L187.7,249.1 L192.0,250.1 L196.2,248.8 L200.5,247.2 L204.8,245.0 L209.0,256.0 L213.3,274.5 L217.6,277.2 L221.8,269.8 L226.1,263.2 L230.4,250.4 L234.6,245.9 L238.9,254.6 L243.2,252.6 L247.4,254.1 L251.7,255.1 L256.0,256.6 L260.2,257.5 L264.5,255.9 L268.8,253.2 L273.0,257.7 L277.3,276.2 L281.5,298.0 L285.8,302.4 L290.1,293.7 L294.3,286.1 L298.6,285.4 L302.9,285.5 L307.1,286.9 L311.4,287.7 L315.7,281.7 L319.9,275.2 L324.2,266.0 L328.5,255.1 L332.7,252.9 L337.0,247.3 L341.3,242.3 L345.5,235.4 L349.8,233.0 L354.1,229.7 L358.3,219.4 L362.6,213.6 L366.9,220.5 L371.1,213.7 L375.4,198.4 L379.7,155.5 L383.9,152.8 L388.2,128.8 L392.5,88.6 L396.7,111.1 L401.0,151.7 L405.2,171.0 L409.5,165.8 L413.8,162.3 L418.0,193.6 L422.3,188.4 L426.6,187.3 L430.8,187.8 L435.1,187.1 L439.4,198.1 L443.6,196.3 L447.9,192.4 L452.2,173.5 L456.4,164.6 L460.7,178.7 L465.0,194.2 L469.2,207.0 L473.5,207.7 L477.8,197.6 L482.0,189.8 L486.3,179.0 L490.6,182.4 L494.8,190.9 L499.1,191.4 L503.4,199.8 L507.6,215.4 L511.9,216.4 L516.2,214.4 L520.4,211.8 L524.7,202.8 L529.0,201.3 L533.2,211.4 L537.5,218.3 L541.8,224.8 L546.0,221.0 L550.3,218.0 L554.5,220.2 L558.8,219.7 L563.1,222.0 L567.3,219.7 L571.6,224.6 L575.9,228.0 L580.1,222.5 L584.4,167.8 L588.7,149.3 L592.9,144.6 L597.2,161.0 L601.5,160.1 L605.7,146.3 L610.0,125.9" class="lpen" fill="none" stroke-width="2" stroke-linejoin="round"/>
+<path d="M64.0,266.1 L68.3,273.5 L72.5,272.8 L76.8,266.2 L81.1,259.6 L85.3,252.4 L89.6,254.3 L93.9,259.2 L98.1,257.2 L102.4,254.2 L106.7,253.5 L110.9,249.1 L115.2,242.8 L119.5,240.4 L123.7,240.9 L128.0,241.6 L132.2,243.1 L136.5,245.7 L140.8,250.6 L145.0,249.8 L149.3,246.8 L153.6,246.0 L157.8,242.6 L162.1,242.7 L166.4,240.0 L170.6,238.8 L174.9,241.5 L179.2,237.7 L183.4,228.4 L187.7,220.5 L192.0,218.6 L196.2,217.7 L200.5,216.0 L204.8,214.1 L209.0,215.9 L213.3,222.8 L217.6,228.7 L221.8,230.3 L226.1,229.7 L230.4,228.1 L234.6,225.7 L238.9,225.5 L243.2,226.7 L247.4,227.8 L251.7,228.1 L256.0,227.0 L260.2,226.8 L264.5,223.0 L268.8,218.5 L273.0,220.2 L277.3,227.4 L281.5,241.9 L285.8,245.6 L290.1,243.4 L294.3,241.8 L298.6,243.2 L302.9,245.0 L307.1,248.0 L311.4,251.1 L315.7,250.8 L319.9,248.2 L324.2,244.7 L328.5,237.2 L332.7,228.2 L337.0,223.2 L341.3,218.0 L345.5,211.6 L349.8,207.3 L354.1,204.7 L358.3,197.3 L362.6,190.1 L366.9,188.9 L371.1,185.6 L375.4,177.4 L379.7,136.5 L383.9,117.3 L388.2,110.0 L392.5,85.2 L396.7,77.8 L401.0,99.6 L405.2,112.2 L409.5,119.6 L413.8,123.0 L418.0,139.4 L422.3,148.9 L426.6,151.9 L430.8,158.8 L435.1,160.1 L439.4,165.2 L443.6,170.8 L447.9,175.1 L452.2,165.5 L456.4,153.0 L460.7,146.8 L465.0,151.2 L469.2,158.9 L473.5,163.9 L477.8,162.4 L482.0,159.4 L486.3,152.6 L490.6,151.7 L494.8,156.7 L499.1,160.1 L503.4,166.6 L507.6,173.5 L511.9,177.2 L516.2,178.7 L520.4,179.4 L524.7,176.4 L529.0,172.5 L533.2,174.1 L537.5,182.4 L541.8,192.9 L546.0,194.2 L550.3,194.2 L554.5,196.1 L558.8,197.2 L563.1,195.8 L567.3,194.6 L571.6,190.1 L575.9,192.9 L580.1,192.2 L584.4,157.5 L588.7,118.9 L592.9,113.7 L597.2,122.0 L601.5,130.5 L605.7,119.8 L610.0,108.6" class="lcan" fill="none" stroke-width="2" stroke-linejoin="round"/>
+<text class="t1" x="618.0" y="104.6" font-size="12" font-weight="600">Canarias</text>
+<text class="t1" x="618.0" y="139.9" font-size="12" font-weight="600">Península</text>
+<text class="t1" x="618.0" y="154.9" font-size="12" font-weight="600">y Baleares</text>
+<rect class="hit" x="61.9" y="84" width="4.3" height="276"><title>2016-01: Canarias 0,574 €/L · Península+Baleares 0,465 €/L · diferencia 0,109 €/L</title></rect>
+<rect class="hit" x="66.1" y="84" width="4.3" height="276"><title>2016-02: Canarias 0,545 €/L · Península+Baleares 0,435 €/L · diferencia 0,110 €/L</title></rect>
+<rect class="hit" x="70.4" y="84" width="4.3" height="276"><title>2016-03: Canarias 0,548 €/L · Península+Baleares 0,463 €/L · diferencia 0,085 €/L</title></rect>
+<rect class="hit" x="74.7" y="84" width="4.3" height="276"><title>2016-04: Canarias 0,574 €/L · Península+Baleares 0,492 €/L · diferencia 0,082 €/L</title></rect>
+<rect class="hit" x="78.9" y="84" width="4.3" height="276"><title>2016-05: Canarias 0,600 €/L · Península+Baleares 0,514 €/L · diferencia 0,086 €/L</title></rect>
+<rect class="hit" x="83.2" y="84" width="4.3" height="276"><title>2016-06: Canarias 0,629 €/L · Península+Baleares 0,524 €/L · diferencia 0,104 €/L</title></rect>
+<rect class="hit" x="87.5" y="84" width="4.3" height="276"><title>2016-07: Canarias 0,621 €/L · Península+Baleares 0,498 €/L · diferencia 0,123 €/L</title></rect>
+<rect class="hit" x="91.7" y="84" width="4.3" height="276"><title>2016-08: Canarias 0,602 €/L · Península+Baleares 0,487 €/L · diferencia 0,114 €/L</title></rect>
+<rect class="hit" x="96.0" y="84" width="4.3" height="276"><title>2016-09: Canarias 0,610 €/L · Península+Baleares 0,501 €/L · diferencia 0,109 €/L</title></rect>
+<rect class="hit" x="100.3" y="84" width="4.3" height="276"><title>2016-10: Canarias 0,622 €/L · Península+Baleares 0,524 €/L · diferencia 0,098 €/L</title></rect>
+<rect class="hit" x="104.5" y="84" width="4.3" height="276"><title>2016-11: Canarias 0,624 €/L · Península+Baleares 0,511 €/L · diferencia 0,113 €/L</title></rect>
+<rect class="hit" x="108.8" y="84" width="4.3" height="276"><title>2016-12: Canarias 0,642 €/L · Península+Baleares 0,549 €/L · diferencia 0,092 €/L</title></rect>
+<rect class="hit" x="113.1" y="84" width="4.3" height="276"><title>2017-01: Canarias 0,667 €/L · Península+Baleares 0,574 €/L · diferencia 0,093 €/L</title></rect>
+<rect class="hit" x="117.3" y="84" width="4.3" height="276"><title>2017-02: Canarias 0,677 €/L · Península+Baleares 0,580 €/L · diferencia 0,097 €/L</title></rect>
+<rect class="hit" x="121.6" y="84" width="4.3" height="276"><title>2017-03: Canarias 0,675 €/L · Península+Baleares 0,559 €/L · diferencia 0,116 €/L</title></rect>
+<rect class="hit" x="125.9" y="84" width="4.3" height="276"><title>2017-04: Canarias 0,672 €/L · Península+Baleares 0,575 €/L · diferencia 0,097 €/L</title></rect>
+<rect class="hit" x="130.1" y="84" width="4.3" height="276"><title>2017-05: Canarias 0,666 €/L · Península+Baleares 0,549 €/L · diferencia 0,117 €/L</title></rect>
+<rect class="hit" x="134.4" y="84" width="4.3" height="276"><title>2017-06: Canarias 0,656 €/L · Península+Baleares 0,524 €/L · diferencia 0,131 €/L</title></rect>
+<rect class="hit" x="138.6" y="84" width="4.3" height="276"><title>2017-07: Canarias 0,636 €/L · Península+Baleares 0,517 €/L · diferencia 0,119 €/L</title></rect>
+<rect class="hit" x="142.9" y="84" width="4.3" height="276"><title>2017-08: Canarias 0,639 €/L · Península+Baleares 0,529 €/L · diferencia 0,110 €/L</title></rect>
+<rect class="hit" x="147.2" y="84" width="4.3" height="276"><title>2017-09: Canarias 0,651 €/L · Península+Baleares 0,548 €/L · diferencia 0,103 €/L</title></rect>
+<rect class="hit" x="151.4" y="84" width="4.3" height="276"><title>2017-10: Canarias 0,654 €/L · Península+Baleares 0,542 €/L · diferencia 0,113 €/L</title></rect>
+<rect class="hit" x="155.7" y="84" width="4.3" height="276"><title>2017-11: Canarias 0,668 €/L · Península+Baleares 0,567 €/L · diferencia 0,101 €/L</title></rect>
+<rect class="hit" x="160.0" y="84" width="4.3" height="276"><title>2017-12: Canarias 0,668 €/L · Península+Baleares 0,568 €/L · diferencia 0,099 €/L</title></rect>
+<rect class="hit" x="164.2" y="84" width="4.3" height="276"><title>2018-01: Canarias 0,678 €/L · Península+Baleares 0,582 €/L · diferencia 0,096 €/L</title></rect>
+<rect class="hit" x="168.5" y="84" width="4.3" height="276"><title>2018-02: Canarias 0,683 €/L · Península+Baleares 0,568 €/L · diferencia 0,115 €/L</title></rect>
+<rect class="hit" x="172.8" y="84" width="4.3" height="276"><title>2018-03: Canarias 0,672 €/L · Península+Baleares 0,563 €/L · diferencia 0,110 €/L</title></rect>
+<rect class="hit" x="177.0" y="84" width="4.3" height="276"><title>2018-04: Canarias 0,688 €/L · Península+Baleares 0,591 €/L · diferencia 0,096 €/L</title></rect>
+<rect class="hit" x="181.3" y="84" width="4.3" height="276"><title>2018-05: Canarias 0,724 €/L · Península+Baleares 0,632 €/L · diferencia 0,092 €/L</title></rect>
+<rect class="hit" x="185.6" y="84" width="4.3" height="276"><title>2018-06: Canarias 0,756 €/L · Península+Baleares 0,642 €/L · diferencia 0,114 €/L</title></rect>
+<rect class="hit" x="189.8" y="84" width="4.3" height="276"><title>2018-07: Canarias 0,764 €/L · Península+Baleares 0,638 €/L · diferencia 0,126 €/L</title></rect>
+<rect class="hit" x="194.1" y="84" width="4.3" height="276"><title>2018-08: Canarias 0,767 €/L · Península+Baleares 0,643 €/L · diferencia 0,124 €/L</title></rect>
+<rect class="hit" x="198.4" y="84" width="4.3" height="276"><title>2018-09: Canarias 0,774 €/L · Península+Baleares 0,650 €/L · diferencia 0,124 €/L</title></rect>
+<rect class="hit" x="202.6" y="84" width="4.3" height="276"><title>2018-10: Canarias 0,781 €/L · Península+Baleares 0,658 €/L · diferencia 0,123 €/L</title></rect>
+<rect class="hit" x="206.9" y="84" width="4.3" height="276"><title>2018-11: Canarias 0,774 €/L · Península+Baleares 0,615 €/L · diferencia 0,160 €/L</title></rect>
+<rect class="hit" x="211.2" y="84" width="4.3" height="276"><title>2018-12: Canarias 0,747 €/L · Península+Baleares 0,541 €/L · diferencia 0,206 €/L</title></rect>
+<rect class="hit" x="215.4" y="84" width="4.3" height="276"><title>2019-01: Canarias 0,723 €/L · Península+Baleares 0,530 €/L · diferencia 0,193 €/L</title></rect>
+<rect class="hit" x="219.7" y="84" width="4.3" height="276"><title>2019-02: Canarias 0,717 €/L · Península+Baleares 0,559 €/L · diferencia 0,158 €/L</title></rect>
+<rect class="hit" x="224.0" y="84" width="4.3" height="276"><title>2019-03: Canarias 0,719 €/L · Península+Baleares 0,586 €/L · diferencia 0,133 €/L</title></rect>
+<rect class="hit" x="228.2" y="84" width="4.3" height="276"><title>2019-04: Canarias 0,726 €/L · Península+Baleares 0,637 €/L · diferencia 0,089 €/L</title></rect>
+<rect class="hit" x="232.5" y="84" width="4.3" height="276"><title>2019-05: Canarias 0,735 €/L · Península+Baleares 0,655 €/L · diferencia 0,080 €/L</title></rect>
+<rect class="hit" x="236.8" y="84" width="4.3" height="276"><title>2019-06: Canarias 0,736 €/L · Península+Baleares 0,620 €/L · diferencia 0,116 €/L</title></rect>
+<rect class="hit" x="241.0" y="84" width="4.3" height="276"><title>2019-07: Canarias 0,731 €/L · Península+Baleares 0,628 €/L · diferencia 0,103 €/L</title></rect>
+<rect class="hit" x="245.3" y="84" width="4.3" height="276"><title>2019-08: Canarias 0,727 €/L · Península+Baleares 0,622 €/L · diferencia 0,105 €/L</title></rect>
+<rect class="hit" x="249.6" y="84" width="4.3" height="276"><title>2019-09: Canarias 0,726 €/L · Península+Baleares 0,618 €/L · diferencia 0,108 €/L</title></rect>
+<rect class="hit" x="253.8" y="84" width="4.3" height="276"><title>2019-10: Canarias 0,730 €/L · Península+Baleares 0,612 €/L · diferencia 0,118 €/L</title></rect>
+<rect class="hit" x="258.1" y="84" width="4.3" height="276"><title>2019-11: Canarias 0,731 €/L · Península+Baleares 0,609 €/L · diferencia 0,122 €/L</title></rect>
+<rect class="hit" x="262.4" y="84" width="4.3" height="276"><title>2019-12: Canarias 0,746 €/L · Península+Baleares 0,615 €/L · diferencia 0,131 €/L</title></rect>
+<rect class="hit" x="266.6" y="84" width="4.3" height="276"><title>2020-01: Canarias 0,764 €/L · Península+Baleares 0,626 €/L · diferencia 0,138 €/L</title></rect>
+<rect class="hit" x="270.9" y="84" width="4.3" height="276"><title>2020-02: Canarias 0,757 €/L · Península+Baleares 0,608 €/L · diferencia 0,149 €/L</title></rect>
+<rect class="hit" x="275.1" y="84" width="4.3" height="276"><title>2020-03: Canarias 0,728 €/L · Península+Baleares 0,534 €/L · diferencia 0,194 €/L</title></rect>
+<rect class="hit" x="279.4" y="84" width="4.3" height="276"><title>2020-04: Canarias 0,671 €/L · Península+Baleares 0,447 €/L · diferencia 0,224 €/L</title></rect>
+<rect class="hit" x="283.7" y="84" width="4.3" height="276"><title>2020-05: Canarias 0,656 €/L · Península+Baleares 0,429 €/L · diferencia 0,227 €/L</title></rect>
+<rect class="hit" x="287.9" y="84" width="4.3" height="276"><title>2020-06: Canarias 0,665 €/L · Península+Baleares 0,464 €/L · diferencia 0,201 €/L</title></rect>
+<rect class="hit" x="292.2" y="84" width="4.3" height="276"><title>2020-07: Canarias 0,671 €/L · Península+Baleares 0,495 €/L · diferencia 0,176 €/L</title></rect>
+<rect class="hit" x="296.5" y="84" width="4.3" height="276"><title>2020-08: Canarias 0,665 €/L · Península+Baleares 0,497 €/L · diferencia 0,168 €/L</title></rect>
+<rect class="hit" x="300.7" y="84" width="4.3" height="276"><title>2020-09: Canarias 0,658 €/L · Península+Baleares 0,497 €/L · diferencia 0,161 €/L</title></rect>
+<rect class="hit" x="305.0" y="84" width="4.3" height="276"><title>2020-10: Canarias 0,646 €/L · Península+Baleares 0,492 €/L · diferencia 0,155 €/L</title></rect>
+<rect class="hit" x="309.3" y="84" width="4.3" height="276"><title>2020-11: Canarias 0,634 €/L · Península+Baleares 0,488 €/L · diferencia 0,146 €/L</title></rect>
+<rect class="hit" x="313.5" y="84" width="4.3" height="276"><title>2020-12: Canarias 0,635 €/L · Península+Baleares 0,512 €/L · diferencia 0,123 €/L</title></rect>
+<rect class="hit" x="317.8" y="84" width="4.3" height="276"><title>2021-01: Canarias 0,646 €/L · Península+Baleares 0,538 €/L · diferencia 0,108 €/L</title></rect>
+<rect class="hit" x="322.1" y="84" width="4.3" height="276"><title>2021-02: Canarias 0,660 €/L · Península+Baleares 0,575 €/L · diferencia 0,085 €/L</title></rect>
+<rect class="hit" x="326.3" y="84" width="4.3" height="276"><title>2021-03: Canarias 0,689 €/L · Península+Baleares 0,618 €/L · diferencia 0,071 €/L</title></rect>
+<rect class="hit" x="330.6" y="84" width="4.3" height="276"><title>2021-04: Canarias 0,725 €/L · Península+Baleares 0,627 €/L · diferencia 0,099 €/L</title></rect>
+<rect class="hit" x="334.9" y="84" width="4.3" height="276"><title>2021-05: Canarias 0,745 €/L · Península+Baleares 0,649 €/L · diferencia 0,096 €/L</title></rect>
+<rect class="hit" x="339.1" y="84" width="4.3" height="276"><title>2021-06: Canarias 0,766 €/L · Península+Baleares 0,669 €/L · diferencia 0,097 €/L</title></rect>
+<rect class="hit" x="343.4" y="84" width="4.3" height="276"><title>2021-07: Canarias 0,791 €/L · Península+Baleares 0,697 €/L · diferencia 0,095 €/L</title></rect>
+<rect class="hit" x="347.7" y="84" width="4.3" height="276"><title>2021-08: Canarias 0,809 €/L · Península+Baleares 0,706 €/L · diferencia 0,102 €/L</title></rect>
+<rect class="hit" x="351.9" y="84" width="4.3" height="276"><title>2021-09: Canarias 0,819 €/L · Península+Baleares 0,719 €/L · diferencia 0,100 €/L</title></rect>
+<rect class="hit" x="356.2" y="84" width="4.3" height="276"><title>2021-10: Canarias 0,848 €/L · Península+Baleares 0,760 €/L · diferencia 0,088 €/L</title></rect>
+<rect class="hit" x="360.5" y="84" width="4.3" height="276"><title>2021-11: Canarias 0,877 €/L · Península+Baleares 0,783 €/L · diferencia 0,094 €/L</title></rect>
+<rect class="hit" x="364.7" y="84" width="4.3" height="276"><title>2021-12: Canarias 0,882 €/L · Península+Baleares 0,756 €/L · diferencia 0,126 €/L</title></rect>
+<rect class="hit" x="369.0" y="84" width="4.3" height="276"><title>2022-01: Canarias 0,895 €/L · Península+Baleares 0,783 €/L · diferencia 0,112 €/L</title></rect>
+<rect class="hit" x="373.3" y="84" width="4.3" height="276"><title>2022-02: Canarias 0,928 €/L · Península+Baleares 0,844 €/L · diferencia 0,084 €/L</title></rect>
+<rect class="hit" x="377.5" y="84" width="4.3" height="276"><title>2022-03: Canarias 1,091 €/L · Península+Baleares 1,015 €/L · diferencia 0,075 €/L</title></rect>
+<rect class="hit" x="381.8" y="84" width="4.3" height="276"><title>2022-04: Canarias 1,167 €/L · Península+Baleares 1,026 €/L · diferencia 0,142 €/L</title></rect>
+<rect class="hit" x="386.1" y="84" width="4.3" height="276"><title>2022-05: Canarias 1,197 €/L · Península+Baleares 1,121 €/L · diferencia 0,075 €/L</title></rect>
+<rect class="hit" x="390.3" y="84" width="4.3" height="276"><title>2022-06: Canarias 1,295 €/L · Península+Baleares 1,282 €/L · diferencia 0,014 €/L</title></rect>
+<rect class="hit" x="394.6" y="84" width="4.3" height="276"><title>2022-07: Canarias 1,325 €/L · Península+Baleares 1,192 €/L · diferencia 0,133 €/L</title></rect>
+<rect class="hit" x="398.9" y="84" width="4.3" height="276"><title>2022-08: Canarias 1,238 €/L · Península+Baleares 1,030 €/L · diferencia 0,208 €/L</title></rect>
+<rect class="hit" x="403.1" y="84" width="4.3" height="276"><title>2022-09: Canarias 1,188 €/L · Península+Baleares 0,953 €/L · diferencia 0,234 €/L</title></rect>
+<rect class="hit" x="407.4" y="84" width="4.3" height="276"><title>2022-10: Canarias 1,158 €/L · Península+Baleares 0,974 €/L · diferencia 0,184 €/L</title></rect>
+<rect class="hit" x="411.6" y="84" width="4.3" height="276"><title>2022-11: Canarias 1,145 €/L · Península+Baleares 0,988 €/L · diferencia 0,157 €/L</title></rect>
+<rect class="hit" x="415.9" y="84" width="4.3" height="276"><title>2022-12: Canarias 1,079 €/L · Península+Baleares 0,863 €/L · diferencia 0,216 €/L</title></rect>
+<rect class="hit" x="420.2" y="84" width="4.3" height="276"><title>2023-01: Canarias 1,042 €/L · Península+Baleares 0,884 €/L · diferencia 0,157 €/L</title></rect>
+<rect class="hit" x="424.4" y="84" width="4.3" height="276"><title>2023-02: Canarias 1,029 €/L · Península+Baleares 0,888 €/L · diferencia 0,141 €/L</title></rect>
+<rect class="hit" x="428.7" y="84" width="4.3" height="276"><title>2023-03: Canarias 1,002 €/L · Península+Baleares 0,886 €/L · diferencia 0,116 €/L</title></rect>
+<rect class="hit" x="433.0" y="84" width="4.3" height="276"><title>2023-04: Canarias 0,997 €/L · Península+Baleares 0,889 €/L · diferencia 0,108 €/L</title></rect>
+<rect class="hit" x="437.2" y="84" width="4.3" height="276"><title>2023-05: Canarias 0,976 €/L · Península+Baleares 0,845 €/L · diferencia 0,131 €/L</title></rect>
+<rect class="hit" x="441.5" y="84" width="4.3" height="276"><title>2023-06: Canarias 0,954 €/L · Península+Baleares 0,852 €/L · diferencia 0,102 €/L</title></rect>
+<rect class="hit" x="445.8" y="84" width="4.3" height="276"><title>2023-07: Canarias 0,937 €/L · Península+Baleares 0,868 €/L · diferencia 0,069 €/L</title></rect>
+<rect class="hit" x="450.0" y="84" width="4.3" height="276"><title>2023-08: Canarias 0,975 €/L · Península+Baleares 0,943 €/L · diferencia 0,032 €/L</title></rect>
+<rect class="hit" x="454.3" y="84" width="4.3" height="276"><title>2023-09: Canarias 1,025 €/L · Península+Baleares 0,979 €/L · diferencia 0,046 €/L</title></rect>
+<rect class="hit" x="458.6" y="84" width="4.3" height="276"><title>2023-10: Canarias 1,050 €/L · Península+Baleares 0,923 €/L · diferencia 0,127 €/L</title></rect>
+<rect class="hit" x="462.8" y="84" width="4.3" height="276"><title>2023-11: Canarias 1,032 €/L · Península+Baleares 0,861 €/L · diferencia 0,171 €/L</title></rect>
+<rect class="hit" x="467.1" y="84" width="4.3" height="276"><title>2023-12: Canarias 1,002 €/L · Península+Baleares 0,810 €/L · diferencia 0,192 €/L</title></rect>
+<rect class="hit" x="471.4" y="84" width="4.3" height="276"><title>2024-01: Canarias 0,981 €/L · Península+Baleares 0,807 €/L · diferencia 0,174 €/L</title></rect>
+<rect class="hit" x="475.6" y="84" width="4.3" height="276"><title>2024-02: Canarias 0,987 €/L · Península+Baleares 0,847 €/L · diferencia 0,140 €/L</title></rect>
+<rect class="hit" x="479.9" y="84" width="4.3" height="276"><title>2024-03: Canarias 0,999 €/L · Península+Baleares 0,878 €/L · diferencia 0,121 €/L</title></rect>
+<rect class="hit" x="484.2" y="84" width="4.3" height="276"><title>2024-04: Canarias 1,026 €/L · Península+Baleares 0,921 €/L · diferencia 0,105 €/L</title></rect>
+<rect class="hit" x="488.4" y="84" width="4.3" height="276"><title>2024-05: Canarias 1,030 €/L · Península+Baleares 0,908 €/L · diferencia 0,122 €/L</title></rect>
+<rect class="hit" x="492.7" y="84" width="4.3" height="276"><title>2024-06: Canarias 1,010 €/L · Península+Baleares 0,874 €/L · diferencia 0,136 €/L</title></rect>
+<rect class="hit" x="497.0" y="84" width="4.3" height="276"><title>2024-07: Canarias 0,997 €/L · Península+Baleares 0,872 €/L · diferencia 0,124 €/L</title></rect>
+<rect class="hit" x="501.2" y="84" width="4.3" height="276"><title>2024-08: Canarias 0,971 €/L · Península+Baleares 0,838 €/L · diferencia 0,133 €/L</title></rect>
+<rect class="hit" x="505.5" y="84" width="4.3" height="276"><title>2024-09: Canarias 0,943 €/L · Península+Baleares 0,776 €/L · diferencia 0,167 €/L</title></rect>
+<rect class="hit" x="509.8" y="84" width="4.3" height="276"><title>2024-10: Canarias 0,929 €/L · Península+Baleares 0,772 €/L · diferencia 0,156 €/L</title></rect>
+<rect class="hit" x="514.0" y="84" width="4.3" height="276"><title>2024-11: Canarias 0,923 €/L · Península+Baleares 0,780 €/L · diferencia 0,143 €/L</title></rect>
+<rect class="hit" x="518.3" y="84" width="4.3" height="276"><title>2024-12: Canarias 0,920 €/L · Península+Baleares 0,791 €/L · diferencia 0,129 €/L</title></rect>
+<rect class="hit" x="522.6" y="84" width="4.3" height="276"><title>2025-01: Canarias 0,932 €/L · Península+Baleares 0,826 €/L · diferencia 0,105 €/L</title></rect>
+<rect class="hit" x="526.8" y="84" width="4.3" height="276"><title>2025-02: Canarias 0,947 €/L · Península+Baleares 0,832 €/L · diferencia 0,115 €/L</title></rect>
+<rect class="hit" x="531.1" y="84" width="4.3" height="276"><title>2025-03: Canarias 0,941 €/L · Península+Baleares 0,792 €/L · diferencia 0,149 €/L</title></rect>
+<rect class="hit" x="535.4" y="84" width="4.3" height="276"><title>2025-04: Canarias 0,908 €/L · Península+Baleares 0,765 €/L · diferencia 0,143 €/L</title></rect>
+<rect class="hit" x="539.6" y="84" width="4.3" height="276"><title>2025-05: Canarias 0,866 €/L · Península+Baleares 0,739 €/L · diferencia 0,127 €/L</title></rect>
+<rect class="hit" x="543.9" y="84" width="4.3" height="276"><title>2025-06: Canarias 0,861 €/L · Península+Baleares 0,754 €/L · diferencia 0,107 €/L</title></rect>
+<rect class="hit" x="548.1" y="84" width="4.3" height="276"><title>2025-07: Canarias 0,861 €/L · Península+Baleares 0,766 €/L · diferencia 0,095 €/L</title></rect>
+<rect class="hit" x="552.4" y="84" width="4.3" height="276"><title>2025-08: Canarias 0,853 €/L · Península+Baleares 0,757 €/L · diferencia 0,096 €/L</title></rect>
+<rect class="hit" x="556.7" y="84" width="4.3" height="276"><title>2025-09: Canarias 0,849 €/L · Península+Baleares 0,759 €/L · diferencia 0,090 €/L</title></rect>
+<rect class="hit" x="560.9" y="84" width="4.3" height="276"><title>2025-10: Canarias 0,854 €/L · Península+Baleares 0,750 €/L · diferencia 0,104 €/L</title></rect>
+<rect class="hit" x="565.2" y="84" width="4.3" height="276"><title>2025-11: Canarias 0,859 €/L · Península+Baleares 0,759 €/L · diferencia 0,100 €/L</title></rect>
+<rect class="hit" x="569.5" y="84" width="4.3" height="276"><title>2025-12: Canarias 0,877 €/L · Península+Baleares 0,740 €/L · diferencia 0,137 €/L</title></rect>
+<rect class="hit" x="573.7" y="84" width="4.3" height="276"><title>2026-01: Canarias 0,866 €/L · Península+Baleares 0,726 €/L · diferencia 0,140 €/L</title></rect>
+<rect class="hit" x="578.0" y="84" width="4.3" height="276"><title>2026-02: Canarias 0,869 €/L · Península+Baleares 0,748 €/L · diferencia 0,121 €/L</title></rect>
+<rect class="hit" x="582.3" y="84" width="4.3" height="276"><title>2026-03: Canarias 1,007 €/L · Península+Baleares 0,966 €/L · diferencia 0,041 €/L</title></rect>
+<rect class="hit" x="586.5" y="84" width="4.3" height="276"><title>2026-04: Canarias 1,161 €/L · Península+Baleares 1,040 €/L · diferencia 0,121 €/L</title></rect>
+<rect class="hit" x="590.8" y="84" width="4.3" height="276"><title>2026-05: Canarias 1,182 €/L · Península+Baleares 1,059 €/L · diferencia 0,123 €/L</title></rect>
+<rect class="hit" x="595.1" y="84" width="4.3" height="276"><title>2026-06: Canarias 1,148 €/L · Península+Baleares 0,993 €/L · diferencia 0,155 €/L</title></rect>
+<rect class="hit" x="599.3" y="84" width="4.3" height="276"><title>2026-07: Canarias 1,115 €/L · Península+Baleares 0,997 €/L · diferencia 0,118 €/L</title></rect>
+<rect class="hit" x="603.6" y="84" width="4.3" height="276"><title>2026-08: Canarias 1,157 €/L · Península+Baleares 1,052 €/L · diferencia 0,106 €/L</title></rect>
+<rect class="hit" x="607.9" y="84" width="4.3" height="276"><title>2026-09: Canarias 1,202 €/L · Península+Baleares 1,133 €/L · diferencia 0,069 €/L</title></rect>
+<text class="t1" x="238.9" y="211.5" font-size="12" text-anchor="middle">Diferencia media 2016–2026: 0,121 €/L</text>
+<text class="t3" x="24" y="404" font-size="11">Fuente: CNMC, precios diarios provinciales; medias ponderadas por estaciones con precio (MITECO). Elaboración propia.</text>
+</svg>

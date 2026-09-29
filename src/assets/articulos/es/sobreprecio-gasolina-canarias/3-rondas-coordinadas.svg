@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 472" role="img" aria-label="Suben juntas, bajan por separado">
+<style>
+svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --grid:#e6e5e0;
+      --can:#eb6834; --pen:#2a78d6; --band:#eb683426; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+@media (prefers-color-scheme: dark) {
+  svg { --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86; --grid:#33332f;
+        --can:#d95926; --pen:#3987e5; --band:#d9592633; }
+}
+.bg { fill: var(--surface); } .t1 { fill: var(--ink); } .t2 { fill: var(--ink2); } .t3 { fill: var(--muted); }
+.grid { stroke: var(--grid); stroke-width: 1; } .axis { stroke: var(--muted); stroke-width: 1; }
+.can { fill: var(--can); } .pen { fill: var(--pen); } .lcan { stroke: var(--can); } .lpen { stroke: var(--pen); }
+.hit { fill: transparent; } .hit:hover + .dot, .bar:hover { opacity: .8; }
+</style>
+<rect class="bg" width="760" height="472" rx="8"/>
+<text class="t1" x="24" y="34" font-size="18" font-weight="600">Suben juntas, bajan por separado</text>
+<text class="t2" x="24" y="56" font-size="13">Subidas conjuntas por cada bajada conjunta de las grandes marcas, 2021–2026</text>
+<rect class="can" x="130" y="70" width="10" height="10" rx="2"/><text class="t2" x="146" y="79" font-size="12">Islas canarias</text>
+<rect class="pen" x="260" y="70" width="10" height="10" rx="2"/><text class="t2" x="276" y="79" font-size="12">Provincias peninsulares y Baleares</text>
+<line class="grid" x1="130.0" x2="130.0" y1="92" y2="422"/>
+<text class="t3" x="130.0" y="436" font-size="11" text-anchor="middle">0</text>
+<line class="grid" x1="242.0" x2="242.0" y1="92" y2="422"/>
+<text class="t3" x="242.0" y="436" font-size="11" text-anchor="middle">2</text>
+<line class="grid" x1="354.0" x2="354.0" y1="92" y2="422"/>
+<text class="t3" x="354.0" y="436" font-size="11" text-anchor="middle">4</text>
+<line class="grid" x1="466.0" x2="466.0" y1="92" y2="422"/>
+<text class="t3" x="466.0" y="436" font-size="11" text-anchor="middle">6</text>
+<line class="grid" x1="578.0" x2="578.0" y1="92" y2="422"/>
+<text class="t3" x="578.0" y="436" font-size="11" text-anchor="middle">8</text>
+<line class="grid" x1="690.0" x2="690.0" y1="92" y2="422"/>
+<text class="t3" x="690.0" y="436" font-size="11" text-anchor="middle">10</text>
+<line class="axis" x1="186.0" x2="186.0" y1="92" y2="422" stroke-dasharray="3 3"/>
+<text class="t2" x="190.0" y="418" font-size="11">1 = tantas subidas como bajadas</text>
+<text class="t1" x="120" y="111.0" font-size="13" font-weight="600" text-anchor="end">Tenerife</text>
+<path class="can bar" d="M130,96 h500.0 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-500.0 z"><title>Tenerife: 27 subidas y 3 bajadas conjuntas</title></path>
+<text class="t1" x="640.0" y="111.0" font-size="12">9,0  <tspan class="t3" font-size="11">(27 / 3)</tspan></text>
+<text class="t1" x="120" y="143.0" font-size="13" font-weight="600" text-anchor="end">Gran Canaria</text>
+<path class="can bar" d="M130,128 h133.5 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-133.5 z"><title>Gran Canaria: 27 subidas y 11 bajadas conjuntas</title></path>
+<text class="t1" x="273.5" y="143.0" font-size="12">2,5  <tspan class="t3" font-size="11">(27 / 11)</tspan></text>
+<text class="t1" x="120" y="175.0" font-size="13" font-weight="400" text-anchor="end">A Coruña</text>
+<path class="pen bar" d="M130,160 h116.0 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-116.0 z"><title>A Coruña: 30 subidas y 14 bajadas conjuntas</title></path>
+<text class="t1" x="256.0" y="175.0" font-size="12">2,1  <tspan class="t3" font-size="11">(30 / 14)</tspan></text>
+<text class="t1" x="120" y="207.0" font-size="13" font-weight="400" text-anchor="end">Sevilla</text>
+<path class="pen bar" d="M130,192 h102.4 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-102.4 z"><title>Sevilla: 57 subidas y 30 bajadas conjuntas</title></path>
+<text class="t1" x="242.4" y="207.0" font-size="12">1,9  <tspan class="t3" font-size="11">(57 / 30)</tspan></text>
+<text class="t1" x="120" y="239.0" font-size="13" font-weight="400" text-anchor="end">Baleares</text>
+<path class="pen bar" d="M130,224 h75.8 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-75.8 z"><title>Baleares: 67 subidas y 47 bajadas conjuntas</title></path>
+<text class="t1" x="215.8" y="239.0" font-size="12">1,4  <tspan class="t3" font-size="11">(67 / 47)</tspan></text>
+<text class="t1" x="120" y="271.0" font-size="13" font-weight="400" text-anchor="end">Málaga</text>
+<path class="pen bar" d="M130,256 h75.0 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-75.0 z"><title>Málaga: 103 subidas y 73 bajadas conjuntas</title></path>
+<text class="t1" x="215.0" y="271.0" font-size="12">1,4  <tspan class="t3" font-size="11">(103 / 73)</tspan></text>
+<text class="t1" x="120" y="303.0" font-size="13" font-weight="400" text-anchor="end">Zaragoza</text>
+<path class="pen bar" d="M130,288 h73.4 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-73.4 z"><title>Zaragoza: 105 subidas y 76 bajadas conjuntas</title></path>
+<text class="t1" x="213.4" y="303.0" font-size="12">1,4  <tspan class="t3" font-size="11">(105 / 76)</tspan></text>
+<text class="t1" x="120" y="335.0" font-size="13" font-weight="400" text-anchor="end">Murcia</text>
+<path class="pen bar" d="M130,320 h71.9 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-71.9 z"><title>Murcia: 84 subidas y 62 bajadas conjuntas</title></path>
+<text class="t1" x="211.9" y="335.0" font-size="12">1,4  <tspan class="t3" font-size="11">(84 / 62)</tspan></text>
+<text class="t1" x="120" y="367.0" font-size="13" font-weight="400" text-anchor="end">Asturias</text>
+<path class="pen bar" d="M130,352 h68.4 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-68.4 z"><title>Asturias: 119 subidas y 92 bajadas conjuntas</title></path>
+<text class="t1" x="208.4" y="367.0" font-size="12">1,3  <tspan class="t3" font-size="11">(119 / 92)</tspan></text>
+<text class="t1" x="120" y="399.0" font-size="13" font-weight="600" text-anchor="end">Lanzarote</text>
+<path class="can bar" d="M130,384 h64.4 a4,4 0 0 1 4,4 v14 a4,4 0 0 1 -4,4 h-64.4 z"><title>Lanzarote: 22 subidas y 18 bajadas conjuntas</title></path>
+<text class="t1" x="204.4" y="399.0" font-size="12">1,2  <tspan class="t3" font-size="11">(22 / 18)</tspan></text>
+<text class="t3" x="24" y="456" font-size="11">Marcas: BP, Cepsa/Moeve, Repsol y Shell. Fuente: MITECO, precios diarios por estación. Elaboración propia.</text>
+</svg>
