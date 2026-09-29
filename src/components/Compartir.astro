@@ -1,0 +1,122 @@
+---
+/**
+ * Enlaces para compartir un artículo. Son enlaces normales a cada red: no se
+ * carga ningún script ni botón externo, así que nadie rastrea a quien lee.
+ * «Copiar enlace» y el menú del móvil (navigator.share) usan un script mínimo
+ * propio; sin JavaScript, esos dos botones no aparecen.
+ */
+import type { Idioma } from '../lib/sitio';
+import { t } from '../i18n/textos';
+
+interface Props {
+  url: string;
+  titulo: string;
+  idioma: Idioma;
+}
+
+const { url, titulo, idioma } = Astro.props;
+const textos = t(idioma);
+const u = encodeURIComponent(url);
+const tx = encodeURIComponent(titulo);
+const texto = encodeURIComponent(`${titulo} ${url}`);
+
+const redes = [
+  { nombre: 'WhatsApp', href: `https://wa.me/?text=${texto}` },
+  { nombre: 'Telegram', href: `https://t.me/share/url?url=${u}&text=${tx}` },
+  { nombre: 'Facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+  { nombre: 'X', href: `https://x.com/intent/post?url=${u}&text=${tx}` },
+  { nombre: 'Bluesky', href: `https://bsky.app/intent/compose?text=${texto}` },
+  { nombre: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { nombre: textos.compartirPorCorreo, href: `mailto:?subject=${tx}&body=${u}` },
+];
+---
+
+<div class="compartir" data-compartir data-url={url} data-titulo={titulo}>
+  <p class="rotulo">{textos.compartir}</p>
+  <ul>
+    <li class="solo-js" hidden>
+      <button type="button" data-nativo>{textos.compartir}…</button>
+    </li>
+    {
+      redes.map((r) => (
+        <li>
+          <a href={r.href} target="_blank" rel="noopener noreferrer">
+            {r.nombre}
+          </a>
+        </li>
+      ))
+    }
+    <li class="solo-js" hidden>
+      <button type="button" data-copiar data-hecho={textos.enlaceCopiado}>{textos.copiarEnlace}</button>
+    </li>
+  </ul>
+</div>
+
+<script>
+  for (const caja of document.querySelectorAll<HTMLElement>('[data-compartir]')) {
+    const url = caja.dataset.url ?? location.href;
+    const titulo = caja.dataset.titulo ?? document.title;
+    const nativo = caja.querySelector<HTMLButtonElement>('[data-nativo]');
+    const copiar = caja.querySelector<HTMLButtonElement>('[data-copiar]');
+    if (nativo && 'share' in navigator) {
+      nativo.parentElement!.hidden = false;
+      nativo.addEventListener('click', () => navigator.share({ title: titulo, url }).catch(() => {}));
+    }
+    if (copiar && navigator.clipboard) {
+      copiar.parentElement!.hidden = false;
+      const original = copiar.textContent;
+      copiar.addEventListener('click', async () => {
+        await navigator.clipboard.writeText(url);
+        copiar.textContent = copiar.dataset.hecho ?? original;
+        setTimeout(() => (copiar.textContent = original), 2000);
+      });
+    }
+  }
+</script>
+
+<style>
+  .compartir {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-block: 1.25rem !important;
+  }
+  .rotulo {
+    margin: 0 !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--tinta-2);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    margin: 0 !important;
+  }
+  a,
+  button {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+    background: none;
+    color: var(--tinta-2);
+    font: inherit;
+    font-size: 0.85rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover,
+  button:hover,
+  a:focus-visible,
+  button:focus-visible {
+    border-color: var(--acento);
+    color: var(--acento);
+  }
+</style>
