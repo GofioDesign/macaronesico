@@ -1,0 +1,27 @@
+titulo: 'Gasolina 95 en Canarias: litros vendidos y lo que suma la diferencia de precio antes de impuestos (2016-2026)'
+descripcion: >-
+  Litros de gasolina 95 vendidos en Canarias cada año, diferencia media del
+  precio antes de impuestos con Península y Baleares e importe que resulta de
+  multiplicar ambos mes a mes.
+fuente: CORES (consumos mensuales por provincia) y CNMC (precios diarios provinciales)
+url: https://www.cores.es/
+fecha: 2026-09-29
+licencia: Datos de CORES y CNMC; elaboración de macaronesico (CC BY 4.0)
+notas: >-
+  Toneladas mensuales de CORES convertidas a litros con 0,745 kg/L. Para cada
+  mes se multiplica el volumen por la diferencia media de PAI; la diferencia
+  anual está ponderada por litros. El importe es bruto: no es beneficio
+  empresarial. 2026 incluye nueve meses de volumen y precios hasta el 22/09.
+csv: |
+  Año,Meses,Litros vendidos,Diferencia media (€/L),Importe asociado (€)
+  2016,12,498159154,0.1021,50853622
+  2017,12,511453047,0.1081,55307993
+  2018,12,529844040,0.1241,65757583
+  2019,12,531624913,0.1212,64421789
+  2020,12,408353369,0.164,66967890
+  2021,12,489476886,0.0969,47426213
+  2022,12,551607826,0.1385,76373630
+  2023,12,569601356,0.1161,66111802
+  2024,12,597194336,0.1376,82170807
+  2025,12,609465611,0.114,69456478
+  2026,9,358102805,0.1167,41788562

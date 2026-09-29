@@ -1,0 +1,25 @@
+titulo: 'Beneficio neto consolidado de DISA Corporación (2016-2025)'
+descripcion: >-
+  Beneficio neto consolidado anual de DISA Corporación Petrolífera, en
+  millones de euros, según las cifras publicadas por prensa a partir de sus
+  cuentas depositadas.
+fuente: Atlántico Hoy, a partir de las cuentas anuales de DISA Corporación Petrolífera
+url: https://www.atlanticohoy.com/empresas/gigante-petrolero-canario-disa-facturacion-2021_1510052_102.html
+fecha: 2026-09-29
+licencia: Cifras publicadas por prensa; recopilación de macaronesico
+notas: >-
+  Cifras de todo el grupo, incluidas bebidas y negocios fuera de Canarias. No
+  contrastadas con el Registro Mercantil. 2016-2021, Atlántico Hoy (8/11/2022);
+  2022-2024, Atlántico Hoy (2/11/2025); 2025, Atlántico Hoy (31/08/2026).
+csv: |
+  Año,Beneficio neto (millones de €)
+  2016,123
+  2017,128
+  2018,134
+  2019,168
+  2020,1.4
+  2021,100
+  2022,166
+  2023,173
+  2024,201
+  2025,175

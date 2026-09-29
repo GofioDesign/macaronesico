@@ -1,0 +1,20 @@
+titulo: 'Precio medio de la gasolina 95 por isla (2025)'
+descripcion: >-
+  Precio medio de venta al público de la gasolina 95 E5 en cada isla canaria
+  durante 2025, en euros por litro.
+fuente: Ministerio para la Transición Ecológica (MITECO), precios diarios por estación de servicio
+url: https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/
+fecha: 2026-09-29
+licencia: Datos de MITECO; elaboración de macaronesico (CC BY 4.0)
+notas: >-
+  Media de todas las observaciones diarias de 2025, ponderando cada estación
+  por los días con precio publicado. Cada municipio se asigna a su isla.
+csv: |
+  Isla,Precio medio 2025 (€/L)
+  Lanzarote,1.145
+  Gran Canaria,1.156
+  Tenerife,1.166
+  Fuerteventura,1.253
+  La Palma,1.331
+  La Gomera,1.409
+  El Hierro,1.434
