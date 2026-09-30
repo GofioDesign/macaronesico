@@ -1,0 +1,25 @@
+titulo: 'Lo que suma cada año la diferencia de precio antes de impuestos en Canarias, por carburante (2016-2025)'
+descripcion: >-
+  Importe anual que resulta de multiplicar los litros vendidos en Canarias por
+  la diferencia del precio antes de impuestos con la Península y Baleares, para
+  gasolina 95, gasolina 98 y diésel vendido en gasolineras.
+fuente: CNMC (precios diarios provinciales) y CORES (consumos mensuales por provincia)
+url: https://www.cores.es/
+fecha: 2026-09-30
+licencia: Datos de CNMC y CORES; elaboración de macaronesico (CC BY 4.0)
+notas: >-
+  Cálculo mensual: litros de CORES por diferencia media de PAI de la CNMC. El
+  diésel se limita al 73 % que se vende en gasolineras (CNMC, IS/DE/010/20,
+  pág. 5). Importes brutos: no son beneficio empresarial.
+csv: |
+  Año,Gasolina 95 (millones de €),Gasolina 98 (millones de €),Diésel en gasolineras (millones de €),Total (millones de €)
+  2016,50.9,22.7,40.5,114.1
+  2017,55.3,26.4,39.5,121.2
+  2018,65.8,29.9,41.6,137.2
+  2019,64.4,28.3,48.3,141.1
+  2020,67.0,28.2,65.5,160.6
+  2021,47.4,19.8,45.0,112.2
+  2022,76.4,21.2,41.2,138.8
+  2023,66.1,17.4,72.7,156.2
+  2024,82.2,20.3,87.4,189.8
+  2025,69.5,17.6,58.6,145.7

@@ -1,0 +1,23 @@
+titulo: 'Diferencia del precio antes de impuestos con la Península y Baleares, por isla y carburante (2025)'
+descripcion: >-
+  Cuánto más caro es cada litro antes de impuestos en cada isla canaria que en
+  la Península y Baleares, para gasolina 95, gasolina 98 y diésel, en 2025.
+fuente: MITECO (precios diarios por estación) y CNMC (precios provinciales)
+url: https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/
+fecha: 2026-09-30
+licencia: Datos de MITECO y CNMC; elaboración de macaronesico (CC BY 4.0)
+notas: >-
+  Precio medio de venta de 2025 en cada isla (todas las observaciones diarias
+  de cada estación) menos los impuestos canarios de cada carburante: 0,292 €/L
+  en las gasolinas y 0,248 €/L en el gasóleo A, 0,0121 €/L menos en La Gomera
+  y El Hierro. Se compara con el PAI medio de 2025 de Península y Baleares
+  según la CNMC (0,770 €/L la 95, 0,888 €/L la 98 y 0,807 €/L el gasóleo A).
+csv: |
+  Isla,Gasolina 95 (€/L),Gasolina 98 (€/L),Diésel (€/L)
+  Lanzarote,0.082,0.098,0.083
+  Gran Canaria,0.094,0.126,0.098
+  Tenerife,0.104,0.107,0.097
+  Fuerteventura,0.191,0.182,0.091
+  La Palma,0.269,0.271,0.244
+  La Gomera,0.359,0.339,0.350
+  El Hierro,0.385,0.401,0.409
