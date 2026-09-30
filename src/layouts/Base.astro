@@ -44,10 +44,16 @@ const {
 const tituloCompleto = titulo ? `${titulo} · ${SITIO.nombre}` : `${SITIO.nombre} · ${SITIO.lema}`;
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 
+// Facebook solo muestra la imagen al primer intento si conoce su tamaño y tipo.
 let imagenSocial = new URL('/og.png', Astro.site).href;
+let imagenSocialTipo = 'image/png';
+let imagenSocialAncho = 1200;
+let imagenSocialAlto = 630;
 if (imagen) {
   const optimizada = await getImage({ src: imagen, width: 1200, format: 'jpeg', quality: 80 });
   imagenSocial = new URL(optimizada.src, Astro.site).href;
+  imagenSocialTipo = 'image/jpeg';
+  imagenSocialAlto = Math.round((1200 * imagen.height) / imagen.width);
 }
 
 const organizacion = {
@@ -106,10 +112,15 @@ const textos = t(idioma);
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content={canonica} />
     <meta property="og:image" content={imagenSocial} />
+    <meta property="og:image:secure_url" content={imagenSocial} />
+    <meta property="og:image:type" content={imagenSocialTipo} />
+    <meta property="og:image:width" content={String(imagenSocialAncho)} />
+    <meta property="og:image:height" content={String(imagenSocialAlto)} />
     {imagenAlt && <meta property="og:image:alt" content={imagenAlt} />}
     {publicado && <meta property="article:published_time" content={publicado.toISOString()} />}
     {modificado && <meta property="article:modified_time" content={modificado.toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={imagenSocial} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
