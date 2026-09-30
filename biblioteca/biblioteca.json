@@ -1,0 +1,2426 @@
+[
+  {
+    "id": "aguilar-2011-ecologia",
+    "type": "article-journal",
+    "title": "Ecología y evolución de las plantas ornitófilas de Macaronesia",
+    "author": [
+      {
+        "family": "Aguilar",
+        "given": "Javier"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/32601053",
+    "language": "es"
+  },
+  {
+    "id": "ait-sf-restos",
+    "type": "document",
+    "title": "Restos de Ánforas romanas/romanizadas en Aguas de Canarias",
+    "author": [
+      {
+        "family": "Ait Anaga",
+        "given": "Rukaden"
+      }
+    ],
+    "URL": "https://www.academia.edu/11436157",
+    "language": "es"
+  },
+  {
+    "id": "aleman-sf-comercio",
+    "type": "article-journal",
+    "title": "El Comercio Entre La Palma y Las Canarias Occidentales, 1600-1650",
+    "author": [
+      {
+        "family": "Alemán Ruiz",
+        "given": "Esteban"
+      }
+    ],
+    "URL": "https://www.academia.edu/74479099",
+    "language": "es"
+  },
+  {
+    "id": "alvarez-sf-marca",
+    "type": "article-journal",
+    "title": "La marca turística de los municipios de Santa Cruz",
+    "author": [
+      {
+        "family": "Álvarez",
+        "given": "Alejandra"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "alvarez-sf-portugueses",
+    "type": "article-journal",
+    "title": "Los portugueses y la viticultura en Tenerife a comienzos del Seiscientos",
+    "author": [
+      {
+        "family": "Álvarez Santos",
+        "given": "Javier Luis"
+      }
+    ],
+    "URL": "https://www.academia.edu/10351402",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-documentacion",
+    "type": "article-journal",
+    "title": "La documentación al servicio del Concejo: las actas capitulares del Concejo de Tenerife en el siglo XVI",
+    "author": [],
+    "URL": "https://www.academia.edu/42028330",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-2004-sistemas",
+    "type": "book",
+    "title": "Sistemas de numeración y calendarios de las poblaciones bereberes de Gran Canaria y Tenerife en los siglos XIV-XV",
+    "author": [],
+    "issued": {
+      "date-parts": [
+        [
+          2004
+        ]
+      ]
+    },
+    "publisher": "Servicio de Publicaciones de la Universidad de La Laguna",
+    "URL": "https://www.academia.edu/776580",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-especies",
+    "type": "article-journal",
+    "title": "Especies vegetales consideradas invasoras de hábitats, en la Historia Natural de Canarias",
+    "author": [],
+    "URL": "https://www.academia.edu/92808647",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-establecimiento",
+    "type": "article-journal",
+    "title": "Establecimiento de plantas introducidas en la flora vascular silvestre canaria. I (Helechos, Gimnospermas y Monocotiledóneas)",
+    "author": [],
+    "URL": "https://www.academia.edu/72190877",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-financiacion",
+    "type": "article-journal",
+    "title": "La financiación de la conquista de las Islas Canarias en el tiempo de los Reyes Católicos",
+    "author": [],
+    "URL": "https://www.academia.edu/50708442",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-genoveses",
+    "type": "article-journal",
+    "title": "Los genoveses en Canarias. Siglos XVI y XVII",
+    "author": [],
+    "URL": "https://www.academia.edu/144951647",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-ilustracion",
+    "type": "article-journal",
+    "title": "Ilustración científica en las Islas Canarias. Imágenes sobre biología y geología (siglos XVII-XIX)",
+    "author": [],
+    "URL": "https://www.academia.edu/68612909",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-ingresos",
+    "type": "article-journal",
+    "title": "Los ingresos del Cabildo Insular de Tenerife durante el franquismo desarrollista (1959-1972)",
+    "author": [],
+    "URL": "https://www.academia.edu/74148410",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-prospeccion",
+    "type": "article-journal",
+    "title": "Prospección arqueológica del fondeadero del barranco de San Andrés o Abicore (Tenerife, Islas Canarias)",
+    "author": [],
+    "URL": "https://www.academia.edu/26765927",
+    "language": "es"
+  },
+  {
+    "id": "anonimo-sf-relaciones",
+    "type": "article-journal",
+    "title": "Las relaciones de trabajo en la isla de Tenerife durante el siglo XVI",
+    "author": [],
+    "URL": "https://www.academia.edu/103010577",
+    "language": "es"
+  },
+  {
+    "id": "arbelo-sf-matrimonio",
+    "type": "article-journal",
+    "title": "Matrimonio, elites sociales y conflictividad en Canarias durante el siglo XVIII.",
+    "author": [
+      {
+        "family": "Arbelo García",
+        "given": "Adolfo I."
+      }
+    ],
+    "URL": "https://www.academia.edu/65876517",
+    "language": "es"
+  },
+  {
+    "id": "arbelo-sf-correspondencia",
+    "type": "article-journal",
+    "title": "La correspondencia privada como fuente para el estudio de la historia social de Canarias durante la Edad Moderna: el ejemplo del montañés D. Francisco Gutiérrez Caballero (1733-1754)",
+    "author": [
+      {
+        "family": "Arbelo García",
+        "given": "Adolfo I."
+      }
+    ],
+    "URL": "https://www.academia.edu/29430234",
+    "language": "es"
+  },
+  {
+    "id": "arcos-2020-confines",
+    "type": "article-journal",
+    "title": "En los confines del Mundo: Canarias en la Antigüedad, del mito a la realidad",
+    "author": [
+      {
+        "family": "Arcos Pereira",
+        "given": "Trinidad"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Actas de las Jornadas BIEREHITE (Bienes Relevantes de la Historia de Tenerife)",
+    "volume": "2",
+    "issue": "2",
+    "page": "35-88",
+    "publisher": "Organismo Autonomo de Museos y Centros del Cabildo de Tenerife",
+    "DOI": "10.31939/bierehite/2019.03",
+    "URL": "https://doi.org/10.31939/bierehite/2019.03",
+    "language": "es"
+  },
+  {
+    "id": "arcos-sf-expedicion",
+    "type": "article-journal",
+    "title": "La expedición de Juba II a las Islas Afortunadas y el meridiano 0 del Orbis Terrarum",
+    "author": [
+      {
+        "family": "Arcos Pereira",
+        "given": "Trinidad"
+      }
+    ],
+    "URL": "https://www.academia.edu/2947574",
+    "language": "es"
+  },
+  {
+    "id": "arcos-sf-islas",
+    "type": "article-journal",
+    "title": "Las dos islas Hespérides atlánticas (Lanzarote y Fuerteventura, Islas Canarias, España) durante la Antigüedad: del mito a la realidad",
+    "author": [
+      {
+        "family": "Arcos Pereira",
+        "given": "Trinidad"
+      }
+    ],
+    "URL": "https://www.academia.edu/27592990",
+    "language": "es"
+  },
+  {
+    "id": "arnaiz-sf-prehistoria",
+    "type": "article-journal",
+    "title": "Prehistoria megalticas Lanzarote Canarias",
+    "author": [
+      {
+        "family": "Arnaiz-Villena",
+        "given": "Antonio"
+      }
+    ],
+    "URL": "https://www.academia.edu/68669426",
+    "language": "es"
+  },
+  {
+    "id": "baez-2016-repartimiento",
+    "type": "book",
+    "title": "El repartimiento de la isla de Tenerife (1493-1569)",
+    "author": [
+      {
+        "family": "Báez Hernández",
+        "given": "Francisco"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "publisher": "Instituto de Estudios Canarios",
+    "language": "es"
+  },
+  {
+    "id": "barbero-2024-trabajo",
+    "type": "article-journal",
+    "title": "Trabajo y educación infantil en el mundo rural de Tenerife al final del siglo XVIII",
+    "author": [
+      {
+        "family": "Barbero",
+        "given": "Paula"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Ohm : Obradoiro de Historia Moderna",
+    "publisher": "Universidad de Santiago de Compostela",
+    "DOI": "10.15304/ohm.34.10016",
+    "URL": "https://doi.org/10.15304/ohm.34.10016",
+    "language": "otro"
+  },
+  {
+    "id": "barbero-2025-mujeres",
+    "type": "article-journal",
+    "title": "Mujeres al frente de los hogares de Tenerife, siglos XVIII-XIX",
+    "author": [
+      {
+        "family": "Barbero",
+        "given": "Paula"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "container-title": "Memoria y Civilización",
+    "volume": "28",
+    "issue": "1",
+    "page": "171-209",
+    "publisher": "Universidad de Navarra",
+    "DOI": "10.15581/001.28.1.006",
+    "URL": "https://doi.org/10.15581/001.28.1.006",
+    "language": "otro"
+  },
+  {
+    "id": "barbero-sf-amas",
+    "type": "article-journal",
+    "title": "Las amas de cría en las familias nobiliarias de Tenerife a finales del Antiguo Régimen",
+    "author": [
+      {
+        "family": "Barbero",
+        "given": "Paula"
+      }
+    ],
+    "URL": "https://www.academia.edu/118742486",
+    "language": "es"
+  },
+  {
+    "id": "barbero-sf-historia",
+    "type": "article-journal",
+    "title": "La historia de la familia en Tenerife a finales del Antiguo Régimen",
+    "author": [
+      {
+        "family": "Barbero",
+        "given": "Paula"
+      }
+    ],
+    "URL": "https://www.academia.edu/127686967",
+    "language": "es"
+  },
+  {
+    "id": "barbero-sf-nodrizas",
+    "type": "article-journal",
+    "title": "Las nodrizas de los niños expósitos en Tenerife (siglos XVIII-XIX)",
+    "author": [
+      {
+        "family": "Barbero",
+        "given": "Paula"
+      }
+    ],
+    "URL": "https://www.academia.edu/96876994",
+    "language": "es"
+  },
+  {
+    "id": "bello-1990-notas",
+    "type": "chapter",
+    "title": "Notas para el estudio de los orígenes de la gran propiedad en Tenerife a raíz de la Conquista",
+    "author": [
+      {
+        "family": "Bello León",
+        "given": "Juan Manuel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1990
+        ]
+      ]
+    },
+    "container-title": "Coloquios de Historia Canario-Americana",
+    "URL": "https://www.academia.edu/111068639",
+    "language": "es"
+  },
+  {
+    "id": "bello-2015-contribucion",
+    "type": "article-journal",
+    "title": "Contribución al estudio de la conquista de Gran Canaria. Documentos del Archivo Municipal de Carmona y del General de Simancas",
+    "author": [
+      {
+        "family": "Bello León",
+        "given": "Juan Manuel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "container-title": "Vegueta. Anuario de la Facultad de Geografía e Historia",
+    "URL": "https://www.academia.edu/111068653",
+    "language": "es"
+  },
+  {
+    "id": "benito-2007-relacion",
+    "type": "article-journal",
+    "title": "Relación aproximada de las plantas vasculares descritas para la flora ibero-macaronésica en 2006, más adiciones de 2005",
+    "author": [
+      {
+        "family": "Benito Alonso",
+        "given": "José Luis"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/3171174",
+    "language": "es"
+  },
+  {
+    "id": "cabrera-sf-capitulo",
+    "type": "article-journal",
+    "title": "Un capítulo desconocido de la historiografía de Canarias: el Epítome de la Crónica de Juan II de J. Martínez de la Puente (1678)",
+    "author": [
+      {
+        "family": "Cabrera",
+        "given": "Manuel"
+      }
+    ],
+    "URL": "https://www.academia.edu/74642799",
+    "language": "es"
+  },
+  {
+    "id": "caceres-sf-plantas",
+    "type": "article-journal",
+    "title": "Las Plantas alimenticias americanas en Canarias en los Siglos XV y XVI",
+    "author": [
+      {
+        "family": "Cáceres-Lorenzo",
+        "given": "M. Teresa"
+      }
+    ],
+    "URL": "https://www.academia.edu/9962078",
+    "language": "es"
+  },
+  {
+    "id": "clavijo-sf-ecologia",
+    "type": "article-journal",
+    "title": "La ecología cultural de las sociedades aborígenes canarias (Tenerife): hacia una nueva metodología",
+    "author": [
+      {
+        "family": "Clavijo Hernández",
+        "given": "Fernando"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "coello-2023-phylogenetics",
+    "type": "document",
+    "title": "Phylogenetics and phylogeography of <i>Euphorbia canariensis</i> reveal an extreme Canarian-Asian disjunction and limited inter-island colonization",
+    "author": [
+      {
+        "family": "Coello",
+        "given": "Alberto J."
+      },
+      {
+        "family": "Vargas",
+        "given": "Pablo"
+      },
+      {
+        "family": "Cano",
+        "given": "Emilio"
+      },
+      {
+        "family": "Riina",
+        "given": "Ricarda"
+      },
+      {
+        "family": "Fernández-Mazuecos",
+        "given": "Mario"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "publisher": "openRxiv",
+    "DOI": "10.1101/2023.01.27.525850",
+    "URL": "https://doi.org/10.1101/2023.01.27.525850",
+    "language": "otro"
+  },
+  {
+    "id": "cordero-2003-guaza",
+    "type": "article-journal",
+    "title": "En Guaza: una herencia incógnita de las Islas Canarias",
+    "author": [
+      {
+        "family": "Cordero",
+        "given": "Walter"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2003
+        ]
+      ]
+    },
+    "container-title": "El Pajar. Cuaderno de Etnografía Canaria",
+    "URL": "https://www.academia.edu/1256018",
+    "language": "es"
+  },
+  {
+    "id": "cumplido-sf-comercio",
+    "type": "article-journal",
+    "title": "El comercio interinsular de La Palma con las Canarias orientales y occidentales en la segunda mitad del siglo XVI",
+    "author": [
+      {
+        "family": "Cumplido Mancera",
+        "given": "Luis Francisco"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "delgado-sf-hesperides",
+    "type": "article-journal",
+    "title": "Las Hespérides y la 'Historia Antigua' de Canarias. Un estudio de Geografía Mítica",
+    "author": [
+      {
+        "family": "Delgado Delgado",
+        "given": "José A."
+      }
+    ],
+    "URL": "https://www.academia.edu/39011656",
+    "language": "es"
+  },
+  {
+    "id": "cumplido-sf-interconexiones",
+    "type": "article-journal",
+    "title": "Interconexiones en el espacio atlántico: redes humanas y mercantiles de La Palma con el Algarve, Andalucía y el norte de África, 1540-1585",
+    "author": [
+      {
+        "family": "Cumplido Mancera",
+        "given": "Luis Francisco"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "farrujia-sf-arqueologia",
+    "type": "book",
+    "title": "Arqueología y franquismo en Canarias. Política, poblamiento e identidad (1939-1969)",
+    "author": [
+      {
+        "family": "Farrujia de la Rosa",
+        "given": "A. José"
+      }
+    ],
+    "URL": "https://www.academia.edu/5773151",
+    "language": "es"
+  },
+  {
+    "id": "farrujia-sf-estudio",
+    "type": "article-journal",
+    "title": "Estudio Social de la isla de Tenerife en 1795 a través de las fuentes militares: el paisanaje",
+    "author": [
+      {
+        "family": "Farrujia Coello",
+        "given": "Amós"
+      }
+    ],
+    "URL": "https://www.academia.edu/33349615",
+    "language": "es"
+  },
+  {
+    "id": "farrujia-sf-fortificaciones",
+    "type": "article-journal",
+    "title": "Fortificaciones, milicias y paisanaje en Lanzarote y Fuerteventura, 1762-1809",
+    "author": [
+      {
+        "family": "Farrujia Coello",
+        "given": "Amós"
+      }
+    ],
+    "URL": "https://www.academia.edu/145991575",
+    "language": "es"
+  },
+  {
+    "id": "febles-sf-tanacetum",
+    "type": "article-journal",
+    "title": "Tanacetum oshanahanii,(Compositae-Anthemideae), nueva especie para las Islas Canarias",
+    "author": [
+      {
+        "family": "Febles",
+        "given": "Rosa"
+      }
+    ],
+    "URL": "https://www.academia.edu/49276013",
+    "language": "es"
+  },
+  {
+    "id": "gil-2014-notas",
+    "type": "article-journal",
+    "title": "Notas sobre algunas plantas ruderal-arvenses de Lanzarote (islas Canarias)",
+    "author": [
+      {
+        "family": "Gil González",
+        "given": "Manuel L."
+      },
+      {
+        "family": "Gil González",
+        "given": "Jaime"
+      },
+      {
+        "family": "Reyes Betancort",
+        "given": "Jorge Alfredo"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "container-title": "Vieraea Folia scientiarum biologicarum canariensium",
+    "volume": "42",
+    "issue": "Vieraea 42",
+    "page": "259-268",
+    "publisher": "Organismo Autonomo de Museos y Centros del Cabildo de Tenerife",
+    "DOI": "10.31939/vieraea.2014.42.18",
+    "URL": "https://doi.org/10.31939/vieraea.2014.42.18",
+    "language": "es"
+  },
+  {
+    "id": "garcia-sf-tesoros",
+    "type": "article-journal",
+    "title": "Tesoros botánicos de La Gomera",
+    "author": [
+      {
+        "family": "García Casanova",
+        "given": "José"
+      }
+    ],
+    "URL": "https://www.academia.edu/33567871",
+    "language": "es"
+  },
+  {
+    "id": "gonzalez-2005-familia",
+    "type": "chapter",
+    "title": "Familia y estructura de la propiedad de la tierra en Tenerife a principios del siglo XVI. El ejemplo de Taganana",
+    "author": [
+      {
+        "family": "González Zalacain",
+        "given": "Roberto J."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2005
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/1402751",
+    "language": "es"
+  },
+  {
+    "id": "gonzalez-2008-syempre",
+    "type": "article-journal",
+    "title": "\"Syempre que la isla esté abastecida\". La población de Tenerife en el siglo XVI a partir de las tazmías",
+    "author": [
+      {
+        "family": "González Zalacain",
+        "given": "Roberto J."
+      },
+      {
+        "family": "Bello León",
+        "given": "Juan Manuel"
+      },
+      {
+        "family": "Gómez Gómez",
+        "given": "Miguel Ángel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/1402395",
+    "language": "es"
+  },
+  {
+    "id": "gonzalez-2013-hispanismos",
+    "type": "article-journal",
+    "title": "Hispanismos y canarismos en un corpus de textos ingleses sobre Canarias",
+    "author": [
+      {
+        "family": "González-Cruz",
+        "given": "María-Isabel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "container-title": "Lexis",
+    "volume": "37",
+    "issue": "2",
+    "page": "229-267",
+    "publisher": "Sistema de Bibliotecas PUCP",
+    "DOI": "10.18800/lexis.201302.001",
+    "URL": "https://doi.org/10.18800/lexis.201302.001",
+    "language": "otro"
+  },
+  {
+    "id": "gonzalez-2020-plantas",
+    "type": "article-journal",
+    "title": "Plantas vasculares de Macaronesia, excepto Canarias, en el Herbario TFC",
+    "author": [
+      {
+        "family": "González-Montelongo",
+        "given": "Cristina"
+      },
+      {
+        "family": "León Arencibia",
+        "given": "María Catalina"
+      },
+      {
+        "family": "Reyes-Betancort",
+        "given": "Jorge Alfredo"
+      },
+      {
+        "family": "Acebes Ginovés",
+        "given": "Juan Ramón"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Scientia Insularum. Revista de Ciencias Naturales en islas",
+    "issue": "3",
+    "page": "89-116",
+    "publisher": "University of La Laguna",
+    "DOI": "10.25145/j.si.2020.03.06",
+    "URL": "https://doi.org/10.25145/j.si.2020.03.06",
+    "language": "otro"
+  },
+  {
+    "id": "gonzalez-2023-gentes",
+    "type": "article-journal",
+    "title": "Las gentes Canarias en la crónica portuguesa del siglo XV de Gomes Eanes de Zurara",
+    "author": [
+      {
+        "family": "González Carracedo",
+        "given": "Laura Sabina"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "container-title": "NEXO",
+    "issue": "19",
+    "page": "35-43",
+    "publisher": "Instituto de Estudios Hispanicos de Canarias",
+    "DOI": "10.56029/nx1935",
+    "URL": "https://doi.org/10.56029/nx1935",
+    "language": "otro"
+  },
+  {
+    "id": "gonzalez-2024-raza",
+    "type": "article-journal",
+    "title": "¿La raza como categoría histórica en el siglo XV? La colonialidad de género y las mujeres canarias infieles",
+    "author": [
+      {
+        "family": "González Carracedo",
+        "given": "Laura  Sabina"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Historia Y Memoria",
+    "issue": "28",
+    "page": "23-60",
+    "publisher": "Universidad Pedagógica y Tecnológica de Colombia",
+    "DOI": "10.19053/20275137.n28.2024.15572",
+    "URL": "https://doi.org/10.19053/20275137.n28.2024.15572",
+    "language": "otro"
+  },
+  {
+    "id": "gozalbes-sf-navegacion",
+    "type": "article-journal",
+    "title": "Navegación, pesca y poblamiento en la historia antigua canaria",
+    "author": [
+      {
+        "family": "Gozalbes Cravioto",
+        "given": "Enrique"
+      }
+    ],
+    "URL": "https://www.academia.edu/3038331",
+    "language": "es"
+  },
+  {
+    "id": "gozalbes-sf-africa",
+    "type": "article-journal",
+    "title": "África en el imaginario: las exploraciones geográficas del rey Juba II de Mauretania",
+    "author": [
+      {
+        "family": "Gozalbes Cravioto",
+        "given": "Enrique"
+      }
+    ],
+    "URL": "https://www.academia.edu/3470516",
+    "language": "es"
+  },
+  {
+    "id": "gutierrez-2022-repartimiento",
+    "type": "article-journal",
+    "title": "El repartimiento de Tenerife (1493-1569)",
+    "author": [
+      {
+        "family": "Gutiérrez-de-Armas",
+        "given": "Judit"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "container-title": "Fronteras de la Historia",
+    "volume": "27",
+    "issue": "1",
+    "page": "380-384",
+    "publisher": "Instituto Colombiano de Antropologia e Historia (ICANH)",
+    "DOI": "10.22380/20274688.2251",
+    "URL": "https://doi.org/10.22380/20274688.2251",
+    "language": "otro"
+  },
+  {
+    "id": "gutierrez-2024-archivos",
+    "type": "chapter",
+    "title": "«Archivos situados» y memorias de familia en perspectiva de género. El libro de relaciones de la hacienda de Tenerife de Francisco Benítez de Lugo y Viña (1775)",
+    "author": [
+      {
+        "family": "Gutiérrez de Armas",
+        "given": "Judit"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Los arcanos de la memoria familiar. Usos y proyección del pasado en la sociedad española (1650-1850), coord. por Francisco Precioso Izquierdo y María Teresa Marín Torres",
+    "publisher": "Dykinson",
+    "DOI": "10.14679/3226",
+    "URL": "https://doi.org/10.14679/3226",
+    "language": "es"
+  },
+  {
+    "id": "gutierrez-2024-repliegue",
+    "type": "article-journal",
+    "title": "Repliegue y continuidad. El caso de las élites nobiliarias de Canarias entre los siglos XVIII y XIX",
+    "author": [
+      {
+        "family": "Gutiérrez de Armas",
+        "given": "Judit"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Tiempos Modernos: Revista Electrónica de Historia Moderna",
+    "volume": "14",
+    "issue": "48",
+    "page": "285-305",
+    "URL": "http://www.tiemposmodernos.org/tm3/index.php/tm/article/view/5891",
+    "language": "es"
+  },
+  {
+    "id": "gonzalez-2025-discurso",
+    "type": "chapter",
+    "title": "El discurso colonial sobre las mujeres en las crónicas de la conquista de Canarias",
+    "author": [
+      {
+        "family": "González Carracedo",
+        "given": "Laura Sabina"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "container-title": "Prácticas, discursos y representaciones: aportes para una historia de la temprana modernidad entre Europa y América (siglos XVI-XIX)",
+    "page": "167-198",
+    "publisher": "Universidad Nacional de La Plata",
+    "URL": "https://www.academia.edu/128400104",
+    "language": "es"
+  },
+  {
+    "id": "gutierrez-sf-construir",
+    "type": "article-journal",
+    "title": "Construir una identidad familiar a partir de antecedentes lejanos y remotos. El problema de documentar los ancestros para la aristocracia de Canarias en el siglo XVII",
+    "author": [
+      {
+        "family": "Gutiérrez de Armas",
+        "given": "Judit"
+      }
+    ],
+    "URL": "https://www.academia.edu/26558977",
+    "language": "es"
+  },
+  {
+    "id": "hernandez-sf-noviazgo",
+    "type": "article-journal",
+    "title": "Noviazgo y vida matrimonial en Tenerife durante el siglo XVIII",
+    "author": [
+      {
+        "family": "Hernández González",
+        "given": "Manuel"
+      }
+    ],
+    "URL": "https://www.academia.edu/119134874",
+    "language": "es"
+  },
+  {
+    "id": "hernandez-sf-arqueologia",
+    "type": "article-journal",
+    "title": "Arqueología histórica en las cuevas de Achbinicó. Algunas aportaciones al conocimiento de Tenerife en el siglo XV e inicios del XVI",
+    "author": [
+      {
+        "family": "Hernández Gómez",
+        "given": "Cristo Manuel"
+      }
+    ],
+    "URL": "https://www.academia.edu/121081873",
+    "language": "es"
+  },
+  {
+    "id": "ivars-2025-physicochemical",
+    "type": "article-journal",
+    "title": "Physicochemical Study of a Germplasm Collection of Pea ( Pisum sativum L.) Landraces From the Canary Islands",
+    "author": [
+      {
+        "family": "Ivars Pineda",
+        "given": "María"
+      },
+      {
+        "family": "Marrero Valois",
+        "given": "Cristina"
+      },
+      {
+        "family": "Paiz Álvarez",
+        "given": "Nuria"
+      },
+      {
+        "family": "Oliva Pérez",
+        "given": "Naira"
+      },
+      {
+        "family": "Ríos Mesa",
+        "given": "Domingo"
+      },
+      {
+        "family": "Díaz Romero",
+        "given": "Carlos"
+      },
+      {
+        "family": "Rodríguez‐Galdón",
+        "given": "Beatriz"
+      },
+      {
+        "family": "Afonso Morales",
+        "given": "Desiree"
+      },
+      {
+        "family": "Rodríguez‐Rodríguez",
+        "given": "Elena María"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "container-title": "Chemistry & Biodiversity",
+    "volume": "22",
+    "issue": "12",
+    "publisher": "Wiley",
+    "DOI": "10.1002/cbdv.202501934",
+    "URL": "https://doi.org/10.1002/cbdv.202501934",
+    "language": "en"
+  },
+  {
+    "id": "jimenez-sf-etnohistoria",
+    "type": "article-journal",
+    "title": "Etnohistoria y arqueología de las plantas entre los antiguos Canarios",
+    "author": [
+      {
+        "family": "Jiménez González",
+        "given": "José Juan"
+      }
+    ],
+    "URL": "https://www.academia.edu/7038731",
+    "language": "es"
+  },
+  {
+    "id": "leon-2008-franquismo",
+    "type": "chapter",
+    "title": "El franquismo en Tenerife: una primera aproximación",
+    "author": [
+      {
+        "family": "León Álvarez",
+        "given": "Aarón"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "container-title": "Actas de las II Jornadas «Prebendado Pacheco» de Investigación Histórica",
+    "page": "177-190",
+    "publisher": "Ayuntamiento de Tegueste; CajaCanarias",
+    "URL": "https://www.academia.edu/5454296",
+    "language": "es"
+  },
+  {
+    "id": "leon-2014-franquismo",
+    "type": "book",
+    "title": "El franquismo en Canarias",
+    "author": [
+      {
+        "family": "León Álvarez",
+        "given": "Aarón"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "publisher": "Instituto de Estudios Canarios; Le Canarien Ediciones",
+    "URL": "https://www.academia.edu/6877919",
+    "language": "es"
+  },
+  {
+    "id": "lobo-sf-comercio",
+    "type": "article-journal",
+    "title": "Comercio y burguesía mercantil en Canarias en la Edad Moderna",
+    "author": [
+      {
+        "family": "Lobo Cabrera",
+        "given": "Manuel"
+      }
+    ],
+    "URL": "https://www.academia.edu/105535049",
+    "language": "es"
+  },
+  {
+    "id": "marrero-2021-cuevas",
+    "type": "article-journal",
+    "title": "Las Cuevas de Bencomo (La Orotava, Tenerife). De la historiografía al dato arqueológico",
+    "author": [
+      {
+        "family": "Marrero Salas",
+        "given": "Efrain"
+      },
+      {
+        "family": "Ruiz González",
+        "given": "Hacomar"
+      },
+      {
+        "family": "García Ávila",
+        "given": "Juan Carlos"
+      },
+      {
+        "family": "Sossa Ríos",
+        "given": "Santiago"
+      },
+      {
+        "family": "Abreu Hernández",
+        "given": "Ithaisa"
+      },
+      {
+        "family": "Cancel",
+        "given": "Sandra"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "container-title": "Vegueta: Anuario de la Facultad de Geografía e Historia",
+    "publisher": "Faculty of Geography and History, University of Las Palmas de Gran Canaria",
+    "DOI": "10.51349/veg.2021.1.19",
+    "URL": "https://doi.org/10.51349/veg.2021.1.19",
+    "language": "otro"
+  },
+  {
+    "id": "martin-sf-litoral",
+    "type": "article-journal",
+    "title": "El litoral sahariano-mauritano, un efímero El Dorado para los canarios, 1884-1975",
+    "author": [
+      {
+        "family": "Martín Corrales",
+        "given": "Eloy"
+      }
+    ],
+    "URL": "https://www.academia.edu/32679118",
+    "language": "es"
+  },
+  {
+    "id": "macias-1986-fuentes",
+    "type": "article-journal",
+    "title": "Fuentes para el estudio de la producción agraria en las Islas Canarias: el diezmo en la diócesis canariense (1480-1820)",
+    "author": [
+      {
+        "family": "Macías Hernández",
+        "given": "Antonio Manuel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1986
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/72920954",
+    "language": "es"
+  },
+  {
+    "id": "martinez-sf-teoria",
+    "type": "article-journal",
+    "title": "Teoría y praxis educativas del franquismo en Canarias (1936-1973)",
+    "author": [
+      {
+        "family": "Martinez Lorenzo",
+        "given": "Manuel"
+      }
+    ],
+    "URL": "https://www.academia.edu/78258471",
+    "language": "es"
+  },
+  {
+    "id": "mederos-2021-poblamiento",
+    "type": "article-journal",
+    "title": "Poblamiento aborigen y grabados rupestres en el municipio de Arona (Tenerife, islas Canarias)",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "container-title": "Anuario de Estudios Atlánticos",
+    "issue": "68",
+    "publisher": "Casa de Colon, Cabildo de Gran Canaria",
+    "DOI": "10.36980/10771.10366",
+    "URL": "https://doi.org/10.36980/10771.10366",
+    "language": "otro"
+  },
+  {
+    "id": "mederos-2026-grabados",
+    "type": "article-journal",
+    "title": "Grabados rupestres, espacios domésticos y prácticas funerarias en el municipio de Guía de Isora (Tenerife, Islas Canarias)",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      },
+      {
+        "family": "Escribano Cobo",
+        "given": "Gabriel"
+      },
+      {
+        "family": "Valencia Afonso",
+        "given": "Vicente"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "container-title": "Anuario de Estudios Atlánticos",
+    "volume": "72",
+    "publisher": "Cabildo de Gran Canaria, Casa de Colón",
+    "DOI": "10.36980/11165/aea",
+    "URL": "https://doi.org/10.36980/11165/aea",
+    "language": "otro"
+  },
+  {
+    "id": "mederos-sf-aborigenes",
+    "type": "article-journal",
+    "title": "Los aborígenes canarios y la navegación",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "URL": "https://www.academia.edu/1138956",
+    "language": "es"
+  },
+  {
+    "id": "mederos-sf-hipotesis",
+    "type": "article-journal",
+    "title": "La hipótesis de un poblamiento tardío de las Islas Canarias con Gétulos después de las sublevaciones contra Juba II y Ptolomeo",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "URL": "https://www.academia.edu/34587962",
+    "language": "es"
+  },
+  {
+    "id": "mederos-sf-indicios",
+    "type": "article-journal",
+    "title": "Indicios de navegación atlántica en aguas canarias durante época aborigen",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "URL": "https://www.academia.edu/1190140",
+    "language": "es"
+  },
+  {
+    "id": "mederos-sf-islas",
+    "type": "article-journal",
+    "title": "Las Islas Afortunadas de Juba II. Púnico-gaditanos y romano mauretanos en Canarias",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "URL": "https://www.academia.edu/1136202",
+    "language": "es"
+  },
+  {
+    "id": "medina-sf-espanol",
+    "type": "article-journal",
+    "title": "El español de Canarias a través de la documentación testamentaria (siglos XVI-XVIII)",
+    "author": [
+      {
+        "family": "Medina López",
+        "given": "Javier"
+      }
+    ],
+    "URL": "https://www.academia.edu/98483650",
+    "language": "es"
+  },
+  {
+    "id": "mederos-sf-pesquerias",
+    "type": "article-journal",
+    "title": "Pesquerías púnico-gaditanas y romano republicanas de túnidos: el Mar de Calmas de las Islas Canarias (300-20 a.C.)",
+    "author": [
+      {
+        "family": "Mederos Martín",
+        "given": "Alfredo"
+      }
+    ],
+    "URL": "https://www.academia.edu/1145463",
+    "language": "es"
+  },
+  {
+    "id": "miranda-sf-comercio",
+    "type": "article-journal",
+    "title": "El comercio canario durante la Guerra de Sucesión Española (1702-1713)",
+    "author": [
+      {
+        "family": "Miranda Vélez",
+        "given": "Óscar Alessandro"
+      }
+    ],
+    "URL": "https://www.academia.edu/109739377",
+    "language": "es"
+  },
+  {
+    "id": "miranda-sf-ingenio",
+    "type": "article-journal",
+    "title": "El «ingenio canario»: Bartolomé Cairasco de Figueroa y Canarias en el Siglo de Oro",
+    "author": [
+      {
+        "family": "Miranda Vélez",
+        "given": "Óscar Alessandro"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "miteva-2024-entre",
+    "type": "article-journal",
+    "title": "Entre dos mundos: la historia de tres familias guanches de El Rosario, Tenerife, después de la conquista",
+    "author": [
+      {
+        "family": "Miteva",
+        "given": "Yuliya"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "container-title": "Cliocanarias",
+    "issue": "6",
+    "page": "167-195",
+    "publisher": "Cliocanarias",
+    "DOI": "10.53335/cliocanarias.2024.6.06",
+    "URL": "https://doi.org/10.53335/cliocanarias.2024.6.06",
+    "language": "otro"
+  },
+  {
+    "id": "monteiro-sf-aportaciones",
+    "type": "article-journal",
+    "title": "Aportaciones de las mujeres a la historia del siglo XX en Canarias",
+    "author": [
+      {
+        "family": "Monteiro Quintana",
+        "given": "María Luisa"
+      }
+    ],
+    "URL": "https://www.academia.edu/22379021",
+    "language": "es"
+  },
+  {
+    "id": "monzon-sf-ajuar",
+    "type": "article-journal",
+    "title": "El ajuar femenino como relato histórico en Canarias (1500-1550). Propuesta de estudio",
+    "author": [
+      {
+        "family": "Monzón Perdomo",
+        "given": "María Eugenia"
+      },
+      {
+        "family": "Serrano-Niza",
+        "given": "Dolores"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "morales-2006-explotacion",
+    "type": "thesis",
+    "title": "La explotación de los recursos vegetales en la prehistoria de las Islas Canarias: una aproximación carpológica a la economía, ecología y sociedad de los…",
+    "author": [
+      {
+        "family": "Morales-Mateos",
+        "given": "Jacob"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2006
+        ]
+      ]
+    },
+    "publisher": "Universidad de Las Palmas de Gran Canaria",
+    "URL": "https://www.academia.edu/2447690",
+    "language": "es"
+  },
+  {
+    "id": "morales-sf-agricultura",
+    "type": "article-journal",
+    "title": "Agricultura y recolección vegetal en la arqueología prehispánica de las Islas Canarias (siglos III-XV d.C.): la contribución de los estudios carpológicos",
+    "author": [
+      {
+        "family": "Morales-Mateos",
+        "given": "Jacob"
+      }
+    ],
+    "URL": "https://www.academia.edu/34884461",
+    "language": "es"
+  },
+  {
+    "id": "munoz-2022-narrativa",
+    "type": "article-journal",
+    "title": "Narrativa cronística, guerra de conquista y liderazgo militar en el contexto de la expansión atlántica hispana: la experiencia de las islas Canarias",
+    "author": [
+      {
+        "family": "Muñoz Gómez",
+        "given": "Víctor"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "container-title": "Vegueta: Anuario de la Facultad de Geografía e Historia",
+    "volume": "22",
+    "issue": "2",
+    "page": "451-480",
+    "publisher": "Faculty of Geography and History, University of Las Palmas de Gran Canaria",
+    "DOI": "10.51349/veg.2022.2.05",
+    "URL": "https://doi.org/10.51349/veg.2022.2.05",
+    "language": "otro"
+  },
+  {
+    "id": "munoz-sf-mujeres",
+    "type": "article-journal",
+    "title": "Mujeres, conquista y colonización occidental en la frontera atlántica al final de la Edad Media: el caso de las islas Canarias (un estado de la cuestión)",
+    "author": [
+      {
+        "family": "Muñoz Gómez",
+        "given": "Víctor"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "naranjo-2015-artefactos",
+    "type": "article-journal",
+    "title": "Artefactos e instrumentos de piedra en un espacio de almacenamiento colectivo. El caso de El Cenobio de Valerón (Gran Canaria, España)",
+    "author": [
+      {
+        "family": "Naranjo-Mayor",
+        "given": "Yurena"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "container-title": "Munibe Antropologia-Arkeologia",
+    "volume": "66",
+    "page": "291-308",
+    "publisher": "Sociedad de Ciencias Aranzadi",
+    "DOI": "10.21630/maa.2015.66.16",
+    "URL": "https://doi.org/10.21630/maa.2015.66.16",
+    "language": "otro"
+  },
+  {
+    "id": "navarro-1997-arqueologia",
+    "type": "article-journal",
+    "title": "Arqueología de las islas Canarias",
+    "author": [
+      {
+        "family": "Navarro Mederos",
+        "given": "Juan Francisco"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1997
+        ]
+      ]
+    },
+    "container-title": "Espacio Tiempo y Forma. Serie I, Prehistoria y Arqueología",
+    "issue": "10",
+    "publisher": "UNED - Universidad Nacional de Educacion a Distancia",
+    "DOI": "10.5944/etfi.10.1997.4662",
+    "URL": "https://doi.org/10.5944/etfi.10.1997.4662",
+    "language": "otro"
+  },
+  {
+    "id": "ojeda-2018-santa",
+    "type": "article-journal",
+    "title": "Santa Cruz de Tenerife, 1936-1972. Un estudio de su hacienda municipal durante el franquismo",
+    "author": [
+      {
+        "family": "Ojeda Cabrera",
+        "given": "María del Pino"
+      },
+      {
+        "family": "Hernández Pacheco",
+        "given": "Ruymán"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "container-title": "Revista de Historia Canaria",
+    "issue": "200",
+    "page": "177-196",
+    "publisher": "University of La Laguna",
+    "DOI": "10.25145/j.histcan.2018.200.012",
+    "URL": "https://doi.org/10.25145/j.histcan.2018.200.012",
+    "language": "otro"
+  },
+  {
+    "id": "nunez-2023-haciendas",
+    "type": "article-journal",
+    "title": "Las haciendas vitícolas de Tenerife: un patrimonio de la Edad Moderna",
+    "author": [
+      {
+        "family": "Núñez Pestano",
+        "given": "Juan Ramón"
+      },
+      {
+        "family": "Gutiérrez de Armas",
+        "given": "Judit"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "container-title": "BIC. Revista de patrimonio de Tenerife",
+    "issue": "4",
+    "page": "12-15",
+    "URL": "https://www.academia.edu/102021348",
+    "language": "es"
+  },
+  {
+    "id": "onrubia-sf-gran",
+    "type": "article-journal",
+    "title": "Gran Canaria 1402-1478: comercio, evangelización y aculturación",
+    "author": [
+      {
+        "family": "Onrubia-Pintado",
+        "given": "Jorge"
+      }
+    ],
+    "URL": "https://www.academia.edu/53067217",
+    "language": "es"
+  },
+  {
+    "id": "ortiz-sf-darwin",
+    "type": "article-journal",
+    "title": "Darwin en Canarias. Controversias antropológicas sobre el origen de los antiguos habitantes de las islas Canarias en el final del siglo XIX",
+    "author": [
+      {
+        "family": "Ortiz García",
+        "given": "Carmen"
+      }
+    ],
+    "URL": "https://www.academia.edu/31011313",
+    "language": "es"
+  },
+  {
+    "id": "otto-2008-bosques",
+    "type": "article-journal",
+    "title": "Los bosques termófilos de Canarias",
+    "author": [
+      {
+        "family": "Otto",
+        "given": "Rüdiger"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2008
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/13112113",
+    "language": "es"
+  },
+  {
+    "id": "padron-2007-adiciones",
+    "type": "article-journal",
+    "title": "Adiciones y comentarios a la flora vascular de Canarias",
+    "author": [
+      {
+        "family": "Padrón Mederos",
+        "given": "Miguel Antonio"
+      },
+      {
+        "family": "Reyes Betancort",
+        "given": "Jorge Alfredo"
+      },
+      {
+        "family": "González González",
+        "given": "Ricardo"
+      },
+      {
+        "family": "León Arencibia",
+        "given": "María Catalina"
+      },
+      {
+        "family": "Pérez de Paz",
+        "given": "Pedro Luis"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2007
+        ]
+      ]
+    },
+    "container-title": "Vieraea Folia scientiarum biologicarum canariensium",
+    "volume": "35",
+    "issue": "Vieraea 35",
+    "page": "43-50",
+    "publisher": "Organismo Autonomo de Museos y Centros del Cabildo de Tenerife",
+    "DOI": "10.31939/vieraea.2007.35.04",
+    "URL": "https://doi.org/10.31939/vieraea.2007.35.04",
+    "language": "es"
+  },
+  {
+    "id": "paredes-sf-notas",
+    "type": "article-journal",
+    "title": "Notas Sobre El Comercio Entre Canarias y Santo Domingo Durante El Reinado De Carlos II (1665-1700)",
+    "author": [
+      {
+        "family": "Paredes Vera",
+        "given": "María Isabel"
+      }
+    ],
+    "URL": "https://www.academia.edu/76684742",
+    "language": "es"
+  },
+  {
+    "id": "paz-2010-aloe",
+    "type": "article-journal",
+    "title": "Aloe vera en Canarias: aspectos botánicos y etnobotánicos",
+    "author": [
+      {
+        "family": "Paz",
+        "given": "Pedro de"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/60667710",
+    "language": "es"
+  },
+  {
+    "id": "padron-2009-apuntes",
+    "type": "article-journal",
+    "title": "Apuntes florísticos y taxonómicos para la flora de las Islas Canarias",
+    "author": [
+      {
+        "family": "Padrón-Mederos",
+        "given": "Miguel Antonio"
+      },
+      {
+        "family": "Guma",
+        "given": "Irma Rosana"
+      },
+      {
+        "family": "Santos-Guerra",
+        "given": "Arnoldo"
+      },
+      {
+        "family": "Reyes-Betancort",
+        "given": "Jorge Alfredo"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2009
+        ]
+      ]
+    },
+    "container-title": "Acta Botanica Malacitana",
+    "volume": "34",
+    "page": "242-251",
+    "publisher": "Malaga University",
+    "DOI": "10.24310/abm.v34i0.6939",
+    "URL": "https://doi.org/10.24310/abm.v34i0.6939",
+    "language": "otro"
+  },
+  {
+    "id": "perez-1998-excavaciones",
+    "type": "chapter",
+    "title": "Excavaciones Arqueológicas en la Iglesia de Nuestra Señora de La Concepción de Santa Cruz de Tenerife. Estudio preliminar de los materiales asociados a los restos antropológicos",
+    "author": [
+      {
+        "family": "Pérez Álvarez",
+        "given": "Ana Rosa"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1998
+        ]
+      ]
+    },
+    "container-title": "XII Coloquio de Historia Canario-Americana (1996)",
+    "volume": "I",
+    "page": "591-621",
+    "URL": "https://www.academia.edu/36686924",
+    "language": "es"
+  },
+  {
+    "id": "perez-2017-santos",
+    "type": "article-journal",
+    "title": "No hay santos pa' tanta gente. Sanación y religión en Canarias",
+    "author": [
+      {
+        "family": "Pérez Amores",
+        "given": "Grecy"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2017
+        ]
+      ]
+    },
+    "container-title": "Estudios Canarios. Anuario del IECAN",
+    "URL": "https://www.academia.edu/39886524",
+    "language": "es"
+  },
+  {
+    "id": "perez-sf-canarias",
+    "type": "article-journal",
+    "title": "Canarias prehispánica",
+    "author": [
+      {
+        "family": "Pérez González",
+        "given": "Samuel"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "perez-sf-desarrollo",
+    "type": "article-journal",
+    "title": "El desarrollo urbano-portuario en las Islas Canarias a finales del siglo XIX",
+    "author": [
+      {
+        "family": "Pérez González",
+        "given": "Samuel"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "pi-2010-companias",
+    "type": "article-journal",
+    "title": "Compañías Fijas españolas en el Norte de África (siglo XVIII)",
+    "author": [
+      {
+        "family": "Pi Corrales",
+        "given": "Magdalena de Pazzis"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2010
+        ]
+      ]
+    },
+    "container-title": "Revista de Historia Moderna",
+    "issue": "28",
+    "page": "69",
+    "publisher": "Universidad de Alicante Servicio de Publicaciones",
+    "DOI": "10.14198/rhm2010.28.03",
+    "URL": "https://doi.org/10.14198/rhm2010.28.03",
+    "language": "otro"
+  },
+  {
+    "id": "quartapelle-2025-fortunate",
+    "type": "article-journal",
+    "title": "Las Fortunate Insule de Claudio Ptolomeo: ¿islas imaginarias, islas de Cabo Verde, Antillas Menores o las islas Canarias?",
+    "author": [
+      {
+        "family": "Quartapelle",
+        "given": "Alberto"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "container-title": "Revista de Historia Canaria",
+    "issue": "207",
+    "page": "93-117",
+    "publisher": "University of La Laguna",
+    "DOI": "10.25145/j.histcan.2025.207.05",
+    "URL": "https://doi.org/10.25145/j.histcan.2025.207.05",
+    "language": "otro"
+  },
+  {
+    "id": "quartapelle-sf-anos",
+    "type": "book",
+    "title": "400 años de cronicas de las Islas Canarias",
+    "author": [
+      {
+        "family": "Quartapelle",
+        "given": "Alberto"
+      }
+    ],
+    "URL": "https://www.academia.edu/20004926",
+    "language": "es"
+  },
+  {
+    "id": "quartapelle-sf-redescubrimiento",
+    "type": "article-journal",
+    "title": "El redescubrimiento de las Islas Canarias en el anno domini 1339",
+    "author": [
+      {
+        "family": "Quartapelle",
+        "given": "Alberto"
+      }
+    ],
+    "URL": "https://www.academia.edu/34719222",
+    "language": "es"
+  },
+  {
+    "id": "quintana-sf-absorciones",
+    "type": "article-journal",
+    "title": "Absorciones de empresas en tiempos de guerra: la incorporación de la red telefónica insular de Tenerife a CTNE en 1938",
+    "author": [
+      {
+        "family": "Quintana-Navarro",
+        "given": "Francisco"
+      }
+    ],
+    "URL": "https://www.academia.edu/146234308",
+    "language": "es"
+  },
+  {
+    "id": "real-sf-conquista",
+    "type": "article-journal",
+    "title": "La Conquista De Canarias en Las Crónicas De Alfonso De Palencia",
+    "author": [
+      {
+        "family": "Real Torres",
+        "given": "Elvira Carolina"
+      }
+    ],
+    "URL": "https://www.academia.edu/79580217",
+    "language": "es"
+  },
+  {
+    "id": "reguera-sf-origen",
+    "type": "article-journal",
+    "title": "El origen de las Islas Canarias: un modelo de síntesis",
+    "author": [
+      {
+        "family": "Reguera",
+        "given": "Francisco"
+      }
+    ],
+    "language": "es"
+  },
+  {
+    "id": "rodriguez-2019-expansion",
+    "type": "article-journal",
+    "title": "La expansión de Cortaderia selloana (Schult. & Schult. f.) Asch. & Graebn. (Poaceae) en Tenerife, islas Canarias",
+    "author": [
+      {
+        "family": "Rodríguez Navarro",
+        "given": "María Leticia"
+      },
+      {
+        "family": "Fariña Trujillo",
+        "given": "Beatriz"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "container-title": "Vieraea Folia scientiarum biologicarum canariensium",
+    "volume": "46",
+    "page": "79-114",
+    "publisher": "Organismo Autonomo de Museos y Centros del Cabildo de Tenerife",
+    "DOI": "10.31939/vieraea.2019.46.tomo01.05",
+    "URL": "https://doi.org/10.31939/vieraea.2019.46.tomo01.05",
+    "language": "es"
+  },
+  {
+    "id": "rodriguez-2012-presencia",
+    "type": "article-journal",
+    "title": "Sobre la presencia de Pericallis webbii (Sch. Bip.) Bolle (Asteraceae) en el norte de Tenerife (islas Canarias)",
+    "author": [
+      {
+        "family": "Rodríguez Navarro",
+        "given": "María Leticia"
+      },
+      {
+        "family": "Hernández Romero",
+        "given": "Fabián"
+      },
+      {
+        "family": "Barone",
+        "given": "Rubén"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "container-title": "Vieraea Folia scientiarum biologicarum canariensium",
+    "volume": "40",
+    "page": "151-154",
+    "publisher": "Organismo Autonomo de Museos y Centros del Cabildo de Tenerife",
+    "DOI": "10.31939/vieraea.2012.40.13",
+    "URL": "https://doi.org/10.31939/vieraea.2012.40.13",
+    "language": "es"
+  },
+  {
+    "id": "rodriguez-2021-milenio",
+    "type": "article-journal",
+    "title": "Un milenio de textos grecolatinos relativos a las Islas Canarias",
+    "author": [
+      {
+        "family": "Rodríguez-Pantoja",
+        "given": "Miguel"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "container-title": "Fortunatae. Revista Canaria de Filología, Cultura y Humanidades Clásicas",
+    "issue": "34",
+    "page": "125-146",
+    "publisher": "University of La Laguna",
+    "DOI": "10.25145/j.fortunat.2021.34.07",
+    "URL": "https://doi.org/10.25145/j.fortunat.2021.34.07",
+    "language": "otro"
+  },
+  {
+    "id": "rojas-1992-posesion",
+    "type": "article-journal",
+    "title": "Posesión de territorios de infieles durante el siglo XV: las Canarias y las Indias",
+    "author": [
+      {
+        "family": "Rojas Donat",
+        "given": "Luis"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1992
+        ]
+      ]
+    },
+    "container-title": "Coloquios de Historia Canario-Americana",
+    "URL": "https://www.academia.edu/76121230",
+    "language": "es"
+  },
+  {
+    "id": "ronquillo-sf-mujer",
+    "type": "article-journal",
+    "title": "Mujer e Inquisición en Canarias a fines de la Edad Media",
+    "author": [
+      {
+        "family": "Ronquillo",
+        "given": "Manuela"
+      }
+    ],
+    "URL": "https://www.academia.edu/21231831",
+    "language": "es"
+  },
+  {
+    "id": "rossi-2020-introduccion",
+    "type": "article-journal",
+    "title": "Introducción al Libro de entrada y registro de la Cuna de expósitos de la isla de Tenerife, 1752-1794",
+    "author": [
+      {
+        "family": "Rossi Delgado",
+        "given": "Fernando D."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Genealogías laguneras",
+    "URL": "https://www.academia.edu/44420585",
+    "language": "es"
+  },
+  {
+    "id": "ruiz-sf-relaciones",
+    "type": "article-journal",
+    "title": "Las relaciones comerciales entre Canarias y la bahía de Cádiz tras la conquista castellana (1496-1520). Una aproximación a partir de la documentación notarial jerezana",
+    "author": [
+      {
+        "family": "Ruiz Pilares",
+        "given": "Enrique José"
+      }
+    ],
+    "URL": "https://www.academia.edu/63856369",
+    "language": "es"
+  },
+  {
+    "id": "salas-sf-datos",
+    "type": "article-journal",
+    "title": "Datos históricos de la presencia de fitónimos relacionados con el género Quercus L. en Canarias",
+    "author": [
+      {
+        "family": "Salas Pascual",
+        "given": "Marcos"
+      }
+    ],
+    "URL": "https://www.academia.edu/20507141",
+    "language": "es"
+  },
+  {
+    "id": "sanchez-2005-almirantazgo",
+    "type": "article-journal",
+    "title": "El almirantazgo de Castilla y las primeras expediciones y asentamientos en Canarias",
+    "author": [
+      {
+        "family": "Sánchez Saus",
+        "given": "Rafael"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2005
+        ]
+      ]
+    },
+    "container-title": "En la España Medieval",
+    "volume": "28",
+    "publisher": "Universidad Complutense de Madrid",
+    "DOI": "10.5209/rev_ELEM.2005.v28.22991",
+    "URL": "https://doi.org/10.5209/rev_ELEM.2005.v28.22991",
+    "language": "es"
+  },
+  {
+    "id": "santana-2003-companias",
+    "type": "article-journal",
+    "title": "Las compañías de pintores en Canarias durante el siglo XVI",
+    "author": [
+      {
+        "family": "Santana Rodríguez",
+        "given": "Lorenzo"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2003
+        ]
+      ]
+    },
+    "container-title": "El Museo Canario",
+    "URL": "https://www.academia.edu/38867824",
+    "language": "es"
+  },
+  {
+    "id": "santana-sf-historia",
+    "type": "article-journal",
+    "title": "Historia de la incorporación de cultivos africanos en Canarias durante los siglos XV al XVIII",
+    "author": [
+      {
+        "family": "Santana Pérez",
+        "given": "Germán"
+      },
+      {
+        "family": "Cáceres-Lorenzo",
+        "given": "M. Teresa"
+      }
+    ],
+    "URL": "https://www.academia.edu/8431280",
+    "language": "es"
+  },
+  {
+    "id": "santana-sf-trafico",
+    "type": "article-journal",
+    "title": "El tráfico norteamericano en Tenerife a finales del siglo XVIII a través de los informes consulares franceses",
+    "author": [
+      {
+        "family": "Santana Pérez",
+        "given": "Germán"
+      }
+    ],
+    "URL": "https://www.academia.edu/8467838",
+    "language": "es"
+  },
+  {
+    "id": "santos-2013-plantas",
+    "type": "article-journal",
+    "title": "Plantas poco o nada conocidas de la flora vascular silvestre de las Islas Canarias",
+    "author": [
+      {
+        "family": "Santos-Guerra",
+        "given": "Arnoldo"
+      },
+      {
+        "family": "Reyes-Betancort",
+        "given": "Jorge Alfredo"
+      },
+      {
+        "family": "Padrón-Mederos",
+        "given": "Miguel Antonio"
+      },
+      {
+        "family": "Mesa-Coello",
+        "given": "Ricardo"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013
+        ]
+      ]
+    },
+    "container-title": "Botanica Complutensis",
+    "volume": "37",
+    "page": "99-108",
+    "publisher": "Universidad Complutense de Madrid (UCM)",
+    "DOI": "10.5209/rev_bocm.2013.v37.42274",
+    "URL": "https://doi.org/10.5209/rev_bocm.2013.v37.42274",
+    "language": "otro"
+  },
+  {
+    "id": "santoyo-1979-conquista",
+    "type": "article-journal",
+    "title": "La conquista de Las Canarias. Diario de un ataque holandés a Gran Canaria y Gomera en 1599",
+    "author": [
+      {
+        "family": "Santoyo Mediavilla",
+        "given": "Julio"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1979
+        ]
+      ]
+    },
+    "container-title": "Anuario de Estudios Atlánticos",
+    "URL": "https://www.academia.edu/98437069",
+    "language": "es"
+  },
+  {
+    "id": "sevilla-sf-islas",
+    "type": "article-journal",
+    "title": "Las islas Canarias en los \"Avisos de Don Jerónimo de Barrionuevo\" (1654-1658)",
+    "author": [
+      {
+        "family": "Sevilla González",
+        "given": "María"
+      }
+    ],
+    "URL": "https://www.academia.edu/93548255",
+    "language": "es"
+  },
+  {
+    "id": "toro-sf-logistica",
+    "type": "document",
+    "title": "TII- La Logística en los Presidios Norteafricanos Españoles durante los siglos XV al XVIII.",
+    "author": [
+      {
+        "family": "Toro Gil",
+        "given": "Fernando"
+      }
+    ],
+    "URL": "https://www.academia.edu/105577267",
+    "language": "es"
+  },
+  {
+    "id": "soler-2015-hacienda",
+    "type": "article-journal",
+    "title": "La hacienda de la Quinta Roja de Garachico (Tenerife). Análisis histórico y morfológico de una edificación suburbana canaria",
+    "author": [
+      {
+        "family": "Soler Segura",
+        "given": "Javier"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "container-title": "Anuario de Estudios Atlánticos",
+    "URL": "https://www.academia.edu/87333177",
+    "language": "es"
+  },
+  {
+    "id": "trujillo-sf-origen",
+    "type": "article-journal",
+    "title": "El origen amazigh de los aborígenes canarios",
+    "author": [
+      {
+        "family": "Trujillo",
+        "given": "Alejandro"
+      }
+    ],
+    "URL": "https://www.academia.edu/104254685",
+    "language": "es"
+  },
+  {
+    "id": "solbes-2018-navegacion",
+    "type": "article-journal",
+    "title": "La navegación directa de Canarias a América y su papel en el sistema comercial atlántico, 1718-1778",
+    "author": [
+      {
+        "family": "Solbes Ferri",
+        "given": "Sergio"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "container-title": "América Latina en la Historia Económica",
+    "volume": "25",
+    "issue": "1",
+    "page": "36-97",
+    "publisher": "Instituto de Investigaciones Dr. Jose Maria Luis Mora",
+    "DOI": "10.18232/alhe.875",
+    "URL": "https://doi.org/10.18232/alhe.875",
+    "language": "otro"
+  },
+  {
+    "id": "trujillo-sf-verdadera",
+    "type": "article-journal",
+    "title": "Verdadera Fortuna de las Canarias",
+    "author": [
+      {
+        "family": "Trujillo Yánez",
+        "given": "Gustavo A."
+      }
+    ],
+    "URL": "https://www.academia.edu/102756677",
+    "language": "es"
+  },
+  {
+    "id": "viera-2016-historia",
+    "type": "book",
+    "title": "Historia de Canarias",
+    "author": [
+      {
+        "family": "Viera y Clavijo",
+        "given": "José de"
+      },
+      {
+        "family": "Paz Sánchez",
+        "given": "Manuel de"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "URL": "https://www.academia.edu/26902204",
+    "language": "es"
+  },
+  {
+    "id": "viera-sf-tratado",
+    "type": "book",
+    "title": "Tratado sobre la barrilla. Catálogo de los géneros y especies de plantas singulares de las Islas Canarias",
+    "author": [
+      {
+        "family": "Viera y Clavijo",
+        "given": "José de"
+      },
+      {
+        "family": "Puig-Samper Mulero",
+        "given": "Miguel Ángel"
+      },
+      {
+        "family": "Paz Sánchez",
+        "given": "Manuel de"
+      }
+    ],
+    "URL": "https://www.academia.edu/19708551",
+    "language": "es"
+  },
+  {
+    "id": "welss-sf-islas",
+    "type": "article-journal",
+    "title": "Las Islas Canarias, un extraordinario paraíso botánico",
+    "author": [
+      {
+        "family": "Welss",
+        "given": "Walter"
+      }
+    ],
+    "URL": "https://www.academia.edu/37787225",
+    "language": "es"
+  },
+  {
+    "id": "wittmann-2021-guzur",
+    "type": "article-journal",
+    "title": "Al-ğuzur al-ḫālidāt al-musammāt al-ʾān bi-Qanāriya (Las islas eternas conocidas ahora como Qanāriya): La mención a Canarias de Aḥmad ibn Qāsim al-Ḥağarī (Hornachos, ca. 1570 – Túnez, después de 1642)",
+    "author": [
+      {
+        "family": "Wittmann",
+        "given": "Kevin R."
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "container-title": "Anuario de Estudios Atlánticos",
+    "issue": "68",
+    "publisher": "Casa de Colon, Cabildo de Gran Canaria",
+    "DOI": "10.36980/10790.10381",
+    "URL": "https://doi.org/10.36980/10790.10381",
+    "language": "otro"
+  },
+  {
+    "id": "wheat-2020-tangomaos",
+    "type": "article-journal",
+    "title": "Tangomãos en Tenerife y Sierra Leona a mediados del siglo XVI",
+    "author": [
+      {
+        "family": "Wheat",
+        "given": "David"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "container-title": "Cliocanarias",
+    "URL": "https://www.academia.edu/44311593",
+    "language": "es"
+  }
+]
