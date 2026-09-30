@@ -19,6 +19,10 @@ export const TEXTOS = {
     borrador: 'Borrador: no visible en producción',
     masEn: 'Más en',
     serie: 'Serie',
+    compartir: 'Compartir',
+    copiarEnlace: 'Copiar enlace',
+    enlaceCopiado: 'Enlace copiado',
+    compartirPorCorreo: 'Correo',
   },
   pt: {
     inicio: 'Início',
@@ -37,6 +41,10 @@ export const TEXTOS = {
     borrador: 'Rascunho: não visível em produção',
     masEn: 'Mais em',
     serie: 'Série',
+    compartir: 'Partilhar',
+    copiarEnlace: 'Copiar ligação',
+    enlaceCopiado: 'Ligação copiada',
+    compartirPorCorreo: 'Email',
   },
   en: {
     inicio: 'Home',
@@ -55,6 +63,10 @@ export const TEXTOS = {
     borrador: 'Draft: not visible in production',
     masEn: 'More in',
     serie: 'Series',
+    compartir: 'Share',
+    copiarEnlace: 'Copy link',
+    enlaceCopiado: 'Link copied',
+    compartirPorCorreo: 'Email',
   },
 } satisfies Record<Idioma, Record<string, string>>;
 

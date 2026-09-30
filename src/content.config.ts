@@ -13,7 +13,8 @@ const articulos = defineCollection({
     z.object({
       titulo: z.string(),
       entradilla: texto,
-      descripcion: texto,
+      // Mismo límite que el gestor: si se supera, Keystatic no puede abrir el artículo.
+      descripcion: z.string().max(170).nullish().transform((v) => v ?? ''),
       fecha: z.coerce.date(),
       actualizado: z.coerce.date().nullish(),
       categoria: z.enum(['canarias', 'costa-norafricana', 'macaronesia', 'internacional', 'taller', 'editorial']),
