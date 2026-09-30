@@ -1,0 +1,21 @@
+titulo: 'Diferencia de precio antes de impuestos por carburante: Canarias frente a Península y Baleares (2016-2025)'
+descripcion: >-
+  Diferencia media del precio antes de impuestos entre Canarias y la Península
+  y Baleares para gasolina 95, gasolina 98 y gasóleo A, litros vendidos al año
+  en Canarias e importe anual resultante (media 2016-2025).
+fuente: CNMC (precios diarios provinciales) y CORES (consumos mensuales por provincia)
+url: https://catalogodatos.cnmc.es/
+fecha: 2026-09-30
+licencia: Datos de CNMC y CORES; elaboración de macaronesico (CC BY 4.0)
+notas: >-
+  Diferencia: media mensual de enero de 2016 a septiembre de 2026 de los
+  promedios provinciales de la CNMC, ponderados por estaciones. Volumen: CORES,
+  convertido a litros con 0,745 kg/L (gasolinas) y 0,845 kg/L (gasóleo). El
+  importe multiplica mes a mes litros por diferencia. CORES incluye ventas fuera
+  de las gasolineras; la última columna aplica la cuota del canal estaciones de
+  la CNMC (94 % en gasolinas, 73 % en gasóleo A; IS/DE/010/20, pág. 5).
+csv: |
+  Carburante,Diferencia antes de impuestos (€/L),Litros al año (millones),Importe al año (millones de €),Importe solo en gasolineras (millones de €)
+  Gasolina 95,0.122,530,64.5,60.6
+  Gasolina 98,0.149,153,23.2,21.8
+  Diésel (gasóleo A),0.096,764,74.0,54.0
