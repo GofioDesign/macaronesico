@@ -5,16 +5,16 @@ autores:
   - "Cano, Emilio"
   - "Riina, Ricarda"
   - "Fernández-Mazuecos, Mario"
-anio: 2023
-tipo: otro
-revista: ""
-volumen: ""
-numero: ""
-paginas: ""
-editorial: "openRxiv"
-doi: "10.1101/2023.01.27.525850"
-url: "https://doi.org/10.1101/2023.01.27.525850"
-idioma: otro
+anio: 2024
+tipo: articulo
+revista: "Plant Biology"
+volumen: "26"
+numero: "3"
+paginas: "398-414"
+editorial: "Wiley"
+doi: "10.1111/plb.13635"
+url: "https://doi.org/10.1111/plb.13635"
+idioma: en
 acceso: desconocido
 pdf: ""
 territorios:
@@ -22,6 +22,6 @@ territorios:
 temas:
   - "biodiversidad"
 resumen: ""
-importancia: ""
+importancia: "Versión publicada del preprint de bioRxiv de 2023 (doi:10.1101/2023.01.27.525850), que está en acceso abierto."
 estado: pendiente
 verificada: true
