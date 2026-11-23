@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 410" role="img" aria-label="Mismos impuestos, hasta 0,29 € de diferencia entre islas">
+<style>
+svg { --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984; --grid:#e6e5e0;
+      --can:#eb6834; --pen:#2a78d6; --band:#eb683426; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+@media (prefers-color-scheme: dark) {
+  svg { --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#8f8e86; --grid:#33332f;
+        --can:#d95926; --pen:#3987e5; --band:#d9592633; }
+}
+.bg { fill: var(--surface); } .t1 { fill: var(--ink); } .t2 { fill: var(--ink2); } .t3 { fill: var(--muted); }
+.grid { stroke: var(--grid); stroke-width: 1; } .axis { stroke: var(--muted); stroke-width: 1; }
+.can { fill: var(--can); } .pen { fill: var(--pen); } .lcan { stroke: var(--can); } .lpen { stroke: var(--pen); }
+.hit { fill: transparent; } .hit:hover + .dot, .bar:hover { opacity: .8; }
+</style>
+<rect class="bg" width="760" height="410" rx="8"/>
+<text class="t1" x="24" y="34" font-size="18" font-weight="600">Mismos impuestos, hasta 0,29 € de diferencia entre islas</text>
+<text class="t2" x="24" y="56" font-size="13">Precio medio en el surtidor de la gasolina 95 en 2025, €/L (el eje empieza en 1,00 €/L)</text>
+<line class="grid" x1="130.0" x2="130.0" y1="78" y2="360"/>
+<text class="t3" x="130.0" y="376" font-size="11" text-anchor="middle">1,00</text>
+<line class="grid" x1="250.0" x2="250.0" y1="78" y2="360"/>
+<text class="t3" x="250.0" y="376" font-size="11" text-anchor="middle">1,10</text>
+<line class="grid" x1="370.0" x2="370.0" y1="78" y2="360"/>
+<text class="t3" x="370.0" y="376" font-size="11" text-anchor="middle">1,20</text>
+<line class="grid" x1="490.0" x2="490.0" y1="78" y2="360"/>
+<text class="t3" x="490.0" y="376" font-size="11" text-anchor="middle">1,30</text>
+<line class="grid" x1="610.0" x2="610.0" y1="78" y2="360"/>
+<text class="t3" x="610.0" y="376" font-size="11" text-anchor="middle">1,40</text>
+<text class="t1" x="120" y="101.0" font-size="13" text-anchor="end">Lanzarote</text>
+<line class="grid" x1="130" x2="304.0" y1="97.0" y2="97.0"/>
+<circle class="pen bar" cx="304.0" cy="97.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>Lanzarote: 1,145 €/L</title></circle>
+<text class="t1" x="318.0" y="101.0" font-size="12">1,145</text>
+<text class="t1" x="120" y="139.0" font-size="13" text-anchor="end">Gran Canaria</text>
+<line class="grid" x1="130" x2="317.2" y1="135.0" y2="135.0"/>
+<circle class="pen bar" cx="317.2" cy="135.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>Gran Canaria: 1,156 €/L</title></circle>
+<text class="t1" x="331.2" y="139.0" font-size="12">1,156</text>
+<text class="t1" x="120" y="177.0" font-size="13" text-anchor="end">Tenerife</text>
+<line class="grid" x1="130" x2="329.2" y1="173.0" y2="173.0"/>
+<circle class="pen bar" cx="329.2" cy="173.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>Tenerife: 1,166 €/L</title></circle>
+<text class="t1" x="343.2" y="177.0" font-size="12">1,166</text>
+<text class="t1" x="120" y="215.0" font-size="13" text-anchor="end">Fuerteventura</text>
+<line class="grid" x1="130" x2="433.6" y1="211.0" y2="211.0"/>
+<circle class="pen bar" cx="433.6" cy="211.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>Fuerteventura: 1,253 €/L</title></circle>
+<text class="t1" x="447.6" y="215.0" font-size="12">1,253</text>
+<text class="t1" x="120" y="253.0" font-size="13" text-anchor="end">La Palma</text>
+<line class="grid" x1="130" x2="527.2" y1="249.0" y2="249.0"/>
+<circle class="pen bar" cx="527.2" cy="249.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>La Palma: 1,331 €/L</title></circle>
+<text class="t1" x="541.2" y="253.0" font-size="12">1,331</text>
+<text class="t1" x="120" y="291.0" font-size="13" text-anchor="end">La Gomera</text>
+<line class="grid" x1="130" x2="620.8" y1="287.0" y2="287.0"/>
+<circle class="pen bar" cx="620.8" cy="287.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>La Gomera: 1,409 €/L</title></circle>
+<text class="t1" x="634.8" y="291.0" font-size="12">1,409</text>
+<text class="t1" x="120" y="329.0" font-size="13" text-anchor="end">El Hierro</text>
+<line class="grid" x1="130" x2="650.8" y1="325.0" y2="325.0"/>
+<circle class="pen bar" cx="650.8" cy="325.0" r="7" style="stroke: var(--surface); stroke-width: 2"><title>El Hierro: 1,434 €/L</title></circle>
+<text class="t1" x="664.8" y="329.0" font-size="12">1,434</text>
+<text class="t3" x="24" y="394" font-size="11">Fuente: MITECO, precios diarios por estación; media por estación. Elaboración propia.</text>
+</svg>
